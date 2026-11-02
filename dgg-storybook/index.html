@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Storybook — Dimon Global Group. An original serialized story, The City of Lit Windows, published in chapters. Chapter One published November 2, 2026." />
+<title>Storybook — Dimon Global Group</title>
+<style>
+  :root{
+    --bg:#101312; --card:#171a18; --card-2:#1e2220;
+    --ink:#f2f1ec; --soft:#c6c8c0; --muted:#8f9489;
+    --line:#2b2f2c; --green:#57b87e; --green-dim:#1e6b3c; --purple:#a68fd6; --purple-dim:#5b4390;
+    --serif:Georgia, "Times New Roman", serif;
+    --sans:-apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono:ui-monospace, Menlo, Consolas, monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.55; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+
+  .topbar{ border-bottom:1px solid var(--line); }
+  .topbar .wrap{ display:flex; justify-content:space-between; align-items:center; gap:16px; padding-top:14px; padding-bottom:14px; }
+  .brand{ font-family:var(--serif); font-weight:600; letter-spacing:.06em; font-size:15px; }
+  .brand .rad{ border:1.5px solid var(--ink); padding:4px 7px 3px; font-size:11px; letter-spacing:.14em; margin-right:10px; }
+  .live{ font-family:var(--mono); font-size:12px; color:var(--muted); }
+  .live .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--purple); margin-right:7px; }
+
+  .hero{ padding:58px 0 10px; }
+  .hero .kick{ font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--purple); margin:0 0 14px; }
+  .hero h1{ font-family:var(--serif); font-weight:500; font-size:clamp(38px,5.6vw,62px); line-height:1.08; margin:0; }
+  .hero h1 em{ color:var(--green); }
+  .hero p{ color:var(--soft); font-size:17.5px; max-width:64ch; margin:18px 0 0; }
+  .marquee{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+  .marquee span{ font-family:var(--mono); font-size:12px; border:1px solid var(--line); padding:7px 12px; color:var(--soft); background:var(--card); }
+  .marquee span b{ color:var(--purple); font-weight:600; }
+
+  .frame{ margin-top:48px; display:grid; grid-template-columns:1.5fr 1fr; gap:30px; border:1px solid var(--line); background:var(--card); padding:34px 36px; }
+  .frame h2{ font-family:var(--serif); font-size:26px; font-weight:600; margin:0 0 12px; }
+  .frame p{ color:var(--soft); font-size:15.5px; margin:0 0 12px; }
+  .frame p:last-child{ margin-bottom:0; }
+  .frame .side{ border-left:1px solid var(--line); padding-left:30px; }
+  .frame .side .fact{ margin-bottom:18px; }
+  .frame .side .fact:last-child{ margin-bottom:0; }
+  .frame .side .n{ font-family:var(--serif); font-size:22px; color:var(--ink); line-height:1.25; }
+  .frame .side .t{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:3px; }
+  @media (max-width:760px){ .frame{ grid-template-columns:1fr; } .frame .side{ border-left:none; padding-left:0; } }
+
+  .contents{ margin-top:48px; }
+  .contents h2{ font-family:var(--mono); font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:0 0 6px; }
+  .contents .note{ color:var(--muted); font-size:13.5px; margin:0 0 8px; max-width:70ch; }
+  .contents .row{ display:grid; grid-template-columns:170px 1fr auto; gap:18px; padding:17px 4px; border-top:1px solid var(--line); align-items:baseline; }
+  .contents .row:last-child{ border-bottom:1px solid var(--line); }
+  .contents .chap{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--purple); white-space:nowrap; }
+  .contents .what{ color:var(--soft); font-size:15px; }
+  .contents .what b{ color:var(--ink); font-weight:600; font-size:16.5px; }
+  .contents .status{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--green); border:1px solid var(--green-dim); padding:5px 9px; white-space:nowrap; }
+  .contents .status.dev{ color:var(--muted); border-color:var(--line); }
+  @media (max-width:640px){ .contents .row{ grid-template-columns:1fr; gap:6px; } }
+
+  .chapter{ margin-top:48px; border:1px solid var(--line); background:var(--card-2); padding:44px 48px 40px; }
+  @media (max-width:640px){ .chapter{ padding:28px 22px; } }
+  .chapter .c-kick{ font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--purple); text-align:center; margin:0 0 10px; }
+  .chapter h2{ font-family:var(--serif); font-size:34px; font-weight:600; text-align:center; margin:0 0 8px; line-height:1.2; }
+  .chapter .c-date{ font-family:var(--mono); font-size:12px; color:var(--muted); text-align:center; margin:0 0 30px; }
+  .chapter .body{ max-width:66ch; margin:0 auto; }
+  .chapter .body p{ font-family:var(--serif); color:var(--ink); font-size:17.5px; line-height:1.85; margin:0 0 18px; }
+  .chapter .body p:first-child::first-letter{ font-size:52px; line-height:.9; float:left; padding:6px 10px 0 0; color:var(--green); }
+  .chapter .endmark{ font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); text-align:center; margin-top:28px; }
+
+  footer{ margin-top:60px; border-top:1px solid var(--line); padding:28px 0 40px; font-size:13px; color:var(--muted); line-height:1.7; }
+  footer .row{ display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:12px; }
+  footer a{ color:var(--soft); }
+  footer a:hover{ color:var(--purple); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="https://dimonglobalgroup.com"><span class="rad">RAD</span>DIMON GLOBAL GROUP</a>
+    <span class="live"><span class="dot"></span>Chapter One published</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="kick">Dimon Global Group — Storybook</p>
+    <h1>A city lit in colors,<br />mapped <em>one window at a time.</em></h1>
+    <p>Storybook is the Group&rsquo;s home for serialized fiction — original stories, written for this page and published in chapters. The first serial is <i>The City of Lit Windows</i>. Chapter One is printed in full below; it is, honestly, the whole of what exists so far.</p>
+    <div class="marquee">
+      <span><b>Serial</b> The City of Lit Windows</span>
+      <span><b>Chapter One</b> published Nov 2, 2026</span>
+      <span><b>Original fiction</b> — no real people</span>
+    </div>
+  </div>
+
+  <div class="frame">
+    <div>
+      <h2>About the serial</h2>
+      <p><i>The City of Lit Windows</i> is an original work of fiction published in chapters by Dimon Global Group. Its city, Vess, its river, its trades, and its people are invented. Any resemblance to a real place is the ordinary resemblance of one lit street to another — nothing in the story is a report about anyone.</p>
+      <p>The serial follows Wren, a mapmaker&rsquo;s apprentice, through a city where every district burns a different color and a map is trusted the way a promise is trusted. It is a story about exactness: what you owe a thing you do not yet understand, and why the honest mark is sometimes a question.</p>
+      <p>Chapters will appear here as they are finished. No schedule is promised. The contents list below tells the truth about what exists: one chapter published, the rest still in the writing.</p>
+    </div>
+    <div class="side">
+      <div class="fact"><div class="n">Vess</div><div class="t">The city — every district lit a color</div></div>
+      <div class="fact"><div class="n">The Sorn</div><div class="t">The river, east of the Theater District</div></div>
+      <div class="fact"><div class="n">30 days</div><div class="t">To the Feast of Lamps, as Chapter One opens</div></div>
+      <div class="fact"><div class="n">1 chapter</div><div class="t">Published — the whole of the serial so far</div></div>
+    </div>
+  </div>
+
+  <div class="contents">
+    <h2>Contents — The City of Lit Windows</h2>
+    <p class="note">The full contents of the serial as it stands today. Chapters in the writing are listed without dates, because a date would be a guess dressed as a fact.</p>
+    <div class="row">
+      <span class="chap">Chapter One</span>
+      <span class="what"><b>The Violet Window</b> — Wren receives her first solo commission, walks the Theater District, and finds a window that is on no map. Printed in full below.</span>
+      <span class="status">Published · Nov 2, 2026</span>
+    </div>
+    <div class="row">
+      <span class="chap">Chapter Two</span>
+      <span class="what">Untitled — the story continues from the river steps, after dark.</span>
+      <span class="status dev">In the writing</span>
+    </div>
+    <div class="row">
+      <span class="chap">Chapter Three</span>
+      <span class="what">Untitled — further chapters follow only as they are finished to standard.</span>
+      <span class="status dev">In the writing</span>
+    </div>
+  </div>
+
+  <article class="chapter">
+    <p class="c-kick">The City of Lit Windows · Chapter One</p>
+    <h2>The Violet Window</h2>
+    <p class="c-date">PUBLISHED NOVEMBER 2, 2026</p>
+    <div class="body">
+      <p>In Vess, you could tell where you were by the color of the light in the windows. The Mill District burned amber, low and steady. The Market burned white, bright enough to argue by. The Scholars&rsquo; Quarter burned blue, one lamp to a desk, and kept the latest hours in the city. Children learned the colors before the street names, and strangers navigated by them, only half understanding what they trusted.</p>
+      <p>Wren was a mapmaker&rsquo;s apprentice, and she did not trust anything half understood. She was careful the way good tools are careful, because carelessness never produced a straight line. She kept her pencils in order of hardness and her rulers wiped. On a cord around her neck she kept a brass compass. It did not point north. It had never pointed north. It pointed, with a small decisive tremor, toward the nearest unmapped thing.</p>
+      <p>Master Odo, who was old enough to have mapped half of Vess himself, pretended not to find this remarkable. His mother had made the compass, back when she was the cartographer and he was the apprentice carrying her case, and she had made it that way on purpose. &ldquo;North is already known,&rdquo; she liked to say, or so Odo reported it. Wren could not verify the words were hers, so she marked them in her notebook as heard but not proven. Then Odo handed her the important work.</p>
+      <p>On the morning the story begins, with the Feast of Lamps thirty days away, he unrolled the Theater District across the long table &mdash; three older maps, layered like skins &mdash; and set a clean sheet beside them, weighted with river stones. &ldquo;Your first commission alone,&rdquo; he said. &ldquo;Map the Theater District before the Feast of Lamps. Every street, every stair, every window that shows a light. The Feast procession will walk by your map, Wren, not by the district. If the map is wrong, the Feast is wrong, in front of the whole city.&rdquo; Then he gave her the first rule of the trade, written over the workshop door in his mother&rsquo;s hand: &ldquo;A map that lies kindly is still a lie.&rdquo;</p>
+      <p>&ldquo;Kindly?&rdquo; Wren said. &ldquo;Maps lie kindly when they round a corner that is not round because it looked untidy,&rdquo; Odo said. &ldquo;When they leave out a poor lane. When they guess. You will be tempted to guess before the month is out. On the city&rsquo;s map, write what you saw, mark what you could not see, and leave a blank where you know nothing. A blank can be filled later. A kindness has to be unlearned first.&rdquo; Wren copied the rule into her notebook, though she knew it by heart, because copying was how she kept things exact.</p>
+      <p>The Theater District stood at the east of Vess, and the river Sorn bordered it on the east, so the district lay between the city and the water like a stage between an audience and a curtain. Its windows were green &mdash; all of them, by law and by custom older than the law. Green for the players, green for the scene-shops, green for the narrow houses where the musicians lived four to a floor. Wren began at the river steps and worked west, from the water inward, so the known edge held the unknown middle honest. The compass trembled at unmapped alleys and once at a courtyard that three older maps had agreed, incorrectly, did not exist.</p>
+      <p>She measured. She counted windows the way other people counted coins, twice, and wrote the count down both times to be sure the numbers agreed. By late afternoon her sheet had acquired streets, stairs, and the confident geography of a district doing its ordinary business &mdash; and the work, she allowed herself to think, was good.</p>
+      <p>Then, on a lane behind the second theater, the compass stopped trembling and stood still, pointing like a finger. Wren looked up. Above a shuttered costume shop, in a wall she had already counted from the other side, there was a window &mdash; one window &mdash; lit violet, while every other window around it was green. Not green deepened, not green thinned. Violet, the color of no district in Vess. She checked the three older maps in her case, unrolling each on a barrel-top. The wall was on all three. The window was on none of them.</p>
+      <p>For a long moment she stood with her pencil ready, and the temptation Odo had promised arrived on schedule. She could draw the window green; the procession would pass in daylight, no one would know, and the map would look complete &mdash; kindly, and complete, and false. She could leave it out, which was the same lie told quieter. Instead, Wren drew the window where it stood, in outline only, with no color filled in, and beside it, in her clearest hand, she set a question mark instead of guessing. It was, she thought, the most honest mark on the whole sheet.</p>
+      <p>She rolled the maps as the lamps came on, green upon green, and the one violet light burning steady above the shop. Daylight had told her everything daylight knew. Wren shouldered her case and made her decision: she would return at night, alone, and see what the violet window was when the district went dark.</p>
+    </div>
+    <p class="endmark">— End of Chapter One —</p>
+  </article>
+
+  <footer>
+    <div class="row">
+      <span>DIMON GLOBAL GROUP — STORYBOOK</span>
+      <span><a href="https://dimonglobalgroup.com">Firm</a> · <a href="https://dimonglobalgroup.github.io/dgg-media/">Media</a> · <a href="https://dimonglobalgroup.github.io/dgg-cinema/">Cinema</a> · <a href="https://www.youtube.com/@RobertDonaldson-rad" target="_blank" rel="noopener">YouTube</a> · <a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">GitHub</a></span>
+    </div>
+    <p>Dimon is the founder&rsquo;s chosen name; legal change in progress. Storybook is an original work of fiction published by Dimon Global Group. The Group publishes no personal email address, street address, or telephone number.</p>
+  </footer>
+</div>
+
+</body>
+</html>
