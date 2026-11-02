@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The Dimon Dispatch — the periodic letter of Dimon Global Group. Issue No. 1, November 2, 2026: First Light: A Firm, A Standard, A Constellation." />
+<title>The Dimon Dispatch — Dimon Global Group</title>
+<style>
+  :root{
+    --bg:#101312; --card:#171a18; --card-2:#1e2220;
+    --ink:#f2f1ec; --soft:#c6c8c0; --muted:#8f9489;
+    --line:#2b2f2c; --green:#57b87e; --green-dim:#1e6b3c; --purple:#a68fd6; --purple-dim:#5b4390;
+    --serif:Georgia, "Times New Roman", serif;
+    --sans:-apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono:ui-monospace, Menlo, Consolas, monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.55; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+
+  .topbar{ border-bottom:1px solid var(--line); }
+  .topbar .wrap{ display:flex; justify-content:space-between; align-items:center; gap:16px; padding-top:14px; padding-bottom:14px; }
+  .brand{ font-family:var(--serif); font-weight:600; letter-spacing:.06em; font-size:15px; }
+  .brand .rad{ border:1.5px solid var(--ink); padding:4px 7px 3px; font-size:11px; letter-spacing:.14em; margin-right:10px; }
+  .live{ font-family:var(--mono); font-size:12px; color:var(--muted); }
+  .live .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--green); margin-right:7px; }
+
+  .hero{ padding:58px 0 10px; }
+  .hero .kick{ font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--purple); margin:0 0 14px; }
+  .hero h1{ font-family:var(--serif); font-weight:500; font-size:clamp(38px,5.6vw,62px); line-height:1.08; margin:0; }
+  .hero h1 em{ color:var(--green); }
+  .hero p{ color:var(--soft); font-size:17.5px; max-width:64ch; margin:18px 0 0; }
+  .marquee{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+  .marquee span{ font-family:var(--mono); font-size:12px; border:1px solid var(--line); padding:7px 12px; color:var(--soft); background:var(--card); }
+  .marquee span b{ color:var(--purple); font-weight:600; }
+
+  .masthead{ margin-top:48px; border:1px solid var(--line); background:var(--card); padding:30px 36px; display:grid; grid-template-columns:1fr auto; gap:28px; align-items:end; }
+  .masthead .name{ font-family:var(--serif); font-size:34px; font-weight:600; margin:0; line-height:1.1; }
+  .masthead .sub{ color:var(--muted); font-size:14px; margin:8px 0 0; max-width:52ch; }
+  .masthead .facts{ font-family:var(--mono); font-size:12px; color:var(--soft); text-align:right; line-height:1.9; white-space:nowrap; }
+  .masthead .facts b{ color:var(--green); font-weight:600; }
+  @media (max-width:700px){ .masthead{ grid-template-columns:1fr; } .masthead .facts{ text-align:left; } }
+
+  .archive{ margin-top:48px; }
+  .archive h2{ font-family:var(--mono); font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:0 0 6px; }
+  .archive .note{ color:var(--muted); font-size:13.5px; margin:0 0 8px; max-width:70ch; }
+  .archive .head, .archive .row{ display:grid; grid-template-columns:92px 150px 1fr auto; gap:18px; padding:14px 4px; align-items:baseline; }
+  .archive .head{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); border-top:1px solid var(--line); }
+  .archive .row{ border-top:1px solid var(--line); }
+  .archive .row:last-child{ border-bottom:1px solid var(--line); }
+  .archive .no{ font-family:var(--mono); font-size:12px; color:var(--purple); }
+  .archive .date{ font-family:var(--mono); font-size:12.5px; color:var(--soft); white-space:nowrap; }
+  .archive .title{ color:var(--soft); font-size:15px; }
+  .archive .title b{ color:var(--ink); font-weight:600; font-size:16px; }
+  .archive .status{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--green); border:1px solid var(--green-dim); padding:5px 9px; white-space:nowrap; }
+  .archive .status.prep{ color:var(--muted); border-color:var(--line); }
+  @media (max-width:700px){ .archive .head{ display:none; } .archive .row{ grid-template-columns:1fr; gap:6px; } }
+
+  .letter{ margin-top:48px; border:1px solid var(--purple-dim); background:linear-gradient(120deg, var(--card-2), var(--card)); padding:40px 42px; }
+  @media (max-width:640px){ .letter{ padding:28px 22px; } }
+  .letter .l-kick{ font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--purple); margin:0 0 10px; }
+  .letter h2{ font-family:var(--serif); font-size:32px; font-weight:600; line-height:1.2; margin:0 0 6px; }
+  .letter .dateline{ font-family:var(--mono); font-size:12.5px; color:var(--muted); margin:0 0 24px; }
+  .letter h3{ font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin:28px 0 8px; font-weight:600; }
+  .letter h3:first-of-type{ margin-top:0; }
+  .letter p{ color:var(--soft); font-size:16.5px; line-height:1.75; margin:0 0 14px; max-width:68ch; }
+  .letter p:last-child{ margin-bottom:0; }
+  .letter .sign{ font-family:var(--serif); font-style:italic; color:var(--ink); margin-top:26px; }
+
+  .principle{ margin-top:48px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width:800px){ .principle{ grid-template-columns:1fr; } }
+  .principle .cell{ background:var(--card); border:1px solid var(--line); padding:24px; }
+  .principle .n{ font-family:var(--serif); font-size:28px; color:var(--ink); }
+  .principle .t{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+  .principle p{ color:var(--soft); font-size:14px; margin:10px 0 0; }
+
+  footer{ margin-top:60px; border-top:1px solid var(--line); padding:28px 0 40px; font-size:13px; color:var(--muted); line-height:1.7; }
+  footer .row{ display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:12px; }
+  footer a{ color:var(--soft); }
+  footer a:hover{ color:var(--purple); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="https://dimonglobalgroup.com"><span class="rad">RAD</span>DIMON GLOBAL GROUP</a>
+    <span class="live"><span class="dot"></span>Issue No. 1 published</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="kick">Dimon Global Group — Newsletter</p>
+    <h1>The letter that carries<br />the <em>record.</em></h1>
+    <p>The Dimon Dispatch is the firm&rsquo;s periodic letter — not a feed, not a campaign. It appears when there is something verified to say, and it says only that: work done, work measured, and work honestly described as still in progress.</p>
+    <div class="marquee">
+      <span><b>Periodic</b> — no fixed schedule promised</span>
+      <span><b>Issue No. 1</b> November 2, 2026</span>
+      <span><b>1</b> standard: Truth, made real.</span>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div>
+      <p class="name">The Dimon Dispatch</p>
+      <p class="sub">The periodic letter of Dimon Global Group. Each issue is dated, numbered, and kept in this archive, so the record can be read in the order it was made.</p>
+    </div>
+    <div class="facts">
+      <div>FOUNDED <b>NOV 1, 2026</b></div>
+      <div>ISSUES PUBLISHED <b>1</b></div>
+      <div>STANDARD <b>TRUTH, MADE REAL.</b></div>
+    </div>
+  </div>
+
+  <div class="archive">
+    <h2>Issue archive</h2>
+    <p class="note">Every issue, in order. A row marked &ldquo;in preparation&rdquo; is a promise of nothing except that the work is underway — no date is attached until the issue is real.</p>
+    <div class="head"><span>Issue</span><span>Date</span><span>Title</span><span>Status</span></div>
+    <div class="row">
+      <span class="no">No. 1</span>
+      <span class="date">Nov 2, 2026</span>
+      <span class="title"><b>First Light: A Firm, A Standard, A Constellation</b> — the founding letter, printed in full below.</span>
+      <span class="status">Published</span>
+    </div>
+    <div class="row">
+      <span class="no">No. 2</span>
+      <span class="date">—</span>
+      <span class="title">To be titled when it is written.</span>
+      <span class="status prep">In preparation</span>
+    </div>
+  </div>
+
+  <article class="letter">
+    <p class="l-kick">Issue No. 1 · The Dimon Dispatch</p>
+    <h2>First Light: A Firm, A Standard, A Constellation</h2>
+    <p class="dateline">NOVEMBER 2, 2026</p>
+
+    <h3>A firm</h3>
+    <p>Dimon Global Group was founded on November 1, 2026. It begins as a small firm with a deliberate shape: one flagship, a set of specialized desks, and a public record that anyone can inspect. This letter, The Dimon Dispatch, is part of that record. It will appear periodically, not on a promised calendar, and it will carry only what the firm can stand behind — work done, work verified, and work honestly described as still in progress.</p>
+
+    <h3>A standard</h3>
+    <p>The firm&rsquo;s standard is a short sentence: Truth, made real. It is not decoration. It governs how the Group writes, builds, and publishes. A claim that cannot be checked does not ship as a claim. A result that cannot be reproduced does not ship as a result. A release that cannot be verified does not ship as a release. The sentence is easy to print and harder to keep, which is precisely why it was chosen. Every page in the constellation and every release in the program is measured against it first.</p>
+
+    <h3>A constellation</h3>
+    <p>The constellation is live. The flagship stands at dimonglobalgroup.com, where the firm presents itself in full. Around it, specialized pages carry the separate desks: Systems for the engineering work, Media for the publishing record, Founder for the office that directs the firm, and Cinema for long-form film. Each page has one job and does it in the open. Together they form a single public address for the Group — organized, linked, and scannable, so that a reader who finds any one page can find the rest without having to trust a search result to assemble the picture.</p>
+
+    <h3>The record</h3>
+    <p>The engineering record that the firm opens with is NEUROGEN and its current form, SPHERION v0.4. In the Group&rsquo;s measured experiments, SPHERION reached task accuracy of 1.000 against a baseline of 0.830 on the same tasks. Reproducibility across those experiments was 100%. Releases are hash-verified, so the file a reader downloads can be checked, digit for digit, against the file the Group published. Those three numbers — accuracy, reproducibility, and verification — are the opening entry in the record. They are stated here because they were measured, and they will be corrected in this letter if a later measurement ever requires it.</p>
+    <p>Software from the Group is published through a GitHub release program. The program exists for the same reason this letter does: to put dated, inspectable artifacts where anyone can find them, rather than asking anyone to take a description on faith. What is published there is work the Group has already surpassed in its own development — released in the open, under the same standard, as part of the permanent record.</p>
+
+    <h3>What comes next</h3>
+    <p>Future issues of the Dispatch will carry the record as it accumulates: new releases, new pages, new measurements, and corrections where corrections are due. No fixed schedule is promised, and none should be inferred from this first issue. When there is something verified to say, there will be another issue. Until then, the constellation stays live, the archive stays public, and the standard stays exactly as printed above. Truth, made real.</p>
+
+    <p class="sign">— Dimon Global Group</p>
+  </article>
+
+  <div class="principle">
+    <div class="cell"><div class="n">1.000</div><div class="t">SPHERION task accuracy</div><p>Measured against a 0.830 baseline on the same tasks, in the Group&rsquo;s experiments for NEUROGEN / SPHERION v0.4.</p></div>
+    <div class="cell"><div class="n">100%</div><div class="t">Reproducibility</div><p>The experiments behind the opening record reproduced in full — the result is the record, not a summary of it.</p></div>
+    <div class="cell"><div class="n">Hash-verified</div><div class="t">Releases</div><p>Software is published through a GitHub release program, with hashes a reader can check independently.</p></div>
+  </div>
+
+  <footer>
+    <div class="row">
+      <span>DIMON GLOBAL GROUP — THE DIMON DISPATCH</span>
+      <span><a href="https://dimonglobalgroup.com">Firm</a> · <a href="https://dimonglobalgroup.github.io/dgg-media/">Media</a> · <a href="https://dimonglobalgroup.github.io/dgg-cinema/">Cinema</a> · <a href="https://www.youtube.com/@RobertDonaldson-rad" target="_blank" rel="noopener">YouTube</a> · <a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">GitHub</a></span>
+    </div>
+    <p>Dimon is the founder&rsquo;s chosen name; legal change in progress. The Dimon Dispatch is the periodic letter of Dimon Global Group. The Group publishes no personal email address, street address, or telephone number.</p>
+  </footer>
+</div>
+
+</body>
+</html>
