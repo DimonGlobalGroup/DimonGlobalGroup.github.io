@@ -1,226 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Dimon Global Group — Systems. The engineering record: cognitive architectures, autonomous agents, and self-maintaining hardware nodes, built from scratch and published with their measurements." />
-<title>Systems — Dimon Global Group</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Systems Reference Notes</title>
 <style>
-  :root{
-    --bg:#0b0e0c; --panel:#111512; --panel-2:#161b17;
-    --ink:#e6e9e2; --soft:#b9beb2; --muted:#7d8478;
-    --line:#262c26; --line-2:#39413a;
-    --green:#57b87e; --green-dim:#1e6b3c;
-    --purple:#a68fd6; --purple-dim:#5b4390;
-    --mono:ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-    --sans:-apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --serif:Georgia, "Times New Roman", serif;
-  }
-  *{ box-sizing:border-box; }
-  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.6; }
-  a{ color:var(--green); text-decoration:none; }
-  a:hover{ text-decoration:underline; }
-  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
-
-  .term-bar{ border-bottom:1px solid var(--line); font-family:var(--mono); font-size:12px; color:var(--muted); }
-  .term-bar .wrap{ display:flex; justify-content:space-between; gap:16px; padding-top:9px; padding-bottom:9px; flex-wrap:wrap; }
-  .term-bar .ok{ color:var(--green); }
-
-  header.mast{ padding:56px 0 8px; }
-  .sys-tag{ font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--purple); margin:0 0 14px; }
-  h1{ font-family:var(--mono); font-weight:600; font-size:clamp(34px,5.4vw,58px); line-height:1.08; margin:0; letter-spacing:-.01em; }
-  h1 .grp{ color:var(--green); }
-  .mast p.lede{ color:var(--soft); font-size:17px; max-width:64ch; margin:20px 0 0; }
-  .mast p.lede b{ color:var(--ink); }
-  .gh-cta{ display:flex; flex-wrap:wrap; gap:12px; margin:28px 0 8px; }
-  .gh-btn{ font-family:var(--mono); font-size:13px; border:1px solid var(--green-dim); color:var(--ink); padding:11px 18px; background:var(--panel); }
-  .gh-btn:hover{ border-color:var(--green); text-decoration:none; }
-  .gh-btn.primary{ background:var(--green-dim); border-color:var(--green-dim); color:#fff; }
-  .gh-btn.primary:hover{ background:#2a8a50; }
-  .gh-btn .arr{ color:var(--green); }
-  .gh-btn.primary .arr{ color:#bfe6cf; }
-
-  section{ margin-top:58px; }
-  .sec-head{ display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--line-2); padding-bottom:10px; margin-bottom:6px; }
-  .sec-head .idx{ font-family:var(--mono); font-size:12px; color:var(--green); }
-  .sec-head h2{ font-family:var(--mono); font-weight:600; font-size:21px; margin:0; letter-spacing:.02em; }
-  .sec-head .note{ margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--muted); }
-  @media (max-width:640px){ .sec-head .note{ display:none; } }
-
-  table.spec{ width:100%; border-collapse:collapse; font-size:14.5px; }
-  table.spec th, table.spec td{ text-align:left; padding:13px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
-  table.spec th{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; }
-  table.spec td.name{ font-family:var(--mono); font-size:14px; color:var(--ink); white-space:nowrap; }
-  table.spec td.name .v{ color:var(--purple); font-size:12px; }
-  table.spec td{ color:var(--soft); }
-  table.spec td.res{ font-family:var(--mono); font-size:13px; color:var(--ink); white-space:nowrap; }
-  table.spec td.res b{ color:var(--green); font-weight:600; }
-  table.spec tr:hover td{ background:var(--panel); }
-  @media (max-width:760px){
-    table.spec td.name{ white-space:normal; }
-    table.spec th:nth-child(2), table.spec td:nth-child(2){ display:none; }
-  }
-
-  .bench{ display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line-2); margin-top:22px; }
-  .bench div{ padding:20px 20px 16px; border-left:1px solid var(--line); background:var(--panel); }
-  .bench div:first-child{ border-left:none; }
-  .bench .n{ font-family:var(--mono); font-size:32px; font-weight:600; line-height:1; }
-  .bench .n.g{ color:var(--green); }
-  .bench .l{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:8px; line-height:1.5; }
-  @media (max-width:760px){ .bench{ grid-template-columns:1fr 1fr; } .bench div:nth-child(3){ border-left:none; } .bench div{ border-top:1px solid var(--line); } .bench div:nth-child(-n+2){ border-top:none; } }
-
-  .method{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px; }
-  .method .card{ border:1px solid var(--line); background:var(--panel); padding:20px 22px; }
-  .method .card .k{ font-family:var(--mono); font-size:11px; color:var(--purple); letter-spacing:.14em; }
-  .method .card h3{ font-family:var(--mono); font-size:16px; font-weight:600; margin:8px 0 6px; }
-  .method .card p{ margin:0; color:var(--soft); font-size:14px; }
-  @media (max-width:760px){ .method{ grid-template-columns:1fr; } }
-
-  .log{ font-family:var(--mono); font-size:13px; background:var(--panel); border:1px solid var(--line); padding:18px 20px; margin-top:22px; overflow-x:auto; }
-  .log div{ white-space:nowrap; padding:2px 0; }
-  .log .t{ color:var(--muted); }
-  .log .pass{ color:var(--green); }
-  .log .ship{ color:var(--purple); }
-
-  .reverb{ border:1px solid var(--purple-dim); background:linear-gradient(180deg, var(--panel-2), var(--panel)); padding:30px 32px; margin-top:22px; }
-  .reverb .k{ font-family:var(--mono); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--purple); margin:0 0 10px; }
-  .reverb h3{ font-family:var(--serif); font-size:26px; font-weight:600; margin:0 0 10px; }
-  .reverb p{ color:var(--soft); margin:0 0 12px; max-width:70ch; }
-  .reverb p:last-child{ margin-bottom:0; }
-
-  footer{ margin-top:72px; border-top:1px solid var(--line); padding:30px 0 42px; font-family:var(--mono); font-size:12.5px; color:var(--muted); }
-  footer .row{ display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
-  footer a{ color:var(--soft); }
-  footer .legal{ margin-top:16px; line-height:1.7; max-width:88ch; }
+body { font-family: Georgia, 'Times New Roman', serif; margin: 2rem auto; max-width: 42rem; padding: 0 1rem; color: #1c1a17; background: #faf8f4; line-height: 1.55; }
+h1 { font-size: 1.6rem; border-bottom: 2px solid #8a7f5c; padding-bottom: .4rem; }
+h2 { font-size: 1.15rem; margin-top: 1.8rem; }
+footer { margin-top: 3rem; font-size: .85rem; color: #6b665a; border-top: 1px solid #d8d2c2; padding-top: .6rem; }
 </style>
 </head>
 <body>
-
-<div class="term-bar">
-  <div class="wrap">
-    <span>dimon-global-group / systems</span>
-    <span>status: <span class="ok">● all results as recorded</span></span>
-    <span>parent: <a href="https://dimonglobalgroup.com">dimonglobalgroup.com</a></span>
-  </div>
-</div>
-
-<div class="wrap">
-  <header class="mast">
-    <p class="sys-tag">Dimon Global Group — Division 01</p>
-    <h1>SYSTEMS<span class="grp">_</span></h1>
-    <p class="lede">The engineering record of Dimon Global Group&rsquo;s technology division. Every system on this page was <b>written from scratch, in-house</b> — no assembled frameworks, no borrowed engines — and is published with its measurements attached, including the experiments that didn&rsquo;t ship.</p>
-    <div class="gh-cta">
-      <a class="gh-btn primary" href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">github.com/DimonGlobalGroup <span class="arr">&rarr;</span></a>
-      <a class="gh-btn" href="https://dimonglobalgroup.com">The firm <span class="arr">&rarr;</span></a>
-    </div>
-  </header>
-
-  <section aria-label="Benchmark record">
-    <div class="sec-head">
-      <span class="idx">[01]</span>
-      <h2>benchmark_record — NEUROGEN / SPHERION</h2>
-      <span class="note">four-configuration experiment suite</span>
-    </div>
-    <div class="bench">
-      <div><div class="n g">1.000</div><div class="l">Full SPHERION configuration — experiment score</div></div>
-      <div><div class="n">0.830</div><div class="l">Baseline configuration — same suite</div></div>
-      <div><div class="n g">0.000</div><div class="l">Unsupported-inference rate — measured</div></div>
-      <div><div class="n">100%</div><div class="l">Reproducibility across repeated runs</div></div>
-    </div>
-    <div class="log" aria-label="Experiment log excerpt">
-      <div><span class="t">run</span> competition_engine ............ <span class="pass">SHIPPED</span></div>
-      <div><span class="t">run</span> context_isolation ............. <span class="pass">SHIPPED</span></div>
-      <div><span class="t">run</span> decision_table ................ <span class="pass">SHIPPED</span></div>
-      <div><span class="t">run</span> activation_for_selection ...... <span class="ship">NOT SHIPPED — negative result, published as-is</span></div>
-      <div><span class="t">run</span> release_integrity ............. <span class="pass">SHA-256 VERIFIED</span></div>
-    </div>
-  </section>
-
-  <section aria-label="Systems inventory">
-    <div class="sec-head">
-      <span class="idx">[02]</span>
-      <h2>systems_inventory</h2>
-      <span class="note">stdlib-first · zero downloaded dependencies</span>
-    </div>
-    <table class="spec">
-      <thead>
-        <tr><th>System</th><th>Description</th><th>Record</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="name">NEUROGEN / SPHERION <span class="v">v0.4</span></td>
-          <td>Cognitive software architecture: six engines — concept, relationship, activation, competition, adaptive memory, reasoning/execution — with Go principles as computation, a language layer, and pipeline integration. Hash-verified release packages, tested against frozen predecessors.</td>
-          <td class="res"><b>1.000</b> vs 0.830 baseline</td>
-        </tr>
-        <tr>
-          <td class="name">HOPE <span class="v">v0.11</span></td>
-          <td>Autonomous agent system in a single self-contained file: connectome knowledge graph, zero-trust policy gate, HMAC-signed manifests, sandboxed worker, built-in control interface.</td>
-          <td class="res"><b>189/189</b> tests passing</td>
-        </tr>
-        <tr>
-          <td class="name">HOPE FORGE</td>
-          <td>61-module on-device agent framework — a multi-agent organism with a master control loop, refined module by module; agent mesh verified live.</td>
-          <td class="res"><b>61</b> modules</td>
-        </tr>
-        <tr>
-          <td class="name">HOPE PI</td>
-          <td>Self-maintaining autonomous hardware nodes on single-board computers: self-provisioning, self-monitoring, self-recovering infrastructure.</td>
-          <td class="res">24/7 by design</td>
-        </tr>
-        <tr>
-          <td class="name">HOPE BRIDGE</td>
-          <td>Device-integration layer serving real phone capabilities — location, sensors, telephony — to the systems that need them, over a token-authenticated local interface.</td>
-          <td class="res">2 platforms bridged</td>
-        </tr>
-        <tr>
-          <td class="name">PRIVACY TOOLING</td>
-          <td>Data-broker opt-out tracking and removal-queue tooling: every submission prepared, approved, and followed up on a schedule.</td>
-          <td class="res"><b>30</b> brokers queued</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section aria-label="Method">
-    <div class="sec-head">
-      <span class="idx">[03]</span>
-      <h2>method</h2>
-      <span class="note">how the record is kept honest</span>
-    </div>
-    <div class="method">
-      <div class="card">
-        <div class="k">M—01</div>
-        <h3>Built, not assembled</h3>
-        <p>Systems are written line by line on standard-library foundations. If a part can&rsquo;t be inspected, it doesn&rsquo;t go in — every component can be read, tested, and answered for.</p>
-      </div>
-      <div class="card">
-        <div class="k">M—02</div>
-        <h3>Hash-verified releases</h3>
-        <p>Releases ship as packages with published SHA-256 hashes and are regression-tested against their frozen predecessors, byte for byte, before anything is called final.</p>
-      </div>
-      <div class="card">
-        <div class="k">M—03</div>
-        <h3>Negative results published</h3>
-        <p>Experiments that fail are recorded as failures, in the same document as the wins. A benchmark page that only shows victories isn&rsquo;t a record — it&rsquo;s an advertisement.</p>
-      </div>
-    </div>
-
-    <div class="reverb">
-      <p class="k">Public release program</p>
-      <h3>The Reverb Line</h3>
-      <p>The division&rsquo;s public program runs on a simple rule: <b style="color:var(--ink)">publish only what has already been surpassed.</b> Proven generations are released openly — with full documentation — once the in-house line has moved past them, so the public record is always real and the working edge stays in-house.</p>
-      <p>Under the <b style="color:var(--ink)">Reverb</b> banner, retired and abandoned software concepts are also rebuilt from scratch for current technology — clean-room reimplementations, credited to their originals, fused where fusion makes something genuinely new. Releases land on the Group&rsquo;s GitHub: <a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">github.com/DimonGlobalGroup</a>.</p>
-    </div>
-  </section>
-
-  <footer>
-    <div class="row">
-      <span>DIMON GLOBAL GROUP — SYSTEMS</span>
-      <span><a href="https://dimonglobalgroup.com">Firm</a> · <a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.instagram.com/thearchitectrad" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@RobertDonaldson-rad" target="_blank" rel="noopener">YouTube</a> · <a href="https://t.me/RAD_Dimon" target="_blank" rel="noopener">Telegram</a></span>
-    </div>
-    <p class="legal">Dimon is the founder&rsquo;s chosen name; legal change in progress. Results on this page are the systems&rsquo; own published measurements, stated as recorded. Nothing here is an offer of services to the public.</p>
-  </footer>
-</div>
-
+<h1>Systems Reference Notes</h1>
+<h2>Scope</h2>
+<p>This page collects evergreen engineering reference notes: how small, well-instrumented systems are documented, measured, and kept honest over time.</p>
+<h2>Method</h2>
+<p>Write the claim down, name the instrument that could prove it wrong, and record the reading. A result without a measurement path is an opinion and is labelled as one.</p>
+<h2>Maintenance</h2>
+<p>Notes are revised when the underlying practice changes, not on a schedule. Dates below change only when the text above them does.</p>
+<footer>Systems reference notes. Part of the Dimon Global Group constellation.</footer>
 </body>
 </html>

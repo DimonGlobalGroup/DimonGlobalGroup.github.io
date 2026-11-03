@@ -1,0 +1,28 @@
+{
+  "format": 1,
+  "format_id": "hope-page-catalog/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "name": "systems-private-catalog",
+  "packages": [
+    {
+      "archive": "pps/objects/a122960ee20dfe476ec01d2915a1c2285cebfad3c6b4240bf34f39124ad4be72.json",
+      "classification": "P1",
+      "files": [
+        "MUSE-PARITY-MAP.md",
+        "ONE-SYSTEM.md",
+        "COMPACTION.md"
+      ],
+      "id": "systems-pack",
+      "kind": "knowledge",
+      "permissions": [],
+      "sha256": "a122960ee20dfe476ec01d2915a1c2285cebfad3c6b4240bf34f39124ad4be72",
+      "size": 96798,
+      "version": "1.0.0"
+    }
+  ],
+  "page_id": "systems",
+  "predecessor_sha256": null,
+  "profile": "hope-page-server/1",
+  "sequence": 1,
+  "signer": "hub-ed25519-2026-11"
+}
