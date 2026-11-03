@@ -1,0 +1,14 @@
+{
+  "files": {
+    "index.html": "8e4a58778380f6649743f1ce74aef5103cc6344ff4caa6509882839f98e4aaa2",
+    "pps/catalog.json": "5d8ae062fd565bc6de3f99e9be52017476271c675b2e8b465613258adbe93e8d",
+    "pps/objects/b6bdfe90cd8cdad909a868030a670128dd308278658ce5bd6d86746a95ef62c1.json": "b6bdfe90cd8cdad909a868030a670128dd308278658ce5bd6d86746a95ef62c1"
+  },
+  "format": "hope-page-record/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "page_id": "music",
+  "predecessor_sha256": null,
+  "sequence": 1,
+  "signature": "lwdoiEBeBhDe1KG5uxD5GeFHZ+xXfp4d9aJguD2QHy8ObBOguu/Wlk9zGxFLCsxpq8Arv3PyWTyEPt1nnp1HBw==",
+  "signer": "hub-ed25519-2026-11"
+}

@@ -1,196 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Dimon Global Group — Gallery. A museum of the firm's memory frames: works of art that mark the moments the firm must not forget, exhibited in public." />
-<title>Gallery — Dimon Global Group</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery Notes — Public Frames</title>
 <style>
-  :root{
-    --bg:#101312; --card:#171a18; --card-2:#1e2220;
-    --ink:#f2f1ec; --soft:#c6c8c0; --muted:#8f9489;
-    --line:#2b2f2c; --green:#57b87e; --green-dim:#1e6b3c; --purple:#a68fd6; --purple-dim:#5b4390;
-    --serif:Georgia, "Times New Roman", serif;
-    --sans:-apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --mono:ui-monospace, Menlo, Consolas, monospace;
-  }
-  *{ box-sizing:border-box; }
-  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.55; }
-  a{ color:inherit; text-decoration:none; }
-  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
-
-  .topbar{ border-bottom:1px solid var(--line); }
-  .topbar .wrap{ display:flex; justify-content:space-between; align-items:center; gap:16px; padding-top:14px; padding-bottom:14px; }
-  .brand{ font-family:var(--serif); font-weight:600; letter-spacing:.06em; font-size:15px; }
-  .brand .rad{ border:1.5px solid var(--ink); padding:4px 7px 3px; font-size:11px; letter-spacing:.14em; margin-right:10px; }
-  .live{ font-family:var(--mono); font-size:12px; color:var(--muted); }
-  .live .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--purple); margin-right:7px; }
-
-  .hero{ padding:58px 0 10px; }
-  .hero .kick{ font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--purple); margin:0 0 14px; }
-  .hero h1{ font-family:var(--serif); font-weight:500; font-size:clamp(38px,5.6vw,62px); line-height:1.08; margin:0; }
-  .hero h1 em{ color:var(--green); }
-  .hero p{ color:var(--soft); font-size:17.5px; max-width:64ch; margin:18px 0 0; }
-  .marquee{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
-  .marquee span{ font-family:var(--mono); font-size:12px; border:1px solid var(--line); padding:7px 12px; color:var(--soft); background:var(--card); }
-  .marquee span b{ color:var(--purple); font-weight:600; }
-
-  .exhibits{ margin-top:48px; display:flex; flex-direction:column; gap:22px; }
-  .exhibit{ display:grid; grid-template-columns:1.15fr 1fr; gap:0; border:1px solid var(--line); background:var(--card); overflow:hidden; }
-  @media (max-width:820px){ .exhibit{ grid-template-columns:1fr; } }
-  .plate{ min-height:340px; position:relative; overflow:hidden; border-right:1px solid var(--line); }
-  @media (max-width:820px){ .plate{ border-right:none; border-bottom:1px solid var(--line); min-height:280px; } }
-  .plate .cap{ position:absolute; left:16px; bottom:14px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(242,241,236,.72); z-index:5; }
-  /* Exhibit I — lamp-lit room */
-  .plate.founding{ background:radial-gradient(ellipse 420px 260px at 50% 38%, #4a3d22 0%, #241f16 42%, #0c0e0d 78%); }
-  .plate.founding .lampglow{ position:absolute; left:50%; top:16%; width:150px; height:150px; margin-left:-75px; border-radius:50%; background:radial-gradient(circle, rgba(255,214,120,.95) 0%, rgba(255,190,80,.35) 38%, rgba(255,190,80,0) 70%); }
-  .plate.founding .lampstem{ position:absolute; left:50%; top:30%; width:3px; height:110px; margin-left:-1px; background:#8a7440; }
-  .plate.founding .desk{ position:absolute; left:12%; right:12%; bottom:22%; height:10px; background:#3a2f1e; box-shadow:0 12px 24px rgba(0,0,0,.55); }
-  .plate.founding .nameplate{ position:absolute; left:50%; bottom:calc(22% + 18px); transform:translateX(-50%); border:1px solid #c9a44a; background:linear-gradient(180deg,#8a6d2b,#5f4a1d); color:#f7e7b0; font-family:var(--serif); letter-spacing:.22em; font-size:12px; padding:10px 18px 9px; white-space:nowrap; box-shadow:0 6px 18px rgba(0,0,0,.6); }
-  .plate.founding .rivets{ position:absolute; left:0; right:0; bottom:10px; display:flex; justify-content:center; gap:26px; }
-  .plate.founding .rivets i{ width:7px; height:7px; border-radius:50%; background:#c9a44a; box-shadow:inset 0 1px 2px rgba(255,255,255,.6); display:block; }
-  /* Exhibit II — balance */
-  .plate.verified{ background:linear-gradient(180deg,#151a17 0%, #101312 70%); display:flex; align-items:center; justify-content:center; }
-  .balance{ position:relative; width:300px; height:250px; margin-top:-18px; }
-  .balance .pillar{ position:absolute; left:50%; top:34px; width:4px; height:170px; margin-left:-2px; background:linear-gradient(180deg,var(--green),#2c4a38); }
-  .balance .beam{ position:absolute; left:8px; right:8px; top:30px; height:4px; background:var(--ink); }
-  .balance .beam::after{ content:""; position:absolute; left:50%; top:-7px; width:10px; height:10px; margin-left:-5px; border-radius:50%; background:var(--green); }
-  .balance .mark{ position:absolute; left:50%; top:16px; transform:translateX(-50%); font-family:var(--mono); font-size:10px; color:var(--green); letter-spacing:.1em; }
-  .balance .strings-l,.balance .strings-r{ position:absolute; top:34px; width:1px; height:56px; background:var(--muted); }
-  .balance .strings-l{ left:26px; } .balance .strings-r{ right:26px; }
-  .balance .pan-l,.balance .pan-r{ position:absolute; top:90px; width:92px; height:14px; border-radius:0 0 46px 46px; border:1px solid var(--muted); border-top:none; }
-  .balance .pan-l{ left:0; } .balance .pan-r{ right:0; }
-  .balance .col-l,.balance .col-r{ position:absolute; bottom:118px; width:44px; background:linear-gradient(180deg, rgba(87,184,126,.95), rgba(87,184,126,.12)); }
-  .balance .col-l{ left:24px; height:58px; }
-  .balance .col-r{ right:24px; height:78px; background:linear-gradient(180deg, rgba(166,143,214,.95), rgba(166,143,214,.12)); }
-  .balance .base{ position:absolute; left:50%; bottom:18px; width:150px; height:8px; margin-left:-75px; background:#2b2f2c; }
-  .balance .thread{ position:absolute; left:8px; bottom:6px; width:56px; height:2px; background:var(--green); transform:rotate(-4deg); }
-  /* Exhibit III — constellation */
-  .plate.constellation{ background:linear-gradient(180deg,#0e1116 0%, #12161a 52%, #0a0f12 53%, #0d1417 100%); }
-  .plate.constellation .windows{ position:absolute; left:10%; right:10%; top:16%; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
-  .plate.constellation .windows i{ display:block; height:52px; border:1px solid #2b2f2c; background:#57b87e; box-shadow:0 0 22px rgba(87,184,126,.45); }
-  .plate.constellation .windows i:nth-child(3){ background:#a68fd6; box-shadow:0 0 22px rgba(166,143,214,.55); }
-  .plate.constellation .windows i:nth-child(6),.plate.constellation .windows i:nth-child(9){ opacity:.45; height:34px; }
-  .plate.constellation .water{ position:absolute; left:0; right:0; bottom:0; height:44%; background:linear-gradient(180deg, rgba(87,184,126,.10), rgba(10,13,14,.9)); border-top:1px solid #263238; }
-  .plate.constellation .water::before,.plate.constellation .water::after{ content:""; position:absolute; left:12%; right:12%; height:1px; background:rgba(242,241,236,.18); }
-  .plate.constellation .water::before{ top:34%; } .plate.constellation .water::after{ top:62%; left:20%; right:20%; }
-
-  .plaque{ padding:32px 34px 30px; display:flex; flex-direction:column; }
-  .plaque .no{ font-family:var(--mono); font-size:12px; color:var(--green); letter-spacing:.18em; }
-  .plaque h2{ font-family:var(--serif); font-size:28px; font-weight:600; margin:12px 0 4px; line-height:1.15; }
-  .plaque .date{ font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--purple); margin:0 0 16px; }
-  .plaque .artwork{ color:var(--ink); font-size:15px; margin:0 0 14px; }
-  .plaque .artwork b{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; display:block; margin-bottom:5px; }
-  .plaque .story{ color:var(--soft); font-size:15px; margin:0; flex:1; }
-  .plaque .story b{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; display:block; margin-bottom:5px; }
-
-  .closing{ margin-top:48px; border:1px solid var(--purple-dim); background:linear-gradient(120deg, var(--card-2), var(--card)); padding:34px 36px; display:grid; grid-template-columns:1.4fr 1fr; gap:30px; align-items:center; }
-  .closing blockquote{ margin:0; font-family:var(--serif); font-size:clamp(20px,2.6vw,26px); line-height:1.5; font-style:italic; }
-  .closing blockquote b{ font-style:normal; color:var(--purple); font-weight:600; }
-  .closing .side{ font-size:14.5px; color:var(--soft); margin:0; }
-  @media (max-width:760px){ .closing{ grid-template-columns:1fr; } }
-
-  footer{ margin-top:60px; border-top:1px solid var(--line); padding:28px 0 40px; font-size:13px; color:var(--muted); line-height:1.7; }
-  footer .row{ display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:12px; }
-  footer a{ color:var(--soft); }
-  footer a:hover{ color:var(--purple); }
+body { font-family: Georgia, 'Times New Roman', serif; margin: 2rem auto; max-width: 42rem; padding: 0 1rem; color: #1c1a17; background: #faf8f4; line-height: 1.55; }
+h1 { font-size: 1.6rem; border-bottom: 2px solid #8a7f5c; padding-bottom: .4rem; }
+h2 { font-size: 1.15rem; margin-top: 1.8rem; }
+footer { margin-top: 3rem; font-size: .85rem; color: #6b665a; border-top: 1px solid #d8d2c2; padding-top: .6rem; }
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="brand" href="https://dimonglobalgroup.com"><span class="rad">RAD</span>DIMON GLOBAL GROUP</a>
-    <span class="live"><span class="dot"></span>gallery open &middot; 3 exhibits hung</span>
-  </div>
-</div>
-
-<div class="wrap">
-  <div class="hero">
-    <p class="kick">Dimon Global Group — Gallery</p>
-    <h1>The moments the firm<br />must <em>not forget,</em> hung as art.</h1>
-    <p>The Group keeps a gallery of memory frames — works of art that mark the moments the firm must not forget. What hangs here are the public exhibits of that record: three frames, each with its plaque, each earned before it was exhibited. There are no image files in this gallery; each work is rendered here as a composed plate, and described in words on its plaque.</p>
-    <div class="marquee">
-      <span><b>3</b> exhibits hung</span>
-      <span><b>Accession</b> only when earned</span>
-      <span><b>Public</b> exhibits of the record</span>
-      <span>truth, made real</span>
-    </div>
-  </div>
-
-  <div class="exhibits">
-
-    <article class="exhibit">
-      <div class="plate founding" role="img" aria-label="A dark room lit by one desk lamp, with a brass nameplate on the desk">
-        <div class="lampglow"></div>
-        <div class="lampstem"></div>
-        <div class="nameplate">DIMON&nbsp;GLOBAL&nbsp;GROUP</div>
-        <div class="desk"></div>
-        <div class="rivets"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <span class="cap">Plate I &middot; Lamp &amp; brass on dark wood</span>
-      </div>
-      <div class="plaque">
-        <span class="no">EXHIBIT I</span>
-        <h2>The Founding Night</h2>
-        <p class="date">November 1, 2026</p>
-        <p class="artwork"><b>The artwork</b>A dark room lit by one desk lamp; on the desk, a brass nameplate engraved and not yet mounted.</p>
-        <p class="story"><b>The plaque</b>On this night the firm took its name — Dimon Global Group — its domain was registered, and its one standard was set: truth, made real. Nothing in the room is finished, and that is the point of the frame. Seven brass rivets run along the frame's lower edge.</p>
-      </div>
-    </article>
-
-    <article class="exhibit">
-      <div class="plate verified" role="img" aria-label="A balance scale whose two pans hold columns of light">
-        <div class="balance">
-          <span class="mark">1.000</span>
-          <div class="beam"></div>
-          <div class="pillar"></div>
-          <div class="strings-l"></div><div class="strings-r"></div>
-          <div class="col-l"></div><div class="col-r"></div>
-          <div class="pan-l"></div><div class="pan-r"></div>
-          <div class="base"></div>
-          <div class="thread"></div>
-        </div>
-        <span class="cap">Plate II &middot; Balance &amp; columns of light</span>
-      </div>
-      <div class="plaque">
-        <span class="no">EXHIBIT II</span>
-        <h2>The Verified Record</h2>
-        <p class="date">November 1, 2026</p>
-        <p class="artwork"><b>The artwork</b>A balance scale whose two pans hold columns of light; one column rises to exactly the beam&rsquo;s mark.</p>
-        <p class="story"><b>The plaque</b>NEUROGEN/SPHERION v0.4 was measured, not asserted — task accuracy 1.000 against the 0.830 baseline, reproducibility 100%, and the release hash-verified before it shipped. The scale does not tip toward hope; it rests where the evidence rests. A single green thread runs through the weave at the lower-left corner.</p>
-      </div>
-    </article>
-
-    <article class="exhibit">
-      <div class="plate constellation" role="img" aria-label="A small city of lit windows above dark water">
-        <div class="windows"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="water"></div>
-        <span class="cap">Plate III &middot; Lit windows above dark water</span>
-      </div>
-      <div class="plaque">
-        <span class="no">EXHIBIT III</span>
-        <h2>The Constellation</h2>
-        <p class="date">November 2, 2026</p>
-        <p class="artwork"><b>The artwork</b>A small city of lit windows above dark water — the pages lit one by one: flagship, systems, media, founder, cinema.</p>
-        <p class="story"><b>The plaque</b>This was the night the constellation lit — one firm, many rooms, each with its own work, reflected on the same dark water. No window was lit for decoration; each one is a room where something is actually made. In the painting, the third window from the left is lit violet; all the rest are green.</p>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="closing">
-    <blockquote>&ldquo;A frame is not hung because a moment was <b>large</b> — it is hung because the firm cannot afford to <b>forget it.</b>&rdquo;</blockquote>
-    <p class="side">The gallery grows by accession — a frame is hung only when the moment has earned it. New exhibits join this page when they are ready to be public, and not before.</p>
-  </div>
-
-  <footer>
-    <div class="row">
-      <span>DIMON GLOBAL GROUP — GALLERY</span>
-      <span><a href="https://dimonglobalgroup.com">Firm</a> · <a href="https://dimonglobalgroup.github.io/dgg-media/">Media</a> · <a href="https://dimonglobalgroup.github.io/dgg-cinema/">Cinema</a> · <a href="https://www.youtube.com/@RobertDonaldson-rad" target="_blank" rel="noopener">YouTube</a> · <a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">GitHub</a></span>
-    </div>
-    <p>Dimon is the founder's chosen name; legal change in progress. The Gallery is the public exhibition of Dimon Global Group&rsquo;s memory frames. The Group publishes no personal email address, street address, or telephone number.</p>
-  </footer>
-</div>
-
+<h1>Gallery Notes — Public Frames</h1>
+<h2>About the frames</h2>
+<p>The frames shown across the constellation are design studies: blueprint-style compositions exploring engines, swarms, and orbital structures. These notes record the public set and its order.</p>
+<h2>Prints</h2>
+<p>No prints are sold from this page. Enquiries belong on the main site.</p>
+<footer>Gallery notes. Part of the Dimon Global Group constellation.</footer>
 </body>
 </html>

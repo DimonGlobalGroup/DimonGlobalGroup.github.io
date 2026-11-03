@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "format_id": "hope-page-catalog/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "name": "cinema-private-catalog",
+  "packages": [
+    {
+      "archive": "pps/objects/628a32bba5ce65ed3fe91a04d3d6d3d7c53dc63d3773f48ff11e791cdbc54d44.json",
+      "classification": "P1",
+      "files": [
+        "programme-records.json"
+      ],
+      "id": "cinema-pack",
+      "kind": "knowledge",
+      "permissions": [],
+      "sha256": "628a32bba5ce65ed3fe91a04d3d6d3d7c53dc63d3773f48ff11e791cdbc54d44",
+      "size": 14578,
+      "version": "1.0.0"
+    }
+  ],
+  "page_id": "cinema",
+  "predecessor_sha256": null,
+  "profile": "hope-page-server/1",
+  "sequence": 1,
+  "signer": "hub-ed25519-2026-11"
+}

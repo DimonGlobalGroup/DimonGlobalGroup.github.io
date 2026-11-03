@@ -1,0 +1,14 @@
+{
+  "files": {
+    "index.html": "db665db0885b6fcea961b5a961782e400dc4fa2ba28843bd966c6691733281a8",
+    "pps/catalog.json": "64abed7d4427af697141bc61ff0170a67f55a472d1d07d88f377596918b35d45",
+    "pps/objects/03ac8df95639f87fd61c62fad1cca11b54a3d9ff99a5b61ac93ffaf6c0cc62b4.json": "03ac8df95639f87fd61c62fad1cca11b54a3d9ff99a5b61ac93ffaf6c0cc62b4"
+  },
+  "format": "hope-page-record/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "page_id": "arcade",
+  "predecessor_sha256": null,
+  "sequence": 1,
+  "signature": "F/VuCDZhYCRsthtzXLrPWZErMgi5dtXZJvEGtXBOjEcd5yrp3NI1SuqSq1VgkOXdkjjubWbHfC66BO0pMx61Bw==",
+  "signer": "hub-ed25519-2026-11"
+}

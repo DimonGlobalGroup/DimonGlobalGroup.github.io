@@ -1,0 +1,14 @@
+{
+  "files": {
+    "index.html": "7dc6848f06a2426c73c37b0f4a186448807e3d5b32df86221e114ba2d9a3f0eb",
+    "pps/catalog.json": "4c5948b3935d1c107a5712224c659c0dfa2db6007f14b2339c3ee082d9c645e0",
+    "pps/objects/7c93191dd7989f8566a8285d288dbf290ad24f19da74391a38a2fd2ad716f87a.json": "7c93191dd7989f8566a8285d288dbf290ad24f19da74391a38a2fd2ad716f87a"
+  },
+  "format": "hope-page-record/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "page_id": "storybook",
+  "predecessor_sha256": null,
+  "sequence": 1,
+  "signature": "ZCmCLFd7H0CHlDqSfv9FcX0u6SnDcRPt2DqUStUD+8KM+NoYOQZe3oSzwLY9Nl6RuKDSRfCPpYtOllONjKP4AA==",
+  "signer": "hub-ed25519-2026-11"
+}

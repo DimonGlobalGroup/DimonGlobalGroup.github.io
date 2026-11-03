@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "format_id": "hope-page-catalog/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "name": "gallery-private-catalog",
+  "packages": [
+    {
+      "archive": "pps/objects/f28bc2b1c37bd8f796884397d6f34a772fea6320b424331973fc1903039d4132.json",
+      "classification": "P1",
+      "files": [
+        "frame-registry.json"
+      ],
+      "id": "gallery-pack",
+      "kind": "knowledge",
+      "permissions": [],
+      "sha256": "f28bc2b1c37bd8f796884397d6f34a772fea6320b424331973fc1903039d4132",
+      "size": 14578,
+      "version": "1.0.0"
+    }
+  ],
+  "page_id": "gallery",
+  "predecessor_sha256": null,
+  "profile": "hope-page-server/1",
+  "sequence": 1,
+  "signer": "hub-ed25519-2026-11"
+}

@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "format_id": "hope-page-catalog/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "name": "music-private-catalog",
+  "packages": [
+    {
+      "archive": "pps/objects/b6bdfe90cd8cdad909a868030a670128dd308278658ce5bd6d86746a95ef62c1.json",
+      "classification": "P1",
+      "files": [
+        "CONCEPT.md",
+        "catalog-index.json"
+      ],
+      "id": "music-pack",
+      "kind": "knowledge",
+      "permissions": [],
+      "sha256": "b6bdfe90cd8cdad909a868030a670128dd308278658ce5bd6d86746a95ef62c1",
+      "size": 14730,
+      "version": "1.0.0"
+    }
+  ],
+  "page_id": "music",
+  "predecessor_sha256": null,
+  "profile": "hope-page-server/1",
+  "sequence": 1,
+  "signer": "hub-ed25519-2026-11"
+}

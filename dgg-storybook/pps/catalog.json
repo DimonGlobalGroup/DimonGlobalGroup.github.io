@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "format_id": "hope-page-catalog/1",
+  "issued_at": "2026-11-03T08:18:25Z",
+  "name": "storybook-private-catalog",
+  "packages": [
+    {
+      "archive": "pps/objects/7c93191dd7989f8566a8285d288dbf290ad24f19da74391a38a2fd2ad716f87a.json",
+      "classification": "P1",
+      "files": [
+        "MULTIVERSE.md"
+      ],
+      "id": "storybook-pack",
+      "kind": "knowledge",
+      "permissions": [],
+      "sha256": "7c93191dd7989f8566a8285d288dbf290ad24f19da74391a38a2fd2ad716f87a",
+      "size": 14578,
+      "version": "1.0.0"
+    }
+  ],
+  "page_id": "storybook",
+  "predecessor_sha256": null,
+  "profile": "hope-page-server/1",
+  "sequence": 1,
+  "signer": "hub-ed25519-2026-11"
+}
