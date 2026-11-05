@@ -199,25 +199,137 @@ img.img-missing{ opacity:0; }
 }
 /* DGG-DISTRICT:END */
 /* Music: the catalog is an empty staff, ruled and waiting. Nothing fills it. */
-.catalog{ width:100%; border-collapse:collapse; table-layout:fixed; }
-.catalog th{ text-align:left; font-size:var(--t-xs); font-weight:600; color:var(--text-muted); padding:0 var(--s-4) var(--s-3) 0; border-bottom:1px solid var(--line-strong); }
-.catalog th:first-child{ width:4.5rem; }
-.catalog td.empty{ padding:var(--s-8) var(--s-5); text-align:center; border-bottom:1px solid var(--line-strong); background:repeating-linear-gradient(180deg, transparent 0 1.1875rem, var(--line) 1.1875rem 1.25rem) center / 100% 6.25rem no-repeat; }
-.catalog .msg{ display:inline-block; max-width:52ch; padding:var(--s-3) var(--s-5); background:var(--surface); color:var(--text-soft); }
-.catalog .msg b{ display:block; font-family:var(--serif); font-size:var(--t-lg); font-weight:400; color:var(--text); margin-bottom:var(--s-1); }
+/* MUSIC-PLATFORM: page skin. The staff is the motif: straight where nothing has been released, in motion on the program's cover. */
+.platform{ display:grid; grid-template-columns:12rem minmax(0,1fr); gap:var(--s-7); max-width:var(--w-page); margin-inline:auto; padding-inline:var(--gutter); }
+.stage{ min-width:0; padding-bottom:var(--s-7); }
+.stage section,.site-foot{ scroll-margin-top:var(--s-6); }
+.stage .band{ padding-block:var(--s-7) 0; }
 
-.program .item{ display:grid; grid-template-columns:11rem minmax(0,1fr); gap:var(--s-5); padding-block:var(--s-5); border-top:1px solid var(--line); }
-.program .item:first-child{ border-top:none; padding-top:0; }
-.program .label{ font-family:var(--serif); font-style:italic; color:var(--accent-2); }
-.program .body{ color:var(--text-soft); max-width:66ch; }
-.program .body b{ color:var(--text); font-weight:600; }
-.program .body p + p{ margin-top:var(--s-3); }
-.quote .side a{ color:var(--accent); }
+/* Section rail */
+.rail{ position:sticky; top:calc(var(--header-h) + var(--s-6)); align-self:start; padding-block:var(--s-6); }
+.rail-name{ font-family:var(--serif); font-size:var(--t-lg); line-height:1.15; color:var(--text); margin-bottom:var(--s-4); }
+.rail ul{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+.rail li{ border-bottom:1px solid var(--line); }
+.rail a{ display:flex; align-items:center; gap:var(--s-3); min-height:3rem; padding-inline:var(--s-3); color:var(--text-soft); font-size:var(--t-sm); text-decoration:none; }
+.rail a:hover{ color:var(--accent); background:var(--surface-raised); }
+.rail a[aria-current="location"]{ color:var(--text); background:var(--surface-raised); box-shadow:inset 3px 0 0 var(--accent); }
+.rail a:focus-visible{ outline-offset:-2px; }
+.rail svg{ flex:none; width:1rem; height:1rem; fill:none; stroke:currentColor; stroke-width:1.5; }
+
+/* Status badges: hollow square means not released. Words come from the page. */
+.badge{ display:inline-flex; align-items:baseline; gap:var(--s-2); max-width:100%; padding:.25rem .625rem; border:1px solid var(--line-strong); font-size:var(--t-xs); line-height:1.35; color:var(--text-soft); }
+.badge::before{ content:""; flex:none; width:.5rem; height:.5rem; border:1.5px solid var(--accent); }
+
+/* Hero */
+.stage .d-hero{ padding-block:var(--s-6) var(--s-6); }
+.stage .d-hero h1{ font-size:clamp(2.375rem, 1.7rem + 2.6vw, 3.5rem); }
+.stage .d-top{ align-items:center; margin-bottom:var(--s-5); }
+.stage .d-facts{ margin-top:var(--s-6); }
+.stage .d-facts span{ padding-bottom:0; }
+
+/* Featured collection */
+.featured{ background:var(--surface-raised); border:1px solid var(--line); }
+.featured-head{ display:grid; grid-template-columns:minmax(0,17rem) minmax(0,1fr); gap:var(--s-6); align-items:end; padding:var(--s-5); background:linear-gradient(180deg, rgba(143,208,166,.15), rgba(143,208,166,0)); }
+.cover{ display:block; width:100%; height:auto; aspect-ratio:1; background:var(--ink-950); }
+.cover .field{ fill:var(--ink-950); }
+.cover .rule{ fill:none; stroke:var(--green-300); stroke-width:1.5; stroke-linecap:round; }
+.cover .rule.flat{ stroke:var(--ink-line-strong); }
+.cover text{ fill:var(--bone-100); font-family:var(--serif); }
+.cover .small{ fill:var(--bone-300); font-family:var(--sans); font-size:14px; }
+.cover .large{ font-size:50px; font-style:italic; }
+.cover .count{ font-size:116px; fill:var(--bone-300); }
+.cover .glow-a{ stop-color:var(--green-700); stop-opacity:.75; }
+.cover .glow-b{ stop-color:var(--ink-950); stop-opacity:0; }
+.feat-kicker{ color:var(--accent); font-size:var(--t-sm); font-weight:600; }
+.featured-head h2{ font-size:clamp(2.125rem, 1.6rem + 2vw, 3rem); font-weight:400; line-height:1.06; margin-top:var(--s-2); }
+.feat-meta{ color:var(--text-soft); margin-top:var(--s-3); }
+.feat-meta b{ color:var(--text); font-family:var(--serif); font-weight:400; }
+.featured-head .badge{ margin-top:var(--s-4); }
+
+.tracks{ padding-inline:var(--s-5); padding-bottom:var(--s-3); }
+.tracks-head,.tr{ display:grid; grid-template-columns:9.5rem minmax(0,1fr) 9rem; gap:var(--s-5); }
+.tracks-head{ padding-block:var(--s-3) var(--s-2); border-bottom:1px solid var(--line-strong); color:var(--text-muted); font-size:var(--t-xs); font-weight:600; }
+.tr-list{ list-style:none; margin:0; padding:0; }
+.tr{ padding-block:var(--s-4); border-bottom:1px solid var(--line); }
+.tr:last-child{ border-bottom:none; }
+.tr h3{ font-family:var(--serif); font-size:var(--t-md); font-weight:400; font-style:italic; color:var(--accent); line-height:1.3; }
+.tr-body{ color:var(--text-soft); max-width:62ch; }
+.tr-body b{ color:var(--text); font-weight:600; }
+.tr-body p + p{ margin-top:var(--s-3); }
+.tr .badge{ align-self:start; justify-self:start; }
+
+/* Catalog */
+.cat-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(14rem,1fr)); gap:var(--s-4); }
+.album{ grid-column:1 / -1; background:var(--surface-raised); border:1px solid var(--line); }
+.album-top{ display:grid; grid-template-columns:minmax(0,10rem) minmax(0,1fr); gap:var(--s-5); align-items:center; padding:var(--s-5); }
+.album h3{ font-size:var(--t-lg); font-weight:400; margin-top:var(--s-3); }
+.album-top p{ color:var(--text-soft); max-width:52ch; margin-top:var(--s-2); }
+.catalog{ width:100%; border-collapse:collapse; table-layout:fixed; }
+.catalog th{ text-align:left; font-size:var(--t-xs); font-weight:600; color:var(--text-muted); padding:var(--s-3) var(--s-2) var(--s-2); border-block:1px solid var(--line-strong); }
+.catalog th:first-child{ width:4.5rem; padding-left:var(--s-5); }
+.catalog td.empty{ height:5.25rem; background:repeating-linear-gradient(180deg, transparent 0 .9375rem, var(--line) .9375rem 1rem) center / 100% 5rem no-repeat; }
+
+/* Program notes */
+.notes .split{ gap:var(--s-7); border-top:1px solid var(--line-strong); padding-top:var(--s-5); }
+.notes .side .stat:first-child .n{ color:var(--accent); }
+
+/* Pipeline */
+.ships{ background:var(--surface-raised); border:1px solid var(--line); padding:var(--s-5); }
+.stage .sec-head{ margin-bottom:var(--s-5); }
+.sec-head .badge{ margin-top:var(--s-3); }
+.ships .steps{ border-top:1px solid var(--line-strong); }
+.ships .step{ position:relative; padding-bottom:var(--s-2); }
+.ships .step::before{ content:""; position:absolute; top:-.3125rem; left:0; width:.5625rem; height:.5625rem; background:var(--surface-raised); border:1.5px solid var(--accent); }
+.ships .step + .step::before{ left:var(--s-5); }
+.ships .step h3{ font-size:var(--t-md); }
+
+/* Closing line */
+.closing .quote{ padding-top:var(--s-5); }
+.quote .side a{ color:var(--accent); display:inline-block; padding-block:.625rem; margin-block:-.625rem; }
+
+/* Tap targets on shared furniture. Shared blocks stay untouched; this is page level. */
+.topbar .nav a{ display:inline-flex; align-items:center; min-height:2.75rem; padding-block:0; }
+.topbar .brand,.site-foot .brand{ min-height:2.75rem; }
+
+@media (max-width:62rem), (pointer:coarse){
+  .foot-nav li{ padding-block:0; }
+  .foot-nav a{ display:inline-block; padding-block:.625rem; }
+}
+@media (max-width:62rem){
+  .platform{ grid-template-columns:minmax(0,1fr); gap:0; }
+  .rail{ top:var(--header-h); z-index:15; margin-inline:calc(var(--gutter) * -1); padding:0 var(--gutter); background:var(--ink-900); border-bottom:1px solid var(--line); }
+  .rail-name{ display:none; }
+  .rail ul{ display:flex; justify-content:space-between; gap:var(--s-2); border-top:none; }
+  .rail li{ border-bottom:none; flex:0 1 auto; }
+  .rail a{ min-height:3rem; padding-inline:var(--s-2); white-space:nowrap; }
+  .rail a[aria-current="location"]{ background:none; box-shadow:inset 0 -3px 0 var(--accent); }
+  .rail svg{ display:none; }
+  .stage section,.site-foot{ scroll-margin-top:var(--s-7); }
+  .notes .split{ gap:var(--s-5); }
+  .ships .step:nth-child(odd)::before{ left:0; }
+  .ships .step:nth-child(n+3)::before{ display:none; }
+}
+@media (max-width:48rem){
+  .featured-head{ grid-template-columns:minmax(0,1fr); gap:var(--s-5); padding:var(--s-4); }
+  .cover.feat{ max-width:18rem; }
+  .tracks{ padding-inline:var(--s-4); }
+  .tracks-head{ display:none; }
+  .tr{ grid-template-columns:minmax(0,1fr); gap:var(--s-2); }
+  .album-top{ grid-template-columns:minmax(0,1fr); gap:var(--s-4); padding:var(--s-4); }
+  .cover.tile{ max-width:10rem; }
+  .ships{ padding:var(--s-4); }
+  .catalog th:first-child{ width:3.25rem; padding-left:var(--s-4); }
+}
+@media (max-width:62rem) and (max-height:34rem){
+  .rail{ position:static; }
+}
 @media (max-width:40rem){
-  .catalog th{ font-size:.75rem; padding-right:var(--s-2); }
-  .catalog th:first-child{ width:2.75rem; }
-  .catalog td.empty{ padding-inline:0; }
-  .program .item{ grid-template-columns:1fr; gap:var(--s-2); }
+  .rail{ top:6.5rem; }
+  .rail ul{ display:grid; grid-template-columns:repeat(4,auto); justify-content:space-between; gap:var(--s-1); }
+  .rail a{ justify-content:center; padding-inline:var(--s-1); white-space:normal; text-align:center; line-height:1.2; }
+  .stage .band{ padding-block:var(--s-6) 0; }
+  .catalog th{ font-size:.75rem; padding-inline:var(--s-1); }
+  .ships .step::before,.ships .step + .step::before{ display:none; }
 }
 </style>
 </head>
@@ -237,28 +349,83 @@ img.img-missing{ opacity:0; }
     </nav>
   </div>
 </header>
-<main id="main">
+<div class="platform">
+<nav class="rail" aria-label="Music sections">
+  <p class="rail-name">Music</p>
+  <ul>
+    <li><a href="#catalog"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z"/></svg>Catalog</a></li>
+    <li><a href="#pipeline"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h14M3 6v4M6.5 6v4M10 6v4M13.5 6v4"/></svg>Pipeline</a></li>
+    <li><a href="#season-program"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12M2 8h12M2 12.5h12"/></svg>Season program</a></li>
+    <li><a href="#the-group"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 14.5 8 8 14.5 1.5 8z"/></svg>The Group</a></li>
+  </ul>
+</nav>
+<main id="main" class="stage">
 <section class="d-hero">
-  <div class="wrap">
-    <div class="d-top">
+  <div class="d-top">
     <p class="kick">Dimon Global Group — Music</p>
-      <p class="status dev">stage built — pipeline in preparation</p>
+    <p class="badge">stage built — pipeline in preparation</p>
+  </div>
+  <h1>A stage for music <br />that has <em>earned its place.</em></h1>
+  <p>This is the stage for the Group&rsquo;s music program: original AI-composed works, published on this page and cataloged to the firm&rsquo;s standard from track one. The standard comes before the schedule — a work appears here only when it is finished and its license is clean, end to end.</p>
+  <div class="d-facts">
+    <span><b>Original</b> AI-composed works</span>
+    <span><b>First program</b> instrumental</span>
+    <span><b>Cataloged</b> numbered · dated · license noted</span>
+    <span>published: on this page</span>
+  </div>
+</section>
+
+<section id="season-program" class="band" aria-labelledby="season-h">
+  <div class="featured">
+    <div class="featured-head">
+      <svg class="cover feat" viewBox="0 0 320 320" role="img" aria-label="Generated cover art: five ruled staff lines that swell into a wave, above the word Instrumental">
+<defs><radialGradient id="glow" cx="85%" cy="45%" r="75%"><stop class="glow-a" offset="0"/><stop class="glow-b" offset="1"/></radialGradient></defs>
+<rect class="field" width="320" height="320"/><rect width="320" height="320" fill="url(#glow)"/><path class="rule" d="M0 112.0L6 112.0L12 112.0L18 112.0L24 112.0L30 112.0L36 112.0L42 112.0L48 112.0L54 112.0L60 112.0L66 111.9L72 111.8L78 111.5L84 111.0L90 110.5L96 109.8L102 109.1L108 108.4L114 107.8L120 107.4L126 107.1L132 107.0L138 107.2L144 107.5L150 107.9L156 108.2L162 108.3L168 108.2L174 107.6L180 106.5L186 104.8L192 102.6L198 99.8L204 96.8L210 93.6L216 90.4L222 87.6L228 85.2L234 83.6L240 82.8L246 82.9L252 84.0L258 85.9L264 88.5L270 91.4L276 94.5L282 97.4L288 99.8L294 101.4L300 102.1L306 101.8L312 100.4L318 98.1"/><path class="rule" d="M0 129.0L6 129.0L12 129.0L18 129.0L24 129.0L30 129.0L36 129.0L42 129.0L48 129.0L54 129.0L60 129.0L66 128.9L72 128.8L78 128.5L84 128.1L90 127.7L96 127.3L102 126.9L108 126.8L114 126.8L120 127.2L126 127.8L132 128.6L138 129.5L144 130.4L150 131.1L156 131.4L162 131.3L168 130.5L174 129.0L180 126.8L186 124.0L192 120.8L198 117.4L204 114.0L210 111.0L216 108.6L222 107.2L228 106.9L234 107.8L240 109.8L246 112.9L252 116.8L258 121.2L264 125.7L270 129.8L276 133.2L282 135.5L288 136.5L294 135.9L300 133.8L306 130.4L312 125.8L318 120.6"/><path class="rule" d="M0 146.0L6 146.0L12 146.0L18 146.0L24 146.0L30 146.0L36 146.0L42 146.0L48 146.0L54 146.0L60 146.0L66 145.9L72 145.7L78 145.5L84 145.2L90 145.0L96 145.0L102 145.4L108 146.1L114 147.1L120 148.5L126 150.1L132 151.7L138 153.1L144 154.0L150 154.3L156 153.8L162 152.2L168 149.7L174 146.4L180 142.4L186 138.1L192 133.9L198 130.3L204 127.6L210 126.2L216 126.5L222 128.5L228 132.3L234 137.6L240 144.1L246 151.2L252 158.5L258 165.1L264 170.5L270 174.1L276 175.6L282 174.6L288 171.3L294 165.7L300 158.4L306 149.9L312 141.0L318 132.4"/><path class="rule" d="M0 163.0L6 163.0L12 163.0L18 163.0L24 163.0L30 163.0L36 163.0L42 163.0L48 163.0L54 163.0L60 163.0L66 162.9L72 162.8L78 162.8L84 162.9L90 163.2L96 163.9L102 164.9L108 166.2L114 167.8L120 169.4L126 170.9L132 172.1L138 172.7L144 172.6L150 171.5L156 169.6L162 166.8L168 163.5L174 159.8L180 156.2L186 153.2L192 151.1L198 150.4L204 151.2L210 153.8L216 158.2L222 164.1L228 171.1L234 178.8L240 186.5L246 193.6L252 199.3L258 203.1L264 204.6L270 203.5L276 199.9L282 193.9L288 186.0L294 177.0L300 167.4L306 158.3L312 150.3L318 144.3"/><path class="rule" d="M0 180.0L6 180.0L12 180.0L18 180.0L24 180.0L30 180.0L36 180.0L42 180.0L48 180.0L54 180.0L60 180.0L66 180.0L72 180.0L78 180.3L84 180.9L90 181.9L96 183.3L102 185.0L108 186.9L114 188.8L120 190.3L126 191.3L132 191.4L138 190.5L144 188.5L150 185.6L156 181.9L162 177.8L168 173.9L174 170.5L180 168.4L186 167.9L192 169.5L198 173.3L204 179.4L210 187.4L216 196.9L222 207.2L228 217.5L234 226.8L240 234.4L246 239.3L252 241.2L258 239.5L264 234.4L270 226.2L276 215.4L282 203.1L288 190.1L294 177.8L300 167.2L306 159.3L312 154.8L318 154.3"/>
+<text class="small" x="24" y="38">First program</text>
+<text class="large" x="22" y="292">Instrumental</text>
+</svg>
+      <div>
+        <p class="feat-kicker">Featured collection</p>
+        <h2 id="season-h">This season&rsquo;s program</h2>
+        <p class="feat-meta"><b>First program</b> instrumental</p>
+        <p class="badge">no tracks have been released yet</p>
+      </div>
     </div>
-    <h1>A stage for music<br />that has <em>earned its place.</em></h1>
-    <p>This is the stage for the Group&rsquo;s music program: original AI-composed works, published on this page and cataloged to the firm&rsquo;s standard from track one. The standard comes before the schedule — a work appears here only when it is finished and its license is clean, end to end.</p>
-    <div class="d-facts">
-      <span><b>Original</b> AI-composed works</span>
-      <span><b>First program</b> instrumental</span>
-      <span><b>Cataloged</b> numbered · dated · license noted</span>
-      <span>published: on this page</span>
+    <div class="tracks">
+      <div class="tracks-head" aria-hidden="true"><span>Entry</span><span>Note</span><span>Status</span></div>
+      <ul class="tr-list">
+        <li class="tr">
+          <h3>First program</h3>
+          <div class="tr-body">
+            <p><b>Instrumental.</b> The Group&rsquo;s first music program is an instrumental program. That is the program as designed — stated here so that what arrives is exactly what was promised.</p>
+          </div>
+          <p class="badge">the program as designed</p>
+        </li>
+        <li class="tr">
+          <h3>The license note</h3>
+          <div class="tr-body">
+            <p>A work&rsquo;s commercial cleanliness is set by the weakest license in its chain. One stage with terms that do not allow commercial release makes the whole work unclean, however clean the other stages are.</p>
+            <p>So the first program uses only stages whose licenses are clean end to end for commercial release. That principle — not a shortcut, not a hope — is what decides what the pipeline is built from.</p>
+          </div>
+          <p class="badge">That principle</p>
+        </li>
+        <li class="tr">
+          <h3>The cadence</h3>
+          <div class="tr-body">
+            <p>This stage is built for a weekly cadence — <b>one new work a week</b> — so that returning listeners always find a new piece on the program. That is the design intent.</p>
+            <p>The current status is different, and the difference matters: the schedule begins when the pipeline does, not before. No weekly promise runs until the first work has cleared all four stages and the cadence can be kept for real.</p>
+          </div>
+          <p class="badge">the design intent</p>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="band on-paper">
-  <div class="wrap split">
+<section class="band notes" aria-labelledby="notes-h">
+  <div class="split">
     <div>
-      <h2>Program notes — where things stand</h2>
+      <h2 id="notes-h">Program notes — where things stand</h2>
       <p>Stated plainly: the stage is built; the production pipeline is in preparation; no tracks have been released yet.</p>
       <p>The catalog opens with Track 001 when the first work clears the full pipeline — composition, finishing, and license verification — not before. Nothing is backdated, nothing is announced ahead of being real, and nothing fills a slot just to fill it.</p>
     </div>
@@ -270,26 +437,40 @@ img.img-missing{ opacity:0; }
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap">
-    <div class="sec-head">
-    <h2>The catalog</h2>
+<section id="catalog" class="band" aria-labelledby="catalog-h">
+  <div class="sec-head">
+    <h2 id="catalog-h">The catalog</h2>
     <p class="note">The catalog&rsquo;s face, kept to the firm&rsquo;s standard from track one: every work numbered, titled, placed in its program, dated, and noted with its license.</p>
-    </div>
-    <table class="catalog">
-      <thead><tr><th scope="col">No.</th><th scope="col">Title</th><th scope="col">Program</th><th scope="col">Date</th><th scope="col">License</th></tr></thead>
-      <tbody><tr><td colspan="5" class="empty">
-      <span class="msg"><b>The catalog is empty.</b> That is the truth of it today — and the standard is that it fills only with finished, license-clean work.</span>
-      </td></tr></tbody>
-    </table>
+  </div>
+  <div class="cat-grid">
+    <article class="album">
+      <div class="album-top">
+        <svg class="cover tile" viewBox="0 0 320 320" role="img" aria-label="Generated cover art: five empty staff lines, ruled and waiting, above the number 0">
+<rect class="field" width="320" height="320"/><path class="rule flat" d="M0 62H320"/><path class="rule flat" d="M0 79H320"/><path class="rule flat" d="M0 96H320"/><path class="rule flat" d="M0 113H320"/><path class="rule flat" d="M0 130H320"/>
+<text class="count" x="20" y="290">0</text>
+</svg>
+        <div>
+          <p class="badge">no tracks have been released yet</p>
+          <h3>The catalog is empty.</h3>
+          <p>That is the truth of it today — and the standard is that it fills only with finished, license-clean work.</p>
+        </div>
+      </div>
+      <table class="catalog">
+        <caption class="visually-hidden">The catalog</caption>
+        <thead><tr><th scope="col">No.</th><th scope="col">Title</th><th scope="col">Program</th><th scope="col">Date</th><th scope="col">License</th></tr></thead>
+        <tbody><tr><td colspan="5" class="empty"><span class="visually-hidden">The catalog is empty.</span></td></tr></tbody>
+      </table>
+    </article>
   </div>
 </section>
 
-<section class="band" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head">
-    <h2>The pipeline</h2>
-    </div>
+<section id="pipeline" class="band" aria-labelledby="pipeline-h">
+  <div class="sec-head">
+    <h2 id="pipeline-h">The pipeline</h2>
+    <p>How a track ships here</p>
+    <p class="badge">pipeline in preparation</p>
+  </div>
+  <div class="ships">
     <div class="steps">
       <div class="step">
         <span class="no">STAGE 01</span>
@@ -315,46 +496,15 @@ img.img-missing{ opacity:0; }
   </div>
 </section>
 
-<section class="band on-paper">
-  <div class="wrap">
-    <div class="sec-head">
-    <h2>This season&rsquo;s program</h2>
-    </div>
-    <div class="program">
-    <div class="item">
-      <span class="label">First program</span>
-      <div class="body">
-        <p><b>Instrumental.</b> The Group&rsquo;s first music program is an instrumental program. That is the program as designed — stated here so that what arrives is exactly what was promised.</p>
-      </div>
-    </div>
-    <div class="item">
-      <span class="label">The license note</span>
-      <div class="body">
-        <p>A work&rsquo;s commercial cleanliness is set by the weakest license in its chain. One stage with terms that do not allow commercial release makes the whole work unclean, however clean the other stages are.</p>
-        <p>So the first program uses only stages whose licenses are clean end to end for commercial release. That principle — not a shortcut, not a hope — is what decides what the pipeline is built from.</p>
-      </div>
-    </div>
-    <div class="item">
-      <span class="label">The cadence</span>
-      <div class="body">
-        <p>This stage is built for a weekly cadence — <b>one new work a week</b> — so that returning listeners always find a new piece on the program. That is the design intent.</p>
-        <p>The current status is different, and the difference matters: the schedule begins when the pipeline does, not before. No weekly promise runs until the first work has cleared all four stages and the cadence can be kept for real.</p>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="quote">
+<section class="band closing">
+  <div class="quote">
     <blockquote>&ldquo;An empty catalog, honestly labeled, is worth more than a full one that <b>isn&rsquo;t true.</b>&rdquo;</blockquote>
     <p class="side">When Track 001 clears the pipeline, it will appear in the catalog above — numbered, dated, and license noted. The Group&rsquo;s film program lives on the <a href="https://dimonglobalgroup.github.io/dgg-cinema/">Cinema page</a>, and its wider publishing record on the <a href="https://dimonglobalgroup.github.io/dgg-media/">Media page</a>.</p>
-    </div>
   </div>
 </section>
 </main>
-<footer class="site-foot">
+</div>
+<footer class="site-foot" id="the-group">
   <div class="wrap">
     <div class="foot-top">
       <div>
@@ -407,5 +557,26 @@ img.img-missing{ opacity:0; }
     </div>
   </div>
 </footer>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.rail a'));
+  var pairs=links.map(function(a){ return { a:a, el:document.querySelector(a.getAttribute('href')) }; })
+    .filter(function(p){ return p.el; })
+    .sort(function(p,q){ return p.el.getBoundingClientRect().top-q.el.getBoundingClientRect().top; });
+  var queued=false;
+  function mark(){
+    queued=false;
+    var line=window.innerHeight*0.4, now=null, doc=document.documentElement;
+    pairs.forEach(function(p){ if(p.el.getBoundingClientRect().top<=line){ now=p; } });
+    if(window.innerHeight+window.scrollY>=doc.scrollHeight-2){ now=pairs[pairs.length-1]; }
+    links.forEach(function(a){ a.removeAttribute('aria-current'); });
+    if(now){ now.a.setAttribute('aria-current','location'); }
+  }
+  function ask(){ if(!queued){ queued=true; window.requestAnimationFrame(mark); } }
+  window.addEventListener('scroll',ask,{passive:true});
+  window.addEventListener('resize',ask);
+  mark();
+})();
+</script>
 </body>
 </html>

@@ -1,14 +1,14 @@
 {
   "files": {
-    "index.html": "272a6186deadfd8e4e14655635dfe76cc104e7854907b11da9d0121c596ac7ed",
-    "pps/catalog.json": "8145c9a00b592e38ecf29d11d7ff646738dedd07e95cf8665f1e0bd39e6e2ac3",
-    "pps/objects/921f074cab4288f1e27828386a99a52b0386d56d6facdc36205baef1e1e2a007.json": "921f074cab4288f1e27828386a99a52b0386d56d6facdc36205baef1e1e2a007"
+    "index.html": "944a0c0e56eabfaf554dc10ea0edfe50688aa17eb579b84f5ffdb93e9e4883d0",
+    "pps/catalog.json": "4685017eeeaefdce81f08bab94bdbe78e17f3612929305d8f9e1794df21f64cd",
+    "pps/objects/b7d491743340e44871327fec02fd365fb7e6b85d4f1577f897d217d611be3e41.json": "b7d491743340e44871327fec02fd365fb7e6b85d4f1577f897d217d611be3e41"
   },
   "format": "hope-page-record/1",
-  "issued_at": "2026-11-05T17:14:06Z",
+  "issued_at": "2026-11-05T22:39:00Z",
   "page_id": "music",
-  "predecessor_sha256": "fb8bb11a59f6f0e7c86d4610142a006e254ab243c22b0c64e0a81c7358494bf1",
-  "sequence": 2,
-  "signature": "iH+QEU4XwK9jmA41SaTzVm/XC7a3zszyRPEpEbH24uc6G3uAMlt13+haxyxjmcKdwLzCxhIA5Xtq43bwKoLfAg==",
+  "predecessor_sha256": "35f9f2943bc386e6b9fdca2fdfb6e84137524e33915840748952f352a489f4f5",
+  "sequence": 3,
+  "signature": "rvoNVvnojSBuG7Xc7RhxCcJVa9anHLxdagexyWVpI0jDWz9rKcbyWBioTIUH54XRBvUc39RcbBftFnBhkkpLAg==",
   "signer": "hub-ed25519-2026-11"
 }
