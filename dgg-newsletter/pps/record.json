@@ -1,14 +1,14 @@
 {
   "files": {
-    "index.html": "f0d4162b80a31464825188e7dff3b5fc7c9f0adf011c98f274591463e8b25b42",
-    "pps/catalog.json": "ca990460225d37c143577b4fad7618e38a86fa468f5194fec42fb4bf8ccbba04",
-    "pps/objects/b755e458f9cd53ff9f84cc59413f5ac2f90ce32609f7a1837ef1bd10606c82a8.json": "b755e458f9cd53ff9f84cc59413f5ac2f90ce32609f7a1837ef1bd10606c82a8"
+    "index.html": "921ef94f11bae3d67b38a97463150427ca84449e51b03330c37e35002d9bd35a",
+    "pps/catalog.json": "095c8e7d242266fc1a12bd4e59e52b870d1c61467053ba35de4b84618fb9c011",
+    "pps/objects/95ce2b4c49f276c4aba5f87842c546145dc4b6ae9d97625fb39723825cde79d0.json": "95ce2b4c49f276c4aba5f87842c546145dc4b6ae9d97625fb39723825cde79d0"
   },
   "format": "hope-page-record/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:03Z",
   "page_id": "newsletter",
-  "predecessor_sha256": null,
-  "sequence": 1,
-  "signature": "KOOwII6OKlAb+vTWCRJgEdIQcscojSj+nXGNpBcqWiwdpVxnnznxdzJS0wrxLj7uSg3LpgbmlXg1L0ZAZrkaCA==",
+  "predecessor_sha256": "204777398dc088fee962d41015731a1ca2d7259712ae41e7e5183488190a230d",
+  "sequence": 2,
+  "signature": "aMpm1AAXlLDwMcuzBMlfAK5lo5yDlO7emysVFxh/OMNpbM39OJmayAlrR4wvi1AOynEmNZcfWegLcb2kjw+aAQ==",
   "signer": "hub-ed25519-2026-11"
 }

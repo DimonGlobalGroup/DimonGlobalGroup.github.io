@@ -1,14 +1,14 @@
 {
   "files": {
-    "index.html": "7dc6848f06a2426c73c37b0f4a186448807e3d5b32df86221e114ba2d9a3f0eb",
-    "pps/catalog.json": "4c5948b3935d1c107a5712224c659c0dfa2db6007f14b2339c3ee082d9c645e0",
-    "pps/objects/7c93191dd7989f8566a8285d288dbf290ad24f19da74391a38a2fd2ad716f87a.json": "7c93191dd7989f8566a8285d288dbf290ad24f19da74391a38a2fd2ad716f87a"
+    "index.html": "50d714d18bc0a2a1e1dfb1e2e7914be8f0355954364e9178275374ede8fb9f70",
+    "pps/catalog.json": "63e00104dd7a57481812fd402188e3da5afcb974c08d1e90a078790fac61bef3",
+    "pps/objects/111f097a399d610f627db19b17145709ee6cd86accbedb659d21be6920de5f83.json": "111f097a399d610f627db19b17145709ee6cd86accbedb659d21be6920de5f83"
   },
   "format": "hope-page-record/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:03Z",
   "page_id": "storybook",
-  "predecessor_sha256": null,
-  "sequence": 1,
-  "signature": "ZCmCLFd7H0CHlDqSfv9FcX0u6SnDcRPt2DqUStUD+8KM+NoYOQZe3oSzwLY9Nl6RuKDSRfCPpYtOllONjKP4AA==",
+  "predecessor_sha256": "c612c61460300302a976374cf811fec43ec679ff3c1e4dd17e9ec3842ef34131",
+  "sequence": 2,
+  "signature": "IzAPYWyHunYJwJlOyAVnRrfSQOVTcYfO6AmQSFC3Dve4E8JFIdPnddt4s5a8bqCqHXqKMLPH5rlRMgQKvYPuBw==",
   "signer": "hub-ed25519-2026-11"
 }

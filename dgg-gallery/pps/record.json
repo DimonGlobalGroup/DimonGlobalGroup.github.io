@@ -1,14 +1,14 @@
 {
   "files": {
-    "index.html": "ef880a0cd0909ad0213a27cfae573fba9d3e0e644c0b18180e1007aacafd00ee",
-    "pps/catalog.json": "22b14eae5022ccd985daab0005f77d47d87d2da79377b48607bf119b06cf47c2",
-    "pps/objects/f28bc2b1c37bd8f796884397d6f34a772fea6320b424331973fc1903039d4132.json": "f28bc2b1c37bd8f796884397d6f34a772fea6320b424331973fc1903039d4132"
+    "index.html": "2f5d8c536ae376cdd723fc89864327962c2a20659541d19189f6a997ad967ab0",
+    "pps/catalog.json": "15b56ae9869b4c8249af67ce8ef6abf0c3c61551043a6505cec165bfab75e6df",
+    "pps/objects/5bcd3b63ffce1e937d1f1a346a5abe2944661ad6b495017e2e46605e5b6ea5d6.json": "5bcd3b63ffce1e937d1f1a346a5abe2944661ad6b495017e2e46605e5b6ea5d6"
   },
   "format": "hope-page-record/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:05Z",
   "page_id": "gallery",
-  "predecessor_sha256": null,
-  "sequence": 1,
-  "signature": "5rt5R+DLoCqYJATG+PJJQvNnMQR5xWFbNs/UoBXpOCQTOGibs7wKvX62yT2BFf5lFvLhNorfsMDuTNEwFK/eAQ==",
+  "predecessor_sha256": "c144e63af1eea4a6d3d22b8757095cc327198880bf10cbfde4371255e716c720",
+  "sequence": 2,
+  "signature": "+HeqrILzMnQeI7bQrD84zPyPeD1N0Bao6KuAcysQlGyqkSxbKaWVwJYroqNszCLOrKZUEOZgMWAD+uRiglLJCg==",
   "signer": "hub-ed25519-2026-11"
 }

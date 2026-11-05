@@ -1,14 +1,14 @@
 {
   "files": {
-    "index.html": "37c308acb66f9bfcbc6e0111a2d647bdf6f3537ca8c51cdd8d5d6cb2e99df18a",
-    "pps/catalog.json": "12aaab74d7700226515ca1e9551a37e93e839426278a1b6d32eb00a5092cbf7f",
-    "pps/objects/628a32bba5ce65ed3fe91a04d3d6d3d7c53dc63d3773f48ff11e791cdbc54d44.json": "628a32bba5ce65ed3fe91a04d3d6d3d7c53dc63d3773f48ff11e791cdbc54d44"
+    "index.html": "c7234a31055734bc6b90891734c308313a38f2cca5e5d2340970406394330c24",
+    "pps/catalog.json": "3b058922a6fb36023cac7c0556ad3e44fd2dc196d58a421153932e3ac169195b",
+    "pps/objects/301bfe3dbf117d2d678854755ea76db9315b2abad0a4f24fdeba56706435c4a0.json": "301bfe3dbf117d2d678854755ea76db9315b2abad0a4f24fdeba56706435c4a0"
   },
   "format": "hope-page-record/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:02Z",
   "page_id": "cinema",
-  "predecessor_sha256": null,
-  "sequence": 1,
-  "signature": "PQx2DYaDg8n11S7hDxAxLXo+W5lbWqHrT12L26MGacXjcGVDCm4lnYmwqWPxEcIa456csB13D6whZClSlO8+Cg==",
+  "predecessor_sha256": "088d29e16a8ade72030576150d6219cecee989598707057edf7e7b3146c59094",
+  "sequence": 2,
+  "signature": "4iOpuSFHDiBlOuoUTiU55Ic2Unyylcd+DQMIsoD46MT1721xadnfVhFElRNRmua2+JgL+ZRTKB5sjdDaRp5fDw==",
   "signer": "hub-ed25519-2026-11"
 }

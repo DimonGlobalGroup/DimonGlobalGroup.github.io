@@ -1,11 +1,11 @@
 {
   "format": 1,
   "format_id": "hope-page-catalog/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:04Z",
   "name": "predictions-private-catalog",
   "packages": [
     {
-      "archive": "pps/objects/096596d0694450adf6d1b123e8d7168770fd91104d895caa2bc2a9df6bbc5656.json",
+      "archive": "pps/objects/3a055c417df8d479259e2e85c7d3fd867350ea959501a7062fcae85624a89831.json",
       "classification": "P1",
       "files": [
         "ledger.json",
@@ -15,14 +15,14 @@
       "id": "predictions-pack",
       "kind": "knowledge",
       "permissions": [],
-      "sha256": "096596d0694450adf6d1b123e8d7168770fd91104d895caa2bc2a9df6bbc5656",
+      "sha256": "3a055c417df8d479259e2e85c7d3fd867350ea959501a7062fcae85624a89831",
       "size": 28530,
       "version": "1.0.0"
     }
   ],
   "page_id": "predictions",
-  "predecessor_sha256": null,
+  "predecessor_sha256": "52225339ad8ea74eeb83f00f52fdcb641c44573797e606ed625e1feabb275cb9",
   "profile": "hope-page-server/1",
-  "sequence": 1,
+  "sequence": 2,
   "signer": "hub-ed25519-2026-11"
 }

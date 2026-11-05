@@ -1,14 +1,14 @@
 {
   "files": {
-    "index.html": "e1aab6c681378fb4a303eaa87544fc25f457eef10b3b7646cd2f303c8f36f179",
-    "pps/catalog.json": "364bde0428527ceeb974f327599eb4d91614c920b07185ba4b52e73d1c97d947",
-    "pps/objects/096596d0694450adf6d1b123e8d7168770fd91104d895caa2bc2a9df6bbc5656.json": "096596d0694450adf6d1b123e8d7168770fd91104d895caa2bc2a9df6bbc5656"
+    "index.html": "2228c6581b5ab7e570e83b070dae9e1db1f3244d4a808dabef2b76dfe25da7db",
+    "pps/catalog.json": "7e95c8189781862ff30fc132970560049433f9929cfaa0410f31ea67ae248c76",
+    "pps/objects/3a055c417df8d479259e2e85c7d3fd867350ea959501a7062fcae85624a89831.json": "3a055c417df8d479259e2e85c7d3fd867350ea959501a7062fcae85624a89831"
   },
   "format": "hope-page-record/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:04Z",
   "page_id": "predictions",
-  "predecessor_sha256": null,
-  "sequence": 1,
-  "signature": "mALHuu+r8NdTlKSaT5JDoV7ZDBxmA/8Fw0s/STv/+y0PPPy+K4pBH+2IYdsl5xs5jQ/swqOXM5J8q4Xes3S/CQ==",
+  "predecessor_sha256": "52225339ad8ea74eeb83f00f52fdcb641c44573797e606ed625e1feabb275cb9",
+  "sequence": 2,
+  "signature": "pL9Ykbd7vA1MOtvPkDBK7Jk3wqtgLHEVbGqX90QYcC94CsXJKp3FO3ikpYjVqIxiqelWavwrpEzoJEGujL5RAg==",
   "signer": "hub-ed25519-2026-11"
 }

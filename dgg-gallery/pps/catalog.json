@@ -1,11 +1,11 @@
 {
   "format": 1,
   "format_id": "hope-page-catalog/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:05Z",
   "name": "gallery-private-catalog",
   "packages": [
     {
-      "archive": "pps/objects/f28bc2b1c37bd8f796884397d6f34a772fea6320b424331973fc1903039d4132.json",
+      "archive": "pps/objects/5bcd3b63ffce1e937d1f1a346a5abe2944661ad6b495017e2e46605e5b6ea5d6.json",
       "classification": "P1",
       "files": [
         "frame-registry.json"
@@ -13,14 +13,14 @@
       "id": "gallery-pack",
       "kind": "knowledge",
       "permissions": [],
-      "sha256": "f28bc2b1c37bd8f796884397d6f34a772fea6320b424331973fc1903039d4132",
+      "sha256": "5bcd3b63ffce1e937d1f1a346a5abe2944661ad6b495017e2e46605e5b6ea5d6",
       "size": 14578,
       "version": "1.0.0"
     }
   ],
   "page_id": "gallery",
-  "predecessor_sha256": null,
+  "predecessor_sha256": "c144e63af1eea4a6d3d22b8757095cc327198880bf10cbfde4371255e716c720",
   "profile": "hope-page-server/1",
-  "sequence": 1,
+  "sequence": 2,
   "signer": "hub-ed25519-2026-11"
 }

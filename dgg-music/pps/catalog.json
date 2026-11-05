@@ -1,11 +1,11 @@
 {
   "format": 1,
   "format_id": "hope-page-catalog/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:06Z",
   "name": "music-private-catalog",
   "packages": [
     {
-      "archive": "pps/objects/b6bdfe90cd8cdad909a868030a670128dd308278658ce5bd6d86746a95ef62c1.json",
+      "archive": "pps/objects/921f074cab4288f1e27828386a99a52b0386d56d6facdc36205baef1e1e2a007.json",
       "classification": "P1",
       "files": [
         "CONCEPT.md",
@@ -14,14 +14,14 @@
       "id": "music-pack",
       "kind": "knowledge",
       "permissions": [],
-      "sha256": "b6bdfe90cd8cdad909a868030a670128dd308278658ce5bd6d86746a95ef62c1",
+      "sha256": "921f074cab4288f1e27828386a99a52b0386d56d6facdc36205baef1e1e2a007",
       "size": 14730,
       "version": "1.0.0"
     }
   ],
   "page_id": "music",
-  "predecessor_sha256": null,
+  "predecessor_sha256": "fb8bb11a59f6f0e7c86d4610142a006e254ab243c22b0c64e0a81c7358494bf1",
   "profile": "hope-page-server/1",
-  "sequence": 1,
+  "sequence": 2,
   "signer": "hub-ed25519-2026-11"
 }

@@ -1,11 +1,11 @@
 {
   "format": 1,
   "format_id": "hope-page-catalog/1",
-  "issued_at": "2026-11-03T08:18:25Z",
+  "issued_at": "2026-11-05T17:14:00Z",
   "name": "systems-private-catalog",
   "packages": [
     {
-      "archive": "pps/objects/a122960ee20dfe476ec01d2915a1c2285cebfad3c6b4240bf34f39124ad4be72.json",
+      "archive": "pps/objects/07b33b022246bf85bc93937911b5776471bcd0fe7b3101352a7e3eef19b17978.json",
       "classification": "P1",
       "files": [
         "MUSE-PARITY-MAP.md",
@@ -15,14 +15,14 @@
       "id": "systems-pack",
       "kind": "knowledge",
       "permissions": [],
-      "sha256": "a122960ee20dfe476ec01d2915a1c2285cebfad3c6b4240bf34f39124ad4be72",
+      "sha256": "07b33b022246bf85bc93937911b5776471bcd0fe7b3101352a7e3eef19b17978",
       "size": 96798,
       "version": "1.0.0"
     }
   ],
   "page_id": "systems",
-  "predecessor_sha256": null,
+  "predecessor_sha256": "ec535d8c2c554490871f74ee4fab63fe7b114c4ade275a8cfa5fb6788a7cf306",
   "profile": "hope-page-server/1",
-  "sequence": 1,
+  "sequence": 2,
   "signer": "hub-ed25519-2026-11"
 }
