@@ -1,11 +1,11 @@
 {
   "format": 1,
   "format_id": "hope-page-catalog/1",
-  "issued_at": "2026-11-05T17:14:01Z",
+  "issued_at": "2026-11-05T21:30:37Z",
   "name": "arcade-private-catalog",
   "packages": [
     {
-      "archive": "pps/objects/fdd806b90fb9c4bd08abbc28b37b835a494b547e6d1b45100b339ef8f54c24e3.json",
+      "archive": "pps/objects/3c7dbceb6a9ebbdd7f991a7049bf0ff8e68a47bacff22bda2d99f8f4ad62f9f2.json",
       "classification": "P1",
       "files": [
         "APPROVED-LIST.md",
@@ -14,14 +14,14 @@
       "id": "arcade-pack",
       "kind": "knowledge",
       "permissions": [],
-      "sha256": "fdd806b90fb9c4bd08abbc28b37b835a494b547e6d1b45100b339ef8f54c24e3",
+      "sha256": "3c7dbceb6a9ebbdd7f991a7049bf0ff8e68a47bacff22bda2d99f8f4ad62f9f2",
       "size": 83018,
       "version": "1.0.0"
     }
   ],
   "page_id": "arcade",
-  "predecessor_sha256": "27a8985bf8cb7287b4fc8cfed01f20857eca32cbc60d3c0b095bc3dcca85ccd0",
+  "predecessor_sha256": "03eecfcc077be4307b41ac679536df413505093bd084d3cefe8273bbd537aa3e",
   "profile": "hope-page-server/1",
-  "sequence": 2,
+  "sequence": 3,
   "signer": "hub-ed25519-2026-11"
 }

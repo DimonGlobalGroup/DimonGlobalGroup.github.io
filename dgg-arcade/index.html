@@ -143,98 +143,169 @@ img.img-missing{ opacity:0; }
 /* DGG-COMPONENTS:END */
 /* Shared page parts, same values as the portal */
 .hero{ border-bottom:1px solid var(--line); overflow:hidden; }
-.hero-eyebrow{ color:var(--text-muted); font-size:var(--t-sm); margin-bottom:var(--s-4); }
-.hero-eyebrow a{ color:inherit; text-decoration:none; }
+.hero-eyebrow{ color:var(--text-muted); font-size:var(--t-sm); }
+.hero-eyebrow a{ display:inline-flex; align-items:center; min-height:2.75rem; color:inherit; text-decoration:none; }
 .hero-eyebrow a:hover{ color:var(--accent); text-decoration:underline; }
-.hero h1{ font-size:var(--t-2xl); font-weight:400; line-height:1.04; letter-spacing:.005em; }
-.hero h1 em{ color:var(--accent-2); }
-.hero-lede{ color:var(--text-soft); max-width:60ch; margin-top:var(--s-4); }
-.hero .btn-row{ margin-top:var(--s-5); }
-.hero-strip{ display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); margin:0; }
-.hero-strip > div{ padding:var(--s-4) var(--s-5) var(--s-5); border-left:1px solid var(--line); }
-.hero-strip > div:first-child{ border-left:none; padding-left:0; }
+.hero-lede{ color:var(--text-soft); max-width:60ch; }
+.hero-strip{ display:grid; grid-template-columns:repeat(4,1fr); margin:0; }
+.hero-strip > div{ padding:var(--s-3) var(--s-5) var(--s-4); border-left:1px solid var(--line); }
+.hero-strip > div:first-child{ border-left:none; }
 .hero-strip dt{ color:var(--text-muted); font-size:var(--t-xs); }
 .hero-strip dd{ margin:var(--s-1) 0 0; font-family:var(--serif); font-size:var(--t-md); line-height:1.3; }
-.hero-strip a{ color:inherit; text-decoration:none; }
-.hero-strip a:hover{ color:var(--accent); text-decoration:underline; }
+.hero-strip a{ display:inline-flex; align-items:center; min-width:2.75rem; min-height:2.75rem; color:inherit; }
+.hero-strip a:hover{ color:var(--accent); }
 .band{ padding-block:var(--s-8); }
-.sec-intro{ color:var(--text-soft); max-width:68ch; margin-bottom:var(--s-6); }
 .status{ display:inline-flex; align-items:center; gap:var(--s-2); font-size:var(--t-sm); color:var(--text-soft); }
 .status::before{ content:""; width:.5rem; height:.5rem; }
 .status-live::before{ background:var(--accent); }
-.status-dev::before{ border:1.5px solid var(--accent-2); }
-@media (max-width:48rem){
-  .hero-strip{ grid-template-columns:1fr 1fr; }
-  .hero-strip > div{ padding:var(--s-3) var(--s-4) var(--s-4); }
-  .hero-strip > div:nth-child(odd){ border-left:none; padding-left:0; }
-  .hero-strip > div:nth-child(n+3){ border-top:1px solid var(--line); }
-}
-/* Arcade page */
-.hero-top{ padding-block:var(--s-7) var(--s-6); }
 
-.titles{ display:grid; gap:var(--s-5); }
-.title-card{ display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); border:1px solid var(--line-strong); background:var(--surface-raised); scroll-margin-top:calc(var(--header-h) + var(--s-4)); }
+/* Arcade storefront skin */
+body{ --r-card:1rem; --r-tile:.75rem; --r-ctl:.5rem; background:var(--ink-950); }
+.nav a{ display:inline-flex; align-items:center; min-height:2.75rem; }
+.topbar .brand,.site-foot .brand{ min-height:2.75rem; }
+.foot-nav a{ display:inline-flex; align-items:center; min-width:2.75rem; min-height:2.75rem; }
+.foot-nav li{ padding-block:0; }
 
-.demo{ display:flex; flex-direction:column; min-width:0; border-right:1px solid var(--line); }
+.btn{ display:inline-flex; align-items:center; justify-content:center; min-height:2.75rem; border-radius:var(--r-ctl); line-height:1.2; text-align:center; }
+.btn-sm{ padding:.5rem .875rem; font-size:var(--t-xs); background:var(--ink-950); color:var(--text); font-family:inherit; cursor:pointer; }
+.btn-play{ min-height:3.25rem; padding-inline:2rem; font-size:var(--t-base); }
+
+/* One palette per title. Covers, badges and marks all read from these. */
+.t-2048{ --tile-ground:var(--green-700); --mark-accent:var(--green-300); }
+.t-fb{ --tile-ground:var(--purple-700); --mark-accent:var(--purple-300); }
+
+.badge{ display:inline-flex; align-items:center; min-height:1.625rem; padding:.125rem .5625rem; border-radius:.375rem; background:var(--green-300); color:var(--ink-950); font-size:.75rem; font-weight:700; letter-spacing:.06em; line-height:1; white-space:nowrap; }
+
+.tags{ display:flex; flex-wrap:wrap; gap:var(--s-2); list-style:none; margin:0; padding:0; font-size:var(--t-xs); color:var(--text-soft); }
+.tags li{ padding:.1875rem .625rem; border:1px solid var(--line-strong); border-radius:var(--r-ctl); }
+
+/* Store header */
+.store-head{ display:grid; grid-template-columns:minmax(0,1.7fr) minmax(0,1fr); gap:var(--s-2) var(--s-7); align-items:center; padding-block:var(--s-5) var(--s-5); }
+.store-head .hero-eyebrow{ grid-column:1 / -1; }
+.store-head h1{ font-size:clamp(2.25rem, 1.7rem + 2vw, 3.25rem); font-weight:400; line-height:1.04; letter-spacing:.005em; }
+.store-head h1 em{ color:var(--accent-2); }
+
+/* Feature slots */
+.store-feature{ display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:var(--s-4); }
+.feat{ display:flex; flex-direction:column; min-width:0; border:1px solid var(--line-strong); border-radius:var(--r-card); background:var(--surface-raised); overflow:hidden; }
+.cover{ position:relative; aspect-ratio:16 / 9; color:var(--bone-100); background:radial-gradient(130% 150% at 82% 0, var(--tile-ground) 0, var(--ink-950) 68%); }
+.cover svg{ position:absolute; inset:0; width:100%; height:100%; fill:currentColor; }
+.m-a{ fill:var(--mark-accent, currentColor); }
+.cover .field{ stroke:currentColor; stroke-width:1; opacity:.09; fill:none; }
+.cover .trail{ opacity:.14; }
+.cover .trail-2{ opacity:.07; }
+.cover .badge{ position:absolute; left:var(--s-3); top:var(--s-3); }
+.feat-body{ flex:1; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--s-2) var(--s-5); align-items:center; padding:var(--s-4) var(--s-5) var(--s-5); }
+.feat-copy{ min-width:0; }
+.feat-no{ font-size:var(--t-xs); color:var(--text-muted); }
+.feat-title{ font-size:var(--t-xl); }
+.feat-one{ font-family:var(--serif); font-style:italic; color:var(--text-soft); margin:var(--s-1) 0 var(--s-3); line-height:1.5; }
+.feat-side .feat-title{ font-size:var(--t-lg); }
+.feat-side .feat-body{ grid-template-columns:minmax(0,1fr); align-items:start; padding:var(--s-4); grid-template-rows:1fr auto; gap:var(--s-4); }
+.feat-side .btn{ width:100%; }
+
+.hero-strip{ margin-block:var(--s-4) var(--s-5); border:1px solid var(--line); border-radius:var(--r-card); background:var(--surface); }
+
+/* Library */
+.sec-head{ border-top:none; padding-top:0; margin-bottom:var(--s-5); }
+.titles{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s-5); }
+.title-card{ display:grid; grid-template-rows:auto 1fr; min-width:0; border:1px solid var(--line-strong); border-radius:var(--r-card); background:var(--surface-raised); overflow:hidden; }
+
+.demo{ display:flex; flex-direction:column; min-width:0; }
 .demo [hidden]{ display:none; }
-.demo-bar{ display:flex; align-items:center; justify-content:space-between; gap:var(--s-3); min-height:3.5rem; padding:var(--s-2) var(--s-4); border-bottom:1px solid var(--line); }
+.demo-bar{ position:absolute; z-index:3; left:0; right:0; display:flex; align-items:center; justify-content:space-between; gap:var(--s-3); padding:var(--s-3); pointer-events:none; }
+.demo-bar > *{ pointer-events:auto; }
 .demo-actions{ display:flex; gap:var(--s-2); }
-.btn-sm{ display:inline-flex; align-items:center; padding:.5rem .75rem; font-size:var(--t-xs); min-height:2.5rem; background:none; font-family:inherit; cursor:pointer; line-height:1.2; }
-.demo-stage{ position:relative; flex:1 0 auto; height:clamp(30rem, 74vh, 40rem); min-height:30rem; background:var(--blueprint); background-image:linear-gradient(rgba(219,230,238,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(219,230,238,.07) 1px, transparent 1px); background-size:2rem 2rem; overflow:hidden; }
+.demo{ position:relative; }
+.demo-stage{ position:relative; aspect-ratio:16 / 9; background:var(--blueprint); background-image:linear-gradient(rgba(219,230,238,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(219,230,238,.07) 1px, transparent 1px); background-size:2rem 2rem; overflow:hidden; }
 .demo-stage iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; background:var(--ink-950); z-index:2; }
-.demo-poster{ position:absolute; inset:0; margin:0; color:var(--blueprint-text); }
-.demo-poster svg{ position:absolute; inset:var(--s-5) var(--s-5) var(--s-8); width:calc(100% - 3rem); height:calc(100% - 5.5rem); }
-.demo-poster svg *{ vector-effect:non-scaling-stroke; }
+.demo-poster{ position:absolute; inset:0; margin:0; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:var(--s-4); align-items:center; padding:3rem var(--s-4) 2.25rem; color:var(--blueprint-text); }
+.demo-poster .mark{ width:100%; height:auto; max-height:100%; }
+.demo-poster .schem{ width:100%; height:100%; min-height:0; }
+.demo-poster .schem *{ vector-effect:non-scaling-stroke; }
 .demo-poster .ln{ fill:none; stroke:currentColor; stroke-width:1.25; opacity:.72; }
 .demo-poster .ln-b{ fill:none; stroke:currentColor; stroke-width:2; }
 .demo-poster .dash{ fill:none; stroke:currentColor; stroke-width:1; stroke-dasharray:5 5; opacity:.72; }
-.demo-poster .dim{ fill:currentColor; font-family:var(--mono); font-size:13px; }
-.demo-poster figcaption{ position:absolute; left:var(--s-4); right:var(--s-4); bottom:var(--s-3); font-size:var(--t-xs); line-height:1.4; }
-.demo-play{ position:absolute; left:50%; top:calc(50% - 1rem); transform:translate(-50%,-50%); z-index:1; white-space:nowrap; font-size:var(--t-base); padding:.875rem 1.75rem; }
-.demo-msg{ position:absolute; left:var(--s-4); right:var(--s-4); top:var(--s-4); z-index:1; background:var(--ink-950); color:var(--bone-100); border:1px solid var(--ink-line-strong); padding:var(--s-2) var(--s-3); font-size:var(--t-sm); }
-.demo.is-playing .demo-play{ display:none; }
+.demo-poster .dim{ fill:currentColor; font-family:var(--sans); font-size:24px; }
+.demo-poster figcaption{ position:absolute; left:var(--s-4); right:var(--s-4); bottom:var(--s-2); font-size:var(--t-xs); line-height:1.35; }
+.demo-msg{ position:absolute; left:var(--s-4); right:var(--s-4); top:3.25rem; z-index:4; background:var(--ink-950); color:var(--bone-100); border:1px solid var(--ink-line-strong); border-radius:var(--r-ctl); padding:var(--s-2) var(--s-3); font-size:var(--t-sm); }
 
-.title-side{ display:flex; flex-direction:column; min-width:0; padding:var(--s-6) var(--s-5) var(--s-5); }
-.title-side .no{ font-family:var(--mono); font-size:var(--t-xs); color:var(--text-muted); }
+.title-side{ display:flex; flex-direction:column; min-width:0; padding:var(--s-4) var(--s-5) var(--s-5); }
+.title-side .no{ display:flex; flex-wrap:wrap; gap:var(--s-1) var(--s-4); align-items:center; font-size:var(--t-xs); color:var(--text-muted); }
+.title-side .status{ font-size:var(--t-xs); }
 .title-side h3{ font-size:var(--t-xl); margin-top:var(--s-2); }
-.title-side .one{ font-family:var(--serif); font-style:italic; font-size:var(--t-md); color:var(--text-soft); margin-top:var(--s-2); line-height:1.4; }
-.note-label{ font-size:var(--t-xs); font-weight:600; color:var(--accent-2); margin-top:var(--s-5); }
-.title-side .design{ color:var(--text-soft); font-size:var(--t-sm); margin-top:var(--s-1); max-width:52ch; }
+.title-side .one{ font-family:var(--serif); font-style:italic; font-size:var(--t-md); color:var(--text-soft); margin:var(--s-1) 0 var(--s-3); line-height:1.5; }
+.title-actions{ display:flex; margin-top:var(--s-4); }
+.title-actions .btn{ flex:1; }
+.is-playing .demo-play{ display:none; }
 
-.watch{ margin:auto 0 0; padding-top:var(--s-5); }
+.title-more{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--s-5); margin-top:auto; padding-top:var(--s-5); align-items:start; }
+.note-label{ font-size:var(--t-xs); font-weight:600; color:var(--accent-2); }
+.design{ color:var(--text-soft); font-size:var(--t-sm); margin-top:var(--s-1); max-width:52ch; }
+
+.watch{ margin:0; }
 .watch-head{ display:flex; justify-content:space-between; gap:var(--s-3); font-size:var(--t-xs); color:var(--text-muted); padding-bottom:var(--s-2); }
 .watch-head b{ color:var(--text); font-weight:600; }
-.watch-screen{ aspect-ratio:16 / 9; display:grid; place-content:center; justify-items:center; gap:var(--s-2); color:var(--bone-300); text-align:center; padding:var(--s-3); }
+.frame{ border-color:var(--line); border-radius:var(--r-tile); padding:.375rem; }
+.frame-inner{ border-radius:.4375rem; }
+.watch-screen{ aspect-ratio:16 / 9; display:grid; place-content:center; justify-items:center; gap:var(--s-1); color:var(--bone-300); text-align:center; padding:var(--s-2); }
 .watch-screen video{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:var(--ink-950); }
-.watch-glyph{ width:2.5rem; height:2.5rem; color:var(--bone-500); }
-.watch-screen p{ font-size:var(--t-sm); }
+.watch-glyph{ width:1.75rem; height:1.75rem; color:var(--bone-500); }
+.watch-screen p{ font-size:var(--t-xs); line-height:1.3; }
 
-.note-card{ border:1px solid var(--line-strong); padding:var(--s-7) var(--s-6); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); gap:var(--s-7); }
-.note-card h3{ font-size:var(--t-xl); }
+/* A launched title takes the whole row, with its footage frame beside the demo. */
+.titles.has-player .title-card{ grid-column:1 / -1; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); grid-template-rows:auto; }
+.title-card.is-playing{ order:-1; border-color:var(--accent); }
+.titles.has-player .title-more{ grid-template-columns:minmax(0,1fr); }
+.is-playing .demo-bar{ position:static; flex-wrap:wrap; min-height:3.5rem; padding:var(--s-2) var(--s-4); border-bottom:1px solid var(--line); background:var(--surface-raised); }
+.is-playing .demo-stage{ aspect-ratio:auto; flex:1 0 auto; height:clamp(30rem, 74vh, 40rem); min-height:30rem; }
+
+/* About the studio */
+.studio{ background:var(--surface); border-block:1px solid var(--line); }
+.note-card{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:var(--s-6) var(--s-7); }
+.note-card h3{ font-size:var(--t-lg); }
 .note-card .lead{ color:var(--text-soft); margin-top:var(--s-3); max-width:44ch; }
-.note-card .more{ margin-top:var(--s-4); font-size:var(--t-sm); display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-5); }
-.practice{ margin:0; padding:0; list-style:none; }
-.practice li{ display:grid; grid-template-columns:2.5rem minmax(0,1fr); gap:var(--s-2); padding-block:var(--s-4); border-top:1px solid var(--line); }
-.practice li:first-child{ border-top:none; padding-top:0; }
-.practice li:last-child{ padding-bottom:0; }
+.note-card .more{ margin-top:var(--s-3); font-size:var(--t-sm); display:flex; flex-direction:column; align-items:flex-start; }
+.note-card .more a{ display:inline-flex; align-items:center; min-height:2.75rem; }
+.practice{ margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s-4); }
+.practice li{ padding:var(--s-4); border:1px solid var(--line); border-radius:var(--r-tile); background:var(--surface-raised); }
 .practice .pn{ font-family:var(--serif); font-style:italic; color:var(--accent-2); }
-.practice h4{ font-size:var(--t-md); font-weight:600; }
-.practice p{ font-size:var(--t-sm); color:var(--text-soft); margin-top:var(--s-1); max-width:58ch; }
+.practice h4{ font-size:var(--t-md); font-weight:600; margin-top:var(--s-1); }
+.practice p{ font-size:var(--t-sm); color:var(--text-soft); margin-top:var(--s-2); }
 
+@media (max-width:72rem){
+  .title-more{ grid-template-columns:minmax(0,1fr); }
+}
 @media (max-width:62rem){
-  .title-card{ grid-template-columns:1fr; }
-  .demo{ border-right:none; }
-  .note-card{ grid-template-columns:1fr; gap:var(--s-6); }
-  .watch{ margin-top:var(--s-2); }
+  .store-head{ grid-template-columns:1fr; }
+  .store-feature{ grid-template-columns:1fr; }
+  .feat-side{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .note-card{ grid-template-columns:1fr; }
+  .demo-stage{ aspect-ratio:3 / 2; }
+  .demo-poster{ padding:3rem var(--s-3) 3rem; gap:var(--s-3); }
+  .demo-poster figcaption{ left:var(--s-3); right:var(--s-3); }
+  .demo-poster .dim{ font-size:32px; }
+  .titles.has-player .title-card{ grid-template-columns:minmax(0,1fr); }
 }
 @media (max-width:48rem){
   .band{ padding-block:var(--s-7); }
-  .note-card{ padding:var(--s-6) var(--s-5); }
+  .hero-strip{ grid-template-columns:1fr 1fr; }
+  .hero-strip > div:nth-child(odd){ border-left:none; }
+  .hero-strip > div:nth-child(n+3){ border-top:1px solid var(--line); }
+  .titles{ grid-template-columns:minmax(0,1fr); }
+  .practice{ grid-template-columns:minmax(0,1fr); }
 }
 @media (max-width:40rem){
-  .demo-stage{ height:calc(100vh - 11rem); height:calc(100svh - 11rem); min-height:26rem; max-height:40rem; }
-  .demo-bar{ padding-inline:var(--s-3); }
-  .title-side{ padding:var(--s-5) var(--s-4) var(--s-4); }
+  .feat-body{ grid-template-columns:minmax(0,1fr); padding:var(--s-4); gap:var(--s-4); }
+  .feat-body .btn{ width:100%; }
+  .feat-side{ display:flex; }
+  .is-playing .demo-stage{ height:calc(100vh - 11rem); height:calc(100svh - 11rem); min-height:26rem; max-height:40rem; }
+  .is-playing .demo-bar{ padding-inline:var(--s-3); }
+  .title-side{ padding:var(--s-4); }
+}
+@media (hover:hover){
+  .feat,.title-card{ transition:border-color .15s ease; }
+  .feat:hover,.title-card:hover{ border-color:var(--accent); }
 }
 </style>
 </head>
@@ -254,12 +325,57 @@ img.img-missing{ opacity:0; }
     </nav>
   </div>
 </header>
+<svg width="0" height="0" class="visually-hidden" aria-hidden="true" focusable="false">
+  <symbol id="mark-2048" viewBox="0 0 229 69"><path d="M10 0h9v9h-9zM20 0h9v9h-9zM30 0h9v9h-9zM0 10h9v9h-9zM40 10h9v9h-9zM40 20h9v9h-9zM20 30h9v9h-9zM30 30h9v9h-9zM10 40h9v9h-9zM0 50h9v9h-9zM0 60h9v9h-9zM10 60h9v9h-9zM20 60h9v9h-9zM30 60h9v9h-9zM40 60h9v9h-9zM70 0h9v9h-9zM80 0h9v9h-9zM90 0h9v9h-9zM60 10h9v9h-9zM100 10h9v9h-9zM60 20h9v9h-9zM90 20h9v9h-9zM100 20h9v9h-9zM60 30h9v9h-9zM80 30h9v9h-9zM100 30h9v9h-9zM60 40h9v9h-9zM70 40h9v9h-9zM100 40h9v9h-9zM60 50h9v9h-9zM100 50h9v9h-9zM70 60h9v9h-9zM80 60h9v9h-9zM90 60h9v9h-9zM190 0h9v9h-9zM200 0h9v9h-9zM210 0h9v9h-9zM180 10h9v9h-9zM220 10h9v9h-9zM180 20h9v9h-9zM220 20h9v9h-9zM190 30h9v9h-9zM200 30h9v9h-9zM210 30h9v9h-9zM180 40h9v9h-9zM220 40h9v9h-9zM180 50h9v9h-9zM220 50h9v9h-9zM190 60h9v9h-9zM200 60h9v9h-9zM210 60h9v9h-9z" /><path class="m-a" d="M150 0h9v9h-9zM140 10h9v9h-9zM150 10h9v9h-9zM130 20h9v9h-9zM150 20h9v9h-9zM120 30h9v9h-9zM150 30h9v9h-9zM120 40h9v9h-9zM130 40h9v9h-9zM140 40h9v9h-9zM150 40h9v9h-9zM160 40h9v9h-9zM150 50h9v9h-9zM150 60h9v9h-9z" /></symbol>
+  <symbol id="mark-fb" viewBox="0 0 409 189"><path class="m-a" d="M0 20h9v9h-9zM10 20h9v9h-9zM20 20h9v9h-9zM30 20h9v9h-9zM40 20h9v9h-9zM0 30h9v9h-9zM0 40h9v9h-9zM0 50h9v9h-9zM10 50h9v9h-9zM20 50h9v9h-9zM30 50h9v9h-9zM0 60h9v9h-9zM0 70h9v9h-9zM0 80h9v9h-9zM70 0h9v9h-9zM80 0h9v9h-9zM90 0h9v9h-9zM60 10h9v9h-9zM100 10h9v9h-9zM60 20h9v9h-9zM100 20h9v9h-9zM60 30h9v9h-9zM70 30h9v9h-9zM80 30h9v9h-9zM90 30h9v9h-9zM100 30h9v9h-9zM60 40h9v9h-9zM100 40h9v9h-9zM60 50h9v9h-9zM100 50h9v9h-9zM60 60h9v9h-9zM100 60h9v9h-9zM120 30h9v9h-9zM120 40h9v9h-9zM120 50h9v9h-9zM120 60h9v9h-9zM120 70h9v9h-9zM120 80h9v9h-9zM120 90h9v9h-9zM130 90h9v9h-9zM140 90h9v9h-9zM150 90h9v9h-9zM160 90h9v9h-9zM180 10h9v9h-9zM180 20h9v9h-9zM180 30h9v9h-9zM180 40h9v9h-9zM180 50h9v9h-9zM180 60h9v9h-9zM180 70h9v9h-9zM190 70h9v9h-9zM200 70h9v9h-9zM210 70h9v9h-9zM220 70h9v9h-9zM240 0h9v9h-9zM250 0h9v9h-9zM260 0h9v9h-9zM270 0h9v9h-9zM280 0h9v9h-9zM260 10h9v9h-9zM260 20h9v9h-9zM260 30h9v9h-9zM260 40h9v9h-9zM260 50h9v9h-9zM240 60h9v9h-9zM250 60h9v9h-9zM260 60h9v9h-9zM270 60h9v9h-9zM280 60h9v9h-9zM300 20h9v9h-9zM340 20h9v9h-9zM300 30h9v9h-9zM310 30h9v9h-9zM340 30h9v9h-9zM300 40h9v9h-9zM320 40h9v9h-9zM340 40h9v9h-9zM300 50h9v9h-9zM320 50h9v9h-9zM340 50h9v9h-9zM300 60h9v9h-9zM330 60h9v9h-9zM340 60h9v9h-9zM300 70h9v9h-9zM340 70h9v9h-9zM300 80h9v9h-9zM340 80h9v9h-9zM370 10h9v9h-9zM380 10h9v9h-9zM390 10h9v9h-9zM360 20h9v9h-9zM400 20h9v9h-9zM360 30h9v9h-9zM360 40h9v9h-9zM380 40h9v9h-9zM390 40h9v9h-9zM400 40h9v9h-9zM360 50h9v9h-9zM400 50h9v9h-9zM360 60h9v9h-9zM400 60h9v9h-9zM370 70h9v9h-9zM380 70h9v9h-9zM390 70h9v9h-9zM400 70h9v9h-9z" /><path d="M30 120h9v9h-9zM40 120h9v9h-9zM50 120h9v9h-9zM60 120h9v9h-9zM30 130h9v9h-9zM70 130h9v9h-9zM30 140h9v9h-9zM70 140h9v9h-9zM30 150h9v9h-9zM40 150h9v9h-9zM50 150h9v9h-9zM60 150h9v9h-9zM30 160h9v9h-9zM70 160h9v9h-9zM30 170h9v9h-9zM70 170h9v9h-9zM30 180h9v9h-9zM40 180h9v9h-9zM50 180h9v9h-9zM60 180h9v9h-9zM90 120h9v9h-9zM90 130h9v9h-9zM90 140h9v9h-9zM90 150h9v9h-9zM90 160h9v9h-9zM90 170h9v9h-9zM90 180h9v9h-9zM100 180h9v9h-9zM110 180h9v9h-9zM120 180h9v9h-9zM130 180h9v9h-9zM160 120h9v9h-9zM170 120h9v9h-9zM180 120h9v9h-9zM150 130h9v9h-9zM190 130h9v9h-9zM150 140h9v9h-9zM190 140h9v9h-9zM150 150h9v9h-9zM190 150h9v9h-9zM150 160h9v9h-9zM190 160h9v9h-9zM150 170h9v9h-9zM190 170h9v9h-9zM160 180h9v9h-9zM170 180h9v9h-9zM180 180h9v9h-9zM220 120h9v9h-9zM230 120h9v9h-9zM240 120h9v9h-9zM210 130h9v9h-9zM250 130h9v9h-9zM210 140h9v9h-9zM210 150h9v9h-9zM210 160h9v9h-9zM210 170h9v9h-9zM250 170h9v9h-9zM220 180h9v9h-9zM230 180h9v9h-9zM240 180h9v9h-9zM270 120h9v9h-9zM310 120h9v9h-9zM270 130h9v9h-9zM300 130h9v9h-9zM270 140h9v9h-9zM290 140h9v9h-9zM270 150h9v9h-9zM280 150h9v9h-9zM270 160h9v9h-9zM290 160h9v9h-9zM270 170h9v9h-9zM300 170h9v9h-9zM270 180h9v9h-9zM310 180h9v9h-9zM340 120h9v9h-9zM350 120h9v9h-9zM360 120h9v9h-9zM370 120h9v9h-9zM330 130h9v9h-9zM330 140h9v9h-9zM340 150h9v9h-9zM350 150h9v9h-9zM360 150h9v9h-9zM370 160h9v9h-9zM370 170h9v9h-9zM330 180h9v9h-9zM340 180h9v9h-9zM350 180h9v9h-9zM360 180h9v9h-9z" /></symbol>
+</svg>
 <div class="hero" id="top">
   <div class="wrap">
-    <div class="hero-top">
+    <div class="store-head">
       <p class="hero-eyebrow"><a href="https://dimonglobalgroup.com/">Dimon Global Group</a> / Arcade</p>
       <h1>The business of <em>making</em> games.</h1>
       <p class="hero-lede">The Arcade is the Group&rsquo;s game studio. Two built games are ready to play here in your browser. They are a taste of the work, not the catalog.</p>
+    </div>
+    <div class="store-feature">
+      <article class="feat feat-main t-2048" aria-labelledby="feat-2048-h">
+        <div class="cover">
+          <svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <path class="field" d="M0 90h640M0 180h640M0 270h640M160 0v360M320 0v360M480 0v360" />
+            <use class="trail-2" href="#mark-2048" x="8" y="96" width="552" height="168" />
+            <use class="trail" href="#mark-2048" x="28" y="96" width="552" height="168" />
+            <use href="#mark-2048" x="48" y="96" width="552" height="168" />
+          </svg>
+          <span class="badge">PLAYABLE</span>
+        </div>
+        <div class="feat-body">
+          <div class="feat-copy">
+            <p class="feat-no">Title 01</p>
+            <h2 class="feat-title" id="feat-2048-h">2048</h2>
+            <p class="feat-one">Slide the tiles, merge the matches, reach 2048.</p>
+            <ul class="tags" aria-label="Tags"><li>Slide</li><li>Merge</li><li>In your browser</li></ul>
+          </div>
+          <a class="btn btn-solid btn-play" href="games/2048/index.html" data-launch="title-2048" aria-label="Play now: 2048">Play now</a>
+        </div>
+      </article>
+      <article class="feat feat-side t-fb" aria-labelledby="feat-fb-h">
+        <div class="cover">
+          <svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <path class="field" d="M0 90h640M0 180h640M0 270h640M160 0v360M320 0v360M480 0v360" />
+            <use class="trail" href="#mark-fb" x="100" y="74" width="440" height="203" />
+            <use href="#mark-fb" x="100" y="100" width="440" height="203" />
+          </svg>
+          <span class="badge">PLAYABLE</span>
+        </div>
+        <div class="feat-body">
+          <div class="feat-copy">
+            <p class="feat-no">Title 02</p>
+            <h2 class="feat-title" id="feat-fb-h">Falling Blocks</h2>
+            <p class="feat-one">Blocks fall. You place them.</p>
+            <ul class="tags" aria-label="Tags"><li>Fall</li><li>Place</li><li>In your browser</li></ul>
+          </div>
+          <a class="btn btn-play" href="games/falling-blocks/index.html" data-launch="title-falling-blocks" aria-label="Play now: Falling Blocks">Play now</a>
+        </div>
+      </article>
     </div>
     <dl class="hero-strip" aria-label="Studio index">
       <div><dt>01 Playable demo</dt><dd><a href="#title-2048">2048</a></dd></div>
@@ -279,10 +395,10 @@ img.img-missing{ opacity:0; }
       </div>
       <div class="titles">
 
-        <article class="title-card" id="title-2048" aria-labelledby="title-2048-h">
+        <article class="title-card t-2048" id="title-2048" aria-labelledby="title-2048-h">
           <div class="demo" data-title="2048">
             <div class="demo-bar">
-              <span class="status status-live">Playable demo</span>
+              <span class="badge">PLAYABLE</span>
               <div class="demo-actions">
                 <a class="btn btn-sm demo-full" href="games/2048/index.html" hidden>Full page</a>
                 <button class="btn btn-sm demo-stop" type="button" hidden>Stop</button>
@@ -290,40 +406,46 @@ img.img-missing{ opacity:0; }
             </div>
             <div class="demo-stage">
               <figure class="demo-poster">
-                <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                <svg class="mark" viewBox="0 0 229 69" aria-hidden="true" focusable="false" fill="currentColor"><use href="#mark-2048" /></svg>
+                <svg class="schem" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
                   <path class="ln-b" d="M60 60h280v280H60z" />
                   <path class="ln" d="M130 60v280M200 60v280M270 60v280M60 130h280M60 200h280M60 270h280" />
                   <path class="ln" d="M60 38h280M60 32v12M340 32v12M38 60v280M32 60h12M32 340h12" />
-                  <text class="dim" x="200" y="26" text-anchor="middle">4 columns</text>
+                  <text class="dim" x="200" y="24" text-anchor="middle">4 columns</text>
                   <text class="dim" x="24" y="200" text-anchor="middle" transform="rotate(-90 24 200)">4 rows</text>
                 </svg>
                 <figcaption>Fig. 1. The empty board. A schematic, not a screenshot.</figcaption>
               </figure>
-              <a class="btn btn-solid demo-play" href="games/2048/index.html">Play 2048</a>
               <p class="demo-msg" role="status" hidden>This demo isn&rsquo;t available in this build.</p>
             </div>
           </div>
           <div class="title-side">
-            <p class="no">Title 01</p>
+            <p class="no"><span>Title 01</span><span class="status status-live">Playable demo</span></p>
             <h3 id="title-2048-h">2048</h3>
             <p class="one">Slide the tiles, merge the matches, reach 2048.</p>
-            <p class="note-label">Design note</p>
-            <p class="design">The engine is frozen by hash. Presentation work happens around it, never inside it, so the rules stay exactly as they were locked.</p>
-            <figure class="watch">
-              <figcaption class="watch-head"><b>Gameplay</b><span>2048</span></figcaption>
-              <div class="frame"><div class="frame-inner watch-screen" data-clip-slot="2048">
-                <!-- Clip slot: replace the two lines below with a same-origin <video controls preload="none" src="..."></video> -->
-                <svg class="watch-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M16 12.5v15L28 20z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
-                <p>Gameplay footage coming soon</p>
-              </div></div>
-            </figure>
+            <ul class="tags" aria-label="Tags"><li>Slide</li><li>Merge</li><li>In your browser</li></ul>
+            <div class="title-actions"><a class="btn btn-solid btn-play demo-play" href="games/2048/index.html">Play 2048</a></div>
+            <div class="title-more">
+              <div>
+                <p class="note-label">Design note</p>
+                <p class="design">The engine is frozen by hash. Presentation work happens around it, never inside it, so the rules stay exactly as they were locked.</p>
+              </div>
+              <figure class="watch">
+                <figcaption class="watch-head"><b>Gameplay</b><span>2048</span></figcaption>
+                <div class="frame"><div class="frame-inner watch-screen" data-clip-slot="2048">
+                  <!-- Clip slot: replace the two lines below with a same-origin <video controls preload="none" src="..."></video> -->
+                  <svg class="watch-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M16 12.5v15L28 20z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
+                  <p>Gameplay footage coming soon</p>
+                </div></div>
+              </figure>
+            </div>
           </div>
         </article>
 
-        <article class="title-card" id="title-falling-blocks" aria-labelledby="title-falling-blocks-h">
+        <article class="title-card t-fb" id="title-falling-blocks" aria-labelledby="title-falling-blocks-h">
           <div class="demo" data-title="Falling Blocks">
             <div class="demo-bar">
-              <span class="status status-live">Playable demo</span>
+              <span class="badge">PLAYABLE</span>
               <div class="demo-actions">
                 <a class="btn btn-sm demo-full" href="games/falling-blocks/index.html" hidden>Full page</a>
                 <button class="btn btn-sm demo-stop" type="button" hidden>Stop</button>
@@ -331,7 +453,8 @@ img.img-missing{ opacity:0; }
             </div>
             <div class="demo-stage">
               <figure class="demo-poster">
-                <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                <svg class="mark" viewBox="0 0 409 189" aria-hidden="true" focusable="false" fill="currentColor"><use href="#mark-fb" /></svg>
+                <svg class="schem" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
                   <path class="ln-b" d="M120 24v352h160V24" />
                   <path class="ln" d="M120 376l-12 12M150 376l-12 12M180 376l-12 12M210 376l-12 12M240 376l-12 12M270 376l-12 12M300 376l-12 12" />
                   <path class="ln-b" d="M182 44h36v36h-36z" />
@@ -340,41 +463,53 @@ img.img-missing{ opacity:0; }
                 </svg>
                 <figcaption>Fig. 2. The empty play field. A schematic, not a screenshot.</figcaption>
               </figure>
-              <a class="btn btn-solid demo-play" href="games/falling-blocks/index.html">Play Falling Blocks</a>
               <p class="demo-msg" role="status" hidden>This demo isn&rsquo;t available in this build.</p>
             </div>
           </div>
           <div class="title-side">
-            <p class="no">Title 02</p>
+            <p class="no"><span>Title 02</span><span class="status status-live">Playable demo</span></p>
             <h3 id="title-falling-blocks-h">Falling Blocks</h3>
             <p class="one">Blocks fall. You place them.</p>
-            <p class="note-label">Design note</p>
-            <p class="design">Rebuilt on November 4, 2026. It launches beside 2048 as the studio&rsquo;s second demo.</p>
-            <figure class="watch">
-              <figcaption class="watch-head"><b>Gameplay</b><span>Falling Blocks</span></figcaption>
-              <div class="frame"><div class="frame-inner watch-screen" data-clip-slot="falling-blocks">
-                <!-- Clip slot: replace the two lines below with a same-origin <video controls preload="none" src="..."></video> -->
-                <svg class="watch-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M16 12.5v15L28 20z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
-                <p>Gameplay footage coming soon</p>
-              </div></div>
-            </figure>
+            <ul class="tags" aria-label="Tags"><li>Fall</li><li>Place</li><li>In your browser</li></ul>
+            <div class="title-actions"><a class="btn btn-solid btn-play demo-play" href="games/falling-blocks/index.html">Play Falling Blocks</a></div>
+            <div class="title-more">
+              <div>
+                <p class="note-label">Design note</p>
+                <p class="design">Rebuilt on November 4, 2026. It launches beside 2048 as the studio&rsquo;s second demo.</p>
+              </div>
+              <figure class="watch">
+                <figcaption class="watch-head"><b>Gameplay</b><span>Falling Blocks</span></figcaption>
+                <div class="frame"><div class="frame-inner watch-screen" data-clip-slot="falling-blocks">
+                  <!-- Clip slot: replace the two lines below with a same-origin <video controls preload="none" src="..."></video> -->
+                  <svg class="watch-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M16 12.5v15L28 20z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
+                  <p>Gameplay footage coming soon</p>
+                </div></div>
+              </figure>
+            </div>
           </div>
-        </article>
-
-        <article class="note-card on-paper" id="studio-note" aria-labelledby="studio-note-h">
-          <div>
-            <h3 id="studio-note-h">Studio note</h3>
-            <p class="lead">This grid shows what exists. Other work stays in the workshop until it is real enough to show, and no other titles are announced today.</p>
-            <p class="more"><a href="https://dimonglobalgroup.github.io/dgg-media/">The daily reel, on Media</a><a href="https://dimonglobalgroup.github.io/">The systems documentation</a></p>
-          </div>
-          <ol class="practice">
-            <li><span class="pn">I.</span><div><h4>The rules hold still</h4><p>A frozen engine lets the frame, type, and sizing improve without touching how the game plays.</p></div></li>
-            <li><span class="pn">II.</span><div><h4>Playable, not promised</h4><p>A demo here is a working build you can try. The studio doesn&rsquo;t show trailers for games that aren&rsquo;t there.</p></div></li>
-            <li><span class="pn">III.</span><div><h4>Real footage or none</h4><p>The video frames stay empty until there is real gameplay to put in them.</p></div></li>
-          </ol>
         </article>
 
       </div>
+    </div>
+  </section>
+
+  <section class="band studio" aria-labelledby="studio-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="studio-h">About the studio</h2>
+      </div>
+      <article class="note-card" id="studio-note" aria-labelledby="studio-note-h">
+        <div>
+          <h3 id="studio-note-h">Studio note</h3>
+          <p class="lead">This grid shows what exists. Other work stays in the workshop until it is real enough to show, and no other titles are announced today.</p>
+          <p class="more"><a href="https://dimonglobalgroup.github.io/dgg-media/">The daily reel, on Media</a><a href="https://dimonglobalgroup.github.io/">The systems documentation</a></p>
+        </div>
+        <ol class="practice">
+          <li><span class="pn">I.</span><div><h4>The rules hold still</h4><p>A frozen engine lets the frame, type, and sizing improve without touching how the game plays.</p></div></li>
+          <li><span class="pn">II.</span><div><h4>Playable, not promised</h4><p>A demo here is a working build you can try. The studio doesn&rsquo;t show trailers for games that aren&rsquo;t there.</p></div></li>
+          <li><span class="pn">III.</span><div><h4>Real footage or none</h4><p>The video frames stay empty until there is real gameplay to put in them.</p></div></li>
+        </ol>
+      </article>
     </div>
   </section>
 </main>
@@ -434,17 +569,17 @@ img.img-missing{ opacity:0; }
 <script>
 (function(){
   var y=document.getElementById('yr'); if(y){ y.textContent=new Date().getFullYear(); }
-  var active=null;
-  document.querySelectorAll('.demo').forEach(function(d){
-    var stage=d.querySelector('.demo-stage'), play=d.querySelector('.demo-play'),
-        stop=d.querySelector('.demo-stop'), full=d.querySelector('.demo-full'),
-        msg=d.querySelector('.demo-msg'), frame=null, api={};
+  var active=null, grid=document.querySelector('.titles');
+  document.querySelectorAll('.title-card').forEach(function(card){
+    var d=card.querySelector('.demo'), stage=card.querySelector('.demo-stage'), play=card.querySelector('.demo-play'),
+        stop=card.querySelector('.demo-stop'), full=card.querySelector('.demo-full'),
+        msg=card.querySelector('.demo-msg'), frame=null, api={};
     var src=play.getAttribute('href');
     api.close=function(refocus){
       if(frame){ frame.remove(); frame=null; }
-      d.classList.remove('is-playing');
+      card.classList.remove('is-playing');
       stop.hidden=true; full.hidden=true;
-      if(active===api){ active=null; }
+      if(active===api){ active=null; grid.classList.remove('has-player'); }
       if(refocus){ play.focus(); }
     };
     function open(){
@@ -455,18 +590,26 @@ img.img-missing{ opacity:0; }
       frame.title=d.dataset.title+', playable demo';
       frame.addEventListener('load',function(){ try{ frame.contentWindow.focus(); }catch(e){} });
       stage.appendChild(frame);
-      d.classList.add('is-playing');
+      card.classList.add('is-playing');
+      grid.classList.add('has-player');
       stop.hidden=false; full.hidden=false;
       active=api;
-      d.scrollIntoView({block:'start'});
+      card.scrollIntoView({block:'start'});
     }
-    play.addEventListener('click',function(e){
+    function refuse(){
+      msg.hidden=false;
+      card.scrollIntoView({block:'start'});
+    }
+    function launch(e){
+      if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey){ return; }
       e.preventDefault();
       if(location.protocol==='file:' || !window.fetch){ open(); return; }
       fetch(src,{method:'HEAD',cache:'no-store'})
-        .then(function(r){ if(r.ok){ open(); }else{ msg.hidden=false; } })
-        .catch(function(){ msg.hidden=false; });
-    });
+        .then(function(r){ if(r.ok){ open(); }else{ refuse(); } })
+        .catch(refuse);
+    }
+    play.addEventListener('click',launch);
+    document.querySelectorAll('[data-launch="'+card.id+'"]').forEach(function(a){ a.addEventListener('click',launch); });
     stop.addEventListener('click',function(){ api.close(true); });
   });
 })();
