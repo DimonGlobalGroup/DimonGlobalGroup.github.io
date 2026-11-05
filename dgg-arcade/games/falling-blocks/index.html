@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Falling Blocks · HOPE Entry</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="backlink" href="/">‹ HOPE Entry</a>
+  <div class="title">Falling <span>Blocks</span></div>
+  <div class="scores">
+    <div class="scorebox"><label>Score</label><b id="score">0</b></div>
+    <div class="scorebox"><label>Best</label><b id="best">0</b></div>
+  </div>
+  <div class="actions">
+    <button id="btn-pause" class="hbtn" title="Pause — shows the manual">⏸ Pause</button>
+    <button id="btn-new" class="hbtn">↻ New game</button>
+  </div>
+</header>
+
+<main>
+  <div id="play-area">
+    <div id="board-wrap">
+      <div id="board">
+        <div id="cells"></div>
+        <div id="blocks"></div>
+
+        <!-- PAUSE = THE MANUAL. The control card is generated live by the
+             shell from the input adapter: it names the buttons of the
+             device actually in the player's hand. -->
+        <div id="ov-pause" class="overlay hidden">
+          <h2>Paused</h2>
+          <div id="control-card" class="control-card"></div>
+          <div class="ov-actions">
+            <button id="btn-resume" class="obtn primary">▶ Resume</button>
+            <button id="btn-restart" class="obtn">↻ Restart run</button>
+            <a class="obtn" href="/">‹ Back to shelf</a>
+          </div>
+        </div>
+
+        <div id="ov-end" class="overlay hidden">
+          <h2 id="end-title">Stack topped out</h2>
+          <p id="end-sub" class="sub"></p>
+          <div class="ov-actions">
+            <button id="btn-again" class="obtn primary">↻ New game</button>
+            <a class="obtn" href="/">‹ Back to shelf</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside id="side">
+      <div class="sidebox">
+        <label>Next</label>
+        <div id="next-box"></div>
+      </div>
+      <div class="sidebox stat"><label>Lines</label><b id="lines">0</b></div>
+      <div class="sidebox stat"><label>Level</label><b id="level">1</b></div>
+    </aside>
+  </div>
+  <p class="hint">Steer the falling pieces — fill a whole row to clear it. <b>Rotate</b> to fit,
+     <b>hard drop</b> when you're sure. Every 10 lines the fall speeds up.
+     Any controller, keyboard, or a swipe works. Pause (⏸) shows what every button does.</p>
+  <p class="foot">Our build, from scratch · HOPE Entry · plays fully offline</p>
+</main>
+
+<script src="../../input.js"></script>
+<script src="../../shell.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

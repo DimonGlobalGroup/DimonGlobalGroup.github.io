@@ -1,24 +1,440 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Systems Reference Notes</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Dimon Global Group — Systems. The engineering record: cognitive architectures, autonomous agents, and self-maintaining hardware nodes, built from scratch and published with their measurements." />
+<link rel="canonical" href="https://dimonglobalgroup.github.io/" />
+<title>Systems — Dimon Global Group</title>
+<meta name="theme-color" content="#101312" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101312'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='32' fill='%23f2f1ec' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" />
 <style>
-body { font-family: Georgia, 'Times New Roman', serif; margin: 2rem auto; max-width: 42rem; padding: 0 1rem; color: #1c1a17; background: #faf8f4; line-height: 1.55; }
-h1 { font-size: 1.6rem; border-bottom: 2px solid #8a7f5c; padding-bottom: .4rem; }
-h2 { font-size: 1.15rem; margin-top: 1.8rem; }
-footer { margin-top: 3rem; font-size: .85rem; color: #6b665a; border-top: 1px solid #d8d2c2; padding-top: .6rem; }
+/* DGG-TOKENS:BEGIN - identical in every page of the estate */
+:root{
+  /* Colour: ink range (flagship hero and footer values) */
+  --ink-950:#0b0e0c; --ink-900:#101312; --ink-800:#181c19;
+  --ink-line:#2b2f2c; --ink-line-strong:#4a524b;
+  --bone-100:#f2f1ec; --bone-300:#cfd2c9; --bone-500:#a7aca2;
+  /* Colour: paper range (flagship body and founder values) */
+  --paper-0:#ffffff; --paper-100:#f5f4f0; --paper-200:#eceae3;
+  --paper-line:#d8d5cb; --paper-line-strong:#b9b5a8;
+  --graphite-900:#16181a; --graphite-700:#3c4043; --graphite-500:#5d6157;
+  /* Colour: the two identity accents, one tone for each surface */
+  --green-300:#8fd0a6; --green-700:#1e6b3c; --green-600:#2a8a50;
+  --purple-300:#b7a4e3; --purple-700:#5b4390;
+  --blueprint:#123a56; --blueprint-text:#dbe6ee;
+
+  /* Surface roles: ink is the default surface */
+  --surface:var(--ink-900); --surface-raised:var(--ink-800);
+  --text:var(--bone-100); --text-soft:var(--bone-300); --text-muted:var(--bone-500);
+  --line:var(--ink-line); --line-strong:var(--ink-line-strong);
+  --accent:var(--green-300); --accent-2:var(--purple-300);
+
+  /* Type */
+  --serif:Georgia, "Times New Roman", Times, serif;
+  --sans:-apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --t-xs:.8125rem; --t-sm:.9375rem; --t-base:1.0625rem; --t-md:1.1875rem; --t-lg:1.5rem;
+  --t-xl:clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --t-2xl:clamp(2.5rem, 1.7rem + 3.6vw, 4.5rem);
+  --t-display:clamp(3.5rem, 1.6rem + 7vw, 6.25rem);
+
+  /* Space: 8px grid */
+  --s-1:.25rem; --s-2:.5rem; --s-3:.75rem; --s-4:1rem; --s-5:1.5rem;
+  --s-6:2rem; --s-7:3rem; --s-8:4rem; --s-9:6rem; --s-10:8rem;
+
+  /* Layout */
+  --w-page:74rem; --w-read:45rem; --gutter:clamp(1rem, .4rem + 3vw, 2.5rem);
+  --header-h:4.25rem;
+}
+.on-paper{
+  --surface:var(--paper-100); --surface-raised:var(--paper-0);
+  --text:var(--graphite-900); --text-soft:var(--graphite-700); --text-muted:var(--graphite-500);
+  --line:var(--paper-line); --line-strong:var(--paper-line-strong);
+  --accent:var(--green-700); --accent-2:var(--purple-700);
+}
+.on-ink{
+  --surface:var(--ink-900); --surface-raised:var(--ink-800);
+  --text:var(--bone-100); --text-soft:var(--bone-300); --text-muted:var(--bone-500);
+  --line:var(--ink-line); --line-strong:var(--ink-line-strong);
+  --accent:var(--green-300); --accent-2:var(--purple-300);
+}
+/* DGG-TOKENS:END */
+/* DGG-COMPONENTS:BEGIN - shared base, header, footer, buttons */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:calc(var(--header-h) + var(--s-4)); -webkit-text-size-adjust:100%; }
+body{ margin:0; background:var(--surface); color:var(--text); font-family:var(--sans); font-size:var(--t-base); line-height:1.6; -webkit-font-smoothing:antialiased; }
+img{ display:block; max-width:100%; height:auto; }
+h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; line-height:1.15; margin:0; }
+p{ margin:0; }
+a{ color:var(--accent); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.18em; }
+a:hover{ text-decoration-thickness:2px; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.on-paper,.on-ink{ background:var(--surface); color:var(--text); }
+.wrap{ max-width:var(--w-page); margin-inline:auto; padding-inline:var(--gutter); }
+.skip-link{ position:absolute; left:-9999px; top:0; z-index:50; background:var(--paper-0); color:var(--graphite-900); padding:var(--s-3) var(--s-4); font-size:var(--t-sm); font-weight:600; }
+.skip-link:focus{ left:0; }
+.visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+
+.topbar{ position:sticky; top:0; z-index:20; background:var(--ink-900); border-bottom:1px solid var(--ink-line); }
+.topbar-in{ display:flex; align-items:center; justify-content:space-between; gap:var(--s-5); min-height:var(--header-h); }
+.brand{ display:inline-flex; align-items:center; gap:var(--s-3); color:var(--bone-100); text-decoration:none; }
+.mono-mark{ font-family:var(--serif); font-weight:600; font-size:var(--t-xs); letter-spacing:.14em; border:1.5px solid currentColor; padding:.3125rem .5rem .25rem; line-height:1; white-space:nowrap; }
+.brand-name{ font-family:var(--serif); font-weight:600; font-size:var(--t-base); letter-spacing:.06em; white-space:nowrap; }
+.nav{ display:flex; gap:var(--s-5); font-size:var(--t-sm); }
+.nav a{ color:var(--bone-300); text-decoration:none; padding-block:var(--s-2); }
+.nav a:hover{ color:var(--green-300); }
+.nav a[aria-current="page"]{ color:var(--bone-100); box-shadow:inset 0 -1px 0 var(--green-300); }
+
+.btn{ display:inline-block; padding:.75rem 1.375rem; font-size:var(--t-sm); font-weight:600; border:1px solid var(--line-strong); color:var(--text); text-decoration:none; }
+.btn:hover{ border-color:var(--accent); color:var(--accent); }
+.btn-solid{ background:var(--green-700); border-color:var(--green-700); color:#fff; }
+.btn-solid:hover{ background:var(--green-600); border-color:var(--green-600); color:#fff; }
+.btn-row{ display:flex; flex-wrap:wrap; gap:var(--s-3); }
+
+.sec-head{ border-top:1px solid var(--line-strong); padding-top:var(--s-5); margin-bottom:var(--s-6); }
+.sec-head h2{ font-size:var(--t-xl); }
+.sec-head p{ color:var(--text-muted); margin-top:var(--s-2); }
+
+.frame{ position:relative; border:1px solid var(--line-strong); padding:.625rem; background:var(--surface-raised); }
+.frame-inner{ position:relative; overflow:hidden; background:var(--ink-950); }
+.frame-inner img{ position:relative; width:100%; object-fit:cover; }
+.frame-fallback{ position:absolute; inset:0; display:grid; place-items:center; color:var(--bone-500); }
+img.img-missing{ opacity:0; }
+
+.site-foot{ background:var(--ink-950); color:var(--bone-100); border-top:1px solid var(--ink-line); }
+.foot-top{ display:grid; grid-template-columns:minmax(14rem,1fr) 2.4fr; gap:var(--s-7); padding-block:var(--s-8) var(--s-7); }
+.foot-name{ font-family:var(--serif); font-size:var(--t-md); font-weight:600; letter-spacing:.05em; margin-top:var(--s-4); }
+.foot-tag{ font-family:var(--serif); font-style:italic; color:var(--bone-500); }
+.foot-nav{ display:grid; grid-template-columns:1fr 2fr 1.35fr; gap:var(--s-6); font-size:var(--t-sm); }
+.foot-nav h2{ font-family:var(--sans); font-size:var(--t-xs); font-weight:600; color:var(--bone-500); margin-bottom:var(--s-3); }
+.foot-nav ul{ list-style:none; margin:0; padding:0; }
+.foot-nav .two-col{ columns:2; column-gap:var(--s-5); }
+.foot-nav li{ break-inside:avoid; padding-block:.125rem; }
+.foot-nav a{ color:var(--bone-300); text-decoration:none; }
+.foot-nav a:hover{ color:var(--green-300); text-decoration:underline; }
+.foot-nav a[aria-current="page"]{ color:var(--bone-100); font-weight:600; }
+.foot-legal{ border-top:1px solid var(--ink-line); padding-block:var(--s-5) var(--s-6); font-size:var(--t-xs); color:var(--bone-500); line-height:1.7; }
+.foot-legal p{ max-width:92ch; margin-bottom:var(--s-2); }
+
+@media (max-width:56rem){
+  .foot-top{ grid-template-columns:1fr; gap:var(--s-6); }
+  .foot-nav{ grid-template-columns:1fr 1fr; }
+  .foot-nav > div:nth-child(2){ grid-column:1 / -1; grid-row:1; }
+}
+@media (max-width:40rem){
+  html{ scroll-padding-top:calc(var(--header-h) + var(--s-7)); }
+  .topbar-in{ flex-wrap:wrap; gap:0; padding-block:var(--s-2); }
+  .nav{ width:100%; justify-content:space-between; gap:var(--s-3); }
+  .brand-name{ font-size:var(--t-sm); }
+}
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+}
+/* DGG-COMPONENTS:END */
+/* Systems page: README layout */
+.doc-layout{ display:grid; grid-template-columns:13rem minmax(0,1fr); gap:var(--s-8); padding-block:var(--s-7) var(--s-9); }
+.toc{ position:sticky; top:calc(var(--header-h) + var(--s-6)); align-self:start; font-size:var(--t-sm); }
+.toc h2{ font-family:var(--sans); font-size:var(--t-sm); font-weight:600; color:var(--text-muted); margin-bottom:var(--s-3); }
+.toc ol{ list-style:none; counter-reset:t; margin:0; padding:0; }
+.toc li{ counter-increment:t; border-top:1px solid var(--line); }
+.toc a{ display:block; padding-block:var(--s-2); color:var(--text-soft); text-decoration:none; }
+.toc a::before{ content:counter(t) ". "; color:var(--text-muted); font-family:var(--mono); font-size:var(--t-xs); }
+.toc a:hover{ color:var(--accent); }
+
+.doc{ max-width:50rem; min-width:0; }
+.doc h1{ font-size:var(--t-2xl); font-weight:500; }
+.doc .division{ color:var(--text-muted); font-size:var(--t-sm); margin-bottom:var(--s-2); }
+.doc section{ padding-top:var(--s-8); }
+.doc h2{ font-size:var(--t-xl); padding-bottom:var(--s-3); border-bottom:1px solid var(--line-strong); margin-bottom:var(--s-5); }
+.doc h2 .idx{ color:var(--text-muted); font-family:var(--mono); font-size:var(--t-sm); margin-right:var(--s-2); vertical-align:.15em; }
+.doc h3{ font-size:var(--t-md); font-weight:600; }
+.doc p{ color:var(--text-soft); max-width:68ch; }
+.doc p + p{ margin-top:var(--s-4); }
+.doc b{ color:var(--text); font-weight:600; }
+.doc code,.name-id{ font-family:var(--mono); font-size:.92em; color:var(--text); }
+.lede{ font-size:var(--t-md); line-height:1.55; margin-top:var(--s-4); }
+
+.meta{ display:grid; grid-template-columns:auto 1fr; gap:var(--s-1) var(--s-5); margin:var(--s-6) 0 0; padding-block:var(--s-4); border-block:1px solid var(--line); font-size:var(--t-sm); }
+.meta dt{ color:var(--text-muted); }
+.meta dd{ margin:0; color:var(--text); min-width:0; overflow-wrap:anywhere; }
+.meta .ok::before{ content:""; display:inline-block; width:.5rem; height:.5rem; background:var(--accent); margin-right:var(--s-2); vertical-align:.08em; }
+
+.comp{ padding-block:var(--s-5); border-bottom:1px solid var(--line); }
+.comp:first-of-type{ padding-top:0; }
+.comp h3{ font-family:var(--mono); font-size:var(--t-base); }
+.comp h3 .v{ color:var(--accent-2); font-size:var(--t-sm); font-weight:400; margin-left:var(--s-2); }
+.comp p{ margin-top:var(--s-2); }
+
+.fit{ margin:var(--s-5) 0 0; padding:0; list-style:none; }
+.fit li{ display:grid; grid-template-columns:11.5rem minmax(0,1fr); gap:var(--s-4); padding-block:var(--s-3); border-top:1px solid var(--line); color:var(--text-soft); font-size:var(--t-sm); }
+.fit li:last-child{ border-bottom:1px solid var(--line); }
+.fit .name-id{ font-size:var(--t-sm); }
+.after-list{ margin-top:var(--s-5); }
+
+.pr{ padding-block:var(--s-4); border-bottom:1px solid var(--line); }
+.pr:first-of-type{ padding-top:0; }
+.pr p{ margin-top:var(--s-2); }
+.pr .k{ font-family:var(--mono); font-size:var(--t-xs); color:var(--text-muted); margin:0; }
+
+.bench{ display:grid; grid-template-columns:repeat(4,1fr); margin:var(--s-5) 0 0; border:1px solid var(--line-strong); }
+.bench div{ padding:var(--s-4); border-left:1px solid var(--line); }
+.bench div:first-child{ border-left:none; }
+.bench dd{ margin:0; font-family:var(--mono); font-size:var(--t-lg); font-weight:600; line-height:1.1; color:var(--text); }
+.bench dd.g{ color:var(--accent); }
+.bench dt{ margin-top:var(--s-2); font-size:var(--t-xs); line-height:1.45; color:var(--text-muted); }
+.bench div{ display:flex; flex-direction:column-reverse; justify-content:flex-end; }
+
+.table-scroll{ overflow-x:auto; margin-top:var(--s-4); }
+.spec{ width:100%; border-collapse:collapse; font-size:var(--t-sm); }
+.spec caption{ text-align:left; color:var(--text); font-family:var(--serif); font-size:var(--t-md); font-weight:600; padding-bottom:var(--s-2); }
+.spec th,.spec td{ text-align:left; padding:var(--s-3) var(--s-4) var(--s-3) 0; border-bottom:1px solid var(--line); vertical-align:top; }
+.spec thead th{ color:var(--text-muted); font-size:var(--t-xs); font-weight:600; border-bottom-color:var(--line-strong); }
+.spec tbody th{ font-family:var(--mono); font-weight:400; color:var(--text); }
+.spec td{ color:var(--text-soft); }
+.spec td.res{ font-family:var(--mono); font-size:var(--t-xs); color:var(--text); }
+.spec td.res b{ color:var(--accent); }
+.spec td.neg{ color:var(--accent-2); }
+.h-sub{ margin-top:var(--s-6); }
+
+.release-note{ margin-top:var(--s-5); }
+
+@media (max-width:60rem){
+  .doc-layout{ grid-template-columns:1fr; gap:var(--s-6); padding-top:var(--s-6); }
+  .toc{ position:static; }
+  .doc{ order:2; max-width:none; }
+  .toc{ order:1; }
+  .doc section{ padding-top:var(--s-7); }
+}
+@media (max-width:40rem){
+  .bench{ grid-template-columns:1fr 1fr; }
+  .bench div:nth-child(3){ border-left:none; }
+  .bench div:nth-child(n+3){ border-top:1px solid var(--line); }
+  .fit li{ grid-template-columns:1fr; gap:var(--s-1); }
+  .spec th,.spec td{ padding-right:var(--s-3); }
+}
 </style>
 </head>
 <body>
-<h1>Systems Reference Notes</h1>
-<h2>Scope</h2>
-<p>This page collects evergreen engineering reference notes: how small, well-instrumented systems are documented, measured, and kept honest over time.</p>
-<h2>Method</h2>
-<p>Write the claim down, name the instrument that could prove it wrong, and record the reading. A result without a measurement path is an opinion and is labelled as one.</p>
-<h2>Maintenance</h2>
-<p>Notes are revised when the underlying practice changes, not on a schedule. Dates below change only when the text above them does.</p>
-<footer>Systems reference notes. Part of the Dimon Global Group constellation. Dimon Global Group — founded and led by Robert Donaldson (RAD), Galveston, Texas.</footer>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="https://dimonglobalgroup.com/" aria-label="Dimon Global Group, home">
+      <span class="mono-mark">RAD</span>
+      <span class="brand-name">DIMON GLOBAL GROUP</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="https://dimonglobalgroup.com/#portfolio">Portfolio</a>
+      <a href="https://dimonglobalgroup.github.io/" aria-current="page">Systems</a>
+      <a href="https://dimonglobalgroup.github.io/dgg-founder/">Founder</a>
+      <a href="https://dimonglobalgroup.com/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+  <div class="doc-layout">
+    <nav class="toc" aria-labelledby="toc-h">
+      <h2 id="toc-h">Contents</h2>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#fit">How the systems fit</a></li>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#status">Status</a></li>
+        <li><a href="#release">Public release program</a></li>
+      </ol>
+    </nav>
+    <div class="doc">
+      <header>
+        <p class="division">Dimon Global Group, Division 01</p>
+        <h1>Systems</h1>
+      </header>
+
+      <section style="padding-top:var(--s-6)" aria-labelledby="overview">
+        <h2 id="overview"><span class="idx">1.</span>Overview</h2>
+        <p class="lede">The engineering record of Dimon Global Group&rsquo;s technology division. Every system on this page was <b>written from scratch, in-house</b> — no assembled frameworks, no borrowed engines — and is published with its measurements attached, including the experiments that didn&rsquo;t ship.</p>
+        <dl class="meta">
+          <dt>Path</dt><dd><code>dimon-global-group / systems</code></dd>
+          <dt>Status</dt><dd class="ok">All results as recorded</dd>
+          <dt>Foundations</dt><dd>Stdlib-first, zero downloaded dependencies</dd>
+          <dt>Source</dt><dd><a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">github.com/DimonGlobalGroup</a></dd>
+          <dt>Parent</dt><dd><a href="https://dimonglobalgroup.com/">dimonglobalgroup.com</a></dd>
+        </dl>
+      </section>
+
+      <section aria-labelledby="components">
+        <h2 id="components"><span class="idx">2.</span>Components</h2>
+        <div class="comp">
+          <h3>NEUROGEN / SPHERION <span class="v">v0.4</span></h3>
+          <p>Cognitive software architecture: six engines — concept, relationship, activation, competition, adaptive memory, reasoning/execution — with Go principles as computation, a language layer, and pipeline integration. Hash-verified release packages, tested against frozen predecessors.</p>
+        </div>
+        <div class="comp">
+          <h3>HOPE <span class="v">v0.11</span></h3>
+          <p>Autonomous agent system in a single self-contained file: connectome knowledge graph, zero-trust policy gate, HMAC-signed manifests, sandboxed worker, built-in control interface.</p>
+        </div>
+        <div class="comp">
+          <h3>HOPE FORGE</h3>
+          <p>61-module on-device agent framework — a multi-agent organism with a master control loop, refined module by module.</p>
+        </div>
+        <div class="comp">
+          <h3>HOPE PI</h3>
+          <p>Self-maintaining autonomous hardware nodes on single-board computers: self-provisioning, self-monitoring, self-recovering infrastructure.</p>
+        </div>
+        <div class="comp">
+          <h3>HOPE BRIDGE</h3>
+          <p>Device-integration layer serving real phone capabilities — location, sensors, telephony — to the systems that need them, over a token-authenticated local interface.</p>
+        </div>
+        <div class="comp">
+          <h3>PRIVACY TOOLING</h3>
+          <p>Data-broker opt-out tracking and removal-queue tooling: every submission prepared, approved, and followed up on a schedule.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="fit">
+        <h2 id="fit"><span class="idx">3.</span>How the systems fit</h2>
+        <p>The inventory is one cognitive architecture, four systems under the Hope name, and one tool.</p>
+        <ul class="fit">
+          <li><span class="name-id">NEUROGEN / SPHERION</span><span>The lead system. SPHERION is the current release of the NEUROGEN line.</span></li>
+          <li><span class="name-id">HOPE</span><span>The agent system, built as one self-contained file.</span></li>
+          <li><span class="name-id">HOPE FORGE</span><span>The agent framework, running on-device.</span></li>
+          <li><span class="name-id">HOPE PI</span><span>Extends the Hope line from software into physical infrastructure.</span></li>
+          <li><span class="name-id">HOPE BRIDGE</span><span>Holds real device capabilities on one side and serves them to the systems that need them on the other.</span></li>
+          <li><span class="name-id">PRIVACY TOOLING</span><span>Working tooling for data-broker removal, built for the founder&rsquo;s own records first.</span></li>
+        </ul>
+        <p class="after-list">This page documents each system&rsquo;s role. It does not document the interfaces between them.</p>
+      </section>
+
+      <section aria-labelledby="principles">
+        <h2 id="principles"><span class="idx">4.</span>Principles</h2>
+        <div class="pr">
+          <p class="k">M—01</p>
+          <h3>Built, not assembled</h3>
+          <p>Systems are written line by line on standard-library foundations. If a part can&rsquo;t be inspected, it doesn&rsquo;t go in — every component can be read, tested, and answered for.</p>
+        </div>
+        <div class="pr">
+          <p class="k">M—02</p>
+          <h3>Hash-verified releases</h3>
+          <p>Releases ship as packages with published SHA-256 hashes and are regression-tested against their frozen predecessors, byte for byte, before anything is called final.</p>
+        </div>
+        <div class="pr">
+          <p class="k">M—03</p>
+          <h3>Negative results published</h3>
+          <p>Experiments that fail are recorded as failures, in the same document as the wins.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="status">
+        <h2 id="status"><span class="idx">5.</span>Status</h2>
+        <p>Results on this page are the systems&rsquo; own published measurements, stated as recorded.</p>
+        <h3 class="h-sub">Benchmark record: NEUROGEN / SPHERION</h3>
+        <p>Four-configuration experiment suite.</p>
+        <dl class="bench">
+          <div><dt>Full SPHERION configuration, experiment score</dt><dd class="g">1.000</dd></div>
+          <div><dt>Baseline configuration, same suite</dt><dd>0.830</dd></div>
+          <div><dt>Unsupported-inference rate, measured</dt><dd class="g">0.000</dd></div>
+          <div><dt>Reproducibility across repeated runs</dt><dd>100%</dd></div>
+        </dl>
+
+        <div class="table-scroll" role="region" aria-label="Experiment log excerpt" tabindex="0">
+          <table class="spec">
+            <caption class="h-sub">Experiment log excerpt</caption>
+            <thead><tr><th scope="col">Run</th><th scope="col">Result</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">competition_engine</th><td class="res"><b>SHIPPED</b></td></tr>
+              <tr><th scope="row">context_isolation</th><td class="res"><b>SHIPPED</b></td></tr>
+              <tr><th scope="row">decision_table</th><td class="res"><b>SHIPPED</b></td></tr>
+              <tr><th scope="row">activation_for_selection</th><td class="res neg">NOT SHIPPED — negative result, published as-is</td></tr>
+              <tr><th scope="row">release_integrity</th><td class="res"><b>SHA-256 VERIFIED</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-scroll" role="region" aria-label="Systems inventory" tabindex="0">
+          <table class="spec">
+            <caption class="h-sub">Systems inventory</caption>
+            <thead><tr><th scope="col">System</th><th scope="col">Version</th><th scope="col">Record</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">NEUROGEN / SPHERION</th><td>v0.4</td><td class="res"><b>1.000</b> vs 0.830 baseline</td></tr>
+              <tr><th scope="row">HOPE</th><td>v0.11</td><td class="res"><b>189/189</b> tests passing</td></tr>
+              <tr><th scope="row">HOPE FORGE</th><td></td><td class="res"><b>61</b> modules</td></tr>
+              <tr><th scope="row">HOPE PI</th><td></td><td class="res">24/7 by design</td></tr>
+              <tr><th scope="row">HOPE BRIDGE</th><td></td><td class="res">2 platforms bridged</td></tr>
+              <tr><th scope="row">PRIVACY TOOLING</th><td></td><td class="res"><b>30</b> brokers queued</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="release">
+        <h2 id="release"><span class="idx">6.</span>Public release program</h2>
+        <h3>The Reverb Line</h3>
+        <div class="release-note">
+          <p>The division&rsquo;s public program runs on a simple rule: <b>publish only what has already been surpassed.</b> Proven generations are released openly — with full documentation — once the in-house line has moved past them, so the public record is always real and the working edge stays in-house.</p>
+          <p>Under the <b>Reverb</b> banner, retired and abandoned software concepts are also rebuilt from scratch for current technology — clean-room reimplementations, credited to their originals, fused where fusion makes something genuinely new. Releases land on the Group&rsquo;s GitHub: <a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">github.com/DimonGlobalGroup</a>.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="https://dimonglobalgroup.com/" aria-label="Dimon Global Group, home"><span class="mono-mark">RAD</span></a>
+        <p class="foot-name">DIMON GLOBAL GROUP</p>
+        <p class="foot-tag">Truth, made real.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <div>
+          <h2>The Group</h2>
+          <ul>
+          <li><a href="https://dimonglobalgroup.com/">Dimon Global Group</a></li>
+          <li><a href="https://dimonglobalgroup.com/#sectors">Sectors</a></li>
+          <li><a href="https://dimonglobalgroup.com/#portfolio">Portfolio</a></li>
+          <li><a href="https://dimonglobalgroup.com/#about">About the Principal</a></li>
+          <li><a href="https://dimonglobalgroup.com/#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Constellation</h2>
+          <ul class="two-col">
+          <li><a href="https://dimonglobalgroup.github.io/" aria-current="page">Systems</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-founder/">Founder</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-arcade/">Arcade</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-media/">Media</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-cinema/">Cinema</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-newsletter/">Newsletter</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-storybook/">Storybook</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-predictions/">Predictions</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-gallery/">Gallery</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-music/">Music</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Public channels</h2>
+          <ul>
+          <li><a href="https://www.instagram.com/thearchitectrad" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.threads.net/@thearchitectrad" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://www.youtube.com/@RobertDonaldson-rad" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://t.me/RAD_Dimon" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="foot-legal">
+      <p>Dimon Global Group — founded and led by Robert Donaldson (RAD), Galveston, Texas.</p>
+      <p>Dimon is the founder&rsquo;s chosen name. Dimon Global Group has no affiliation with any other firm or person of that name. Results on this page are the systems&rsquo; own published measurements, stated as recorded. Nothing here is an offer of services to the public.</p>
+      <p>&copy; <span id="yr">2026</span> Dimon Global Group.</p>
+    </div>
+  </div>
+</footer>
+<script>
+  (function () {
+    var y = document.getElementById('yr');
+    if (y) { y.textContent = new Date().getFullYear(); }
+  })();
+</script>
 </body>
 </html>

@@ -1,22 +1,475 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Classic Games — Sourcing and Maintenance Notes</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The Arcade is the game studio of Dimon Global Group: the business of making games. Two built games are playable here, a taste of the work and not the catalog." />
+<link rel="canonical" href="https://dimonglobalgroup.github.io/dgg-arcade/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Dimon Global Group" />
+<meta property="og:title" content="Arcade — Dimon Global Group" />
+<meta property="og:description" content="The Arcade is the game studio of Dimon Global Group: the business of making games. Two built games are playable here, a taste of the work and not the catalog." />
+<meta property="og:url" content="https://dimonglobalgroup.github.io/dgg-arcade/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Arcade — Dimon Global Group" />
+<meta name="twitter:description" content="The Arcade is the game studio of Dimon Global Group: the business of making games. Two built games are playable here, a taste of the work and not the catalog." />
+<title>Arcade — Dimon Global Group</title>
+<meta name="theme-color" content="#101312" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101312'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='32' fill='%23f2f1ec' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" />
 <style>
-body { font-family: Georgia, 'Times New Roman', serif; margin: 2rem auto; max-width: 42rem; padding: 0 1rem; color: #1c1a17; background: #faf8f4; line-height: 1.55; }
-h1 { font-size: 1.6rem; border-bottom: 2px solid #8a7f5c; padding-bottom: .4rem; }
-h2 { font-size: 1.15rem; margin-top: 1.8rem; }
-footer { margin-top: 3rem; font-size: .85rem; color: #6b665a; border-top: 1px solid #d8d2c2; padding-top: .6rem; }
+/* DGG-TOKENS:BEGIN - identical in every page of the estate */
+:root{
+  /* Colour: ink range (flagship hero and footer values) */
+  --ink-950:#0b0e0c; --ink-900:#101312; --ink-800:#181c19;
+  --ink-line:#2b2f2c; --ink-line-strong:#4a524b;
+  --bone-100:#f2f1ec; --bone-300:#cfd2c9; --bone-500:#a7aca2;
+  /* Colour: paper range (flagship body and founder values) */
+  --paper-0:#ffffff; --paper-100:#f5f4f0; --paper-200:#eceae3;
+  --paper-line:#d8d5cb; --paper-line-strong:#b9b5a8;
+  --graphite-900:#16181a; --graphite-700:#3c4043; --graphite-500:#5d6157;
+  /* Colour: the two identity accents, one tone for each surface */
+  --green-300:#8fd0a6; --green-700:#1e6b3c; --green-600:#2a8a50;
+  --purple-300:#b7a4e3; --purple-700:#5b4390;
+  --blueprint:#123a56; --blueprint-text:#dbe6ee;
+
+  /* Surface roles: ink is the default surface */
+  --surface:var(--ink-900); --surface-raised:var(--ink-800);
+  --text:var(--bone-100); --text-soft:var(--bone-300); --text-muted:var(--bone-500);
+  --line:var(--ink-line); --line-strong:var(--ink-line-strong);
+  --accent:var(--green-300); --accent-2:var(--purple-300);
+
+  /* Type */
+  --serif:Georgia, "Times New Roman", Times, serif;
+  --sans:-apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --t-xs:.8125rem; --t-sm:.9375rem; --t-base:1.0625rem; --t-md:1.1875rem; --t-lg:1.5rem;
+  --t-xl:clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --t-2xl:clamp(2.5rem, 1.7rem + 3.6vw, 4.5rem);
+  --t-display:clamp(3.5rem, 1.6rem + 7vw, 6.25rem);
+
+  /* Space: 8px grid */
+  --s-1:.25rem; --s-2:.5rem; --s-3:.75rem; --s-4:1rem; --s-5:1.5rem;
+  --s-6:2rem; --s-7:3rem; --s-8:4rem; --s-9:6rem; --s-10:8rem;
+
+  /* Layout */
+  --w-page:74rem; --w-read:45rem; --gutter:clamp(1rem, .4rem + 3vw, 2.5rem);
+  --header-h:4.25rem;
+}
+.on-paper{
+  --surface:var(--paper-100); --surface-raised:var(--paper-0);
+  --text:var(--graphite-900); --text-soft:var(--graphite-700); --text-muted:var(--graphite-500);
+  --line:var(--paper-line); --line-strong:var(--paper-line-strong);
+  --accent:var(--green-700); --accent-2:var(--purple-700);
+}
+.on-ink{
+  --surface:var(--ink-900); --surface-raised:var(--ink-800);
+  --text:var(--bone-100); --text-soft:var(--bone-300); --text-muted:var(--bone-500);
+  --line:var(--ink-line); --line-strong:var(--ink-line-strong);
+  --accent:var(--green-300); --accent-2:var(--purple-300);
+}
+/* DGG-TOKENS:END */
+/* DGG-COMPONENTS:BEGIN - shared base, header, footer, buttons */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:calc(var(--header-h) + var(--s-4)); -webkit-text-size-adjust:100%; }
+body{ margin:0; background:var(--surface); color:var(--text); font-family:var(--sans); font-size:var(--t-base); line-height:1.6; -webkit-font-smoothing:antialiased; }
+img{ display:block; max-width:100%; height:auto; }
+h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; line-height:1.15; margin:0; }
+p{ margin:0; }
+a{ color:var(--accent); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.18em; }
+a:hover{ text-decoration-thickness:2px; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.on-paper,.on-ink{ background:var(--surface); color:var(--text); }
+.wrap{ max-width:var(--w-page); margin-inline:auto; padding-inline:var(--gutter); }
+.skip-link{ position:absolute; left:-9999px; top:0; z-index:50; background:var(--paper-0); color:var(--graphite-900); padding:var(--s-3) var(--s-4); font-size:var(--t-sm); font-weight:600; }
+.skip-link:focus{ left:0; }
+.visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+
+.topbar{ position:sticky; top:0; z-index:20; background:var(--ink-900); border-bottom:1px solid var(--ink-line); }
+.topbar-in{ display:flex; align-items:center; justify-content:space-between; gap:var(--s-5); min-height:var(--header-h); }
+.brand{ display:inline-flex; align-items:center; gap:var(--s-3); color:var(--bone-100); text-decoration:none; }
+.mono-mark{ font-family:var(--serif); font-weight:600; font-size:var(--t-xs); letter-spacing:.14em; border:1.5px solid currentColor; padding:.3125rem .5rem .25rem; line-height:1; white-space:nowrap; }
+.brand-name{ font-family:var(--serif); font-weight:600; font-size:var(--t-base); letter-spacing:.06em; white-space:nowrap; }
+.nav{ display:flex; gap:var(--s-5); font-size:var(--t-sm); }
+.nav a{ color:var(--bone-300); text-decoration:none; padding-block:var(--s-2); }
+.nav a:hover{ color:var(--green-300); }
+.nav a[aria-current="page"]{ color:var(--bone-100); box-shadow:inset 0 -1px 0 var(--green-300); }
+
+.btn{ display:inline-block; padding:.75rem 1.375rem; font-size:var(--t-sm); font-weight:600; border:1px solid var(--line-strong); color:var(--text); text-decoration:none; }
+.btn:hover{ border-color:var(--accent); color:var(--accent); }
+.btn-solid{ background:var(--green-700); border-color:var(--green-700); color:#fff; }
+.btn-solid:hover{ background:var(--green-600); border-color:var(--green-600); color:#fff; }
+.btn-row{ display:flex; flex-wrap:wrap; gap:var(--s-3); }
+
+.sec-head{ border-top:1px solid var(--line-strong); padding-top:var(--s-5); margin-bottom:var(--s-6); }
+.sec-head h2{ font-size:var(--t-xl); }
+.sec-head p{ color:var(--text-muted); margin-top:var(--s-2); }
+
+.frame{ position:relative; border:1px solid var(--line-strong); padding:.625rem; background:var(--surface-raised); }
+.frame-inner{ position:relative; overflow:hidden; background:var(--ink-950); }
+.frame-inner img{ position:relative; width:100%; object-fit:cover; }
+.frame-fallback{ position:absolute; inset:0; display:grid; place-items:center; color:var(--bone-500); }
+img.img-missing{ opacity:0; }
+
+.site-foot{ background:var(--ink-950); color:var(--bone-100); border-top:1px solid var(--ink-line); }
+.foot-top{ display:grid; grid-template-columns:minmax(14rem,1fr) 2.4fr; gap:var(--s-7); padding-block:var(--s-8) var(--s-7); }
+.foot-name{ font-family:var(--serif); font-size:var(--t-md); font-weight:600; letter-spacing:.05em; margin-top:var(--s-4); }
+.foot-tag{ font-family:var(--serif); font-style:italic; color:var(--bone-500); }
+.foot-nav{ display:grid; grid-template-columns:1fr 2fr 1.35fr; gap:var(--s-6); font-size:var(--t-sm); }
+.foot-nav h2{ font-family:var(--sans); font-size:var(--t-xs); font-weight:600; color:var(--bone-500); margin-bottom:var(--s-3); }
+.foot-nav ul{ list-style:none; margin:0; padding:0; }
+.foot-nav .two-col{ columns:2; column-gap:var(--s-5); }
+.foot-nav li{ break-inside:avoid; padding-block:.125rem; }
+.foot-nav a{ color:var(--bone-300); text-decoration:none; }
+.foot-nav a:hover{ color:var(--green-300); text-decoration:underline; }
+.foot-nav a[aria-current="page"]{ color:var(--bone-100); font-weight:600; }
+.foot-legal{ border-top:1px solid var(--ink-line); padding-block:var(--s-5) var(--s-6); font-size:var(--t-xs); color:var(--bone-500); line-height:1.7; }
+.foot-legal p{ max-width:92ch; margin-bottom:var(--s-2); }
+
+@media (max-width:56rem){
+  .foot-top{ grid-template-columns:1fr; gap:var(--s-6); }
+  .foot-nav{ grid-template-columns:1fr 1fr; }
+  .foot-nav > div:nth-child(2){ grid-column:1 / -1; grid-row:1; }
+}
+@media (max-width:40rem){
+  html{ scroll-padding-top:calc(var(--header-h) + var(--s-7)); }
+  .topbar-in{ flex-wrap:wrap; gap:0; padding-block:var(--s-2); }
+  .nav{ width:100%; justify-content:space-between; gap:var(--s-3); }
+  .brand-name{ font-size:var(--t-sm); }
+}
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+}
+/* DGG-COMPONENTS:END */
+/* Shared page parts, same values as the portal */
+.hero{ border-bottom:1px solid var(--line); overflow:hidden; }
+.hero-eyebrow{ color:var(--text-muted); font-size:var(--t-sm); margin-bottom:var(--s-4); }
+.hero-eyebrow a{ color:inherit; text-decoration:none; }
+.hero-eyebrow a:hover{ color:var(--accent); text-decoration:underline; }
+.hero h1{ font-size:var(--t-2xl); font-weight:400; line-height:1.04; letter-spacing:.005em; }
+.hero h1 em{ color:var(--accent-2); }
+.hero-lede{ color:var(--text-soft); max-width:60ch; margin-top:var(--s-4); }
+.hero .btn-row{ margin-top:var(--s-5); }
+.hero-strip{ display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); margin:0; }
+.hero-strip > div{ padding:var(--s-4) var(--s-5) var(--s-5); border-left:1px solid var(--line); }
+.hero-strip > div:first-child{ border-left:none; padding-left:0; }
+.hero-strip dt{ color:var(--text-muted); font-size:var(--t-xs); }
+.hero-strip dd{ margin:var(--s-1) 0 0; font-family:var(--serif); font-size:var(--t-md); line-height:1.3; }
+.hero-strip a{ color:inherit; text-decoration:none; }
+.hero-strip a:hover{ color:var(--accent); text-decoration:underline; }
+.band{ padding-block:var(--s-8); }
+.sec-intro{ color:var(--text-soft); max-width:68ch; margin-bottom:var(--s-6); }
+.status{ display:inline-flex; align-items:center; gap:var(--s-2); font-size:var(--t-sm); color:var(--text-soft); }
+.status::before{ content:""; width:.5rem; height:.5rem; }
+.status-live::before{ background:var(--accent); }
+.status-dev::before{ border:1.5px solid var(--accent-2); }
+@media (max-width:48rem){
+  .hero-strip{ grid-template-columns:1fr 1fr; }
+  .hero-strip > div{ padding:var(--s-3) var(--s-4) var(--s-4); }
+  .hero-strip > div:nth-child(odd){ border-left:none; padding-left:0; }
+  .hero-strip > div:nth-child(n+3){ border-top:1px solid var(--line); }
+}
+/* Arcade page */
+.hero-top{ padding-block:var(--s-7) var(--s-6); }
+
+.titles{ display:grid; gap:var(--s-5); }
+.title-card{ display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); border:1px solid var(--line-strong); background:var(--surface-raised); scroll-margin-top:calc(var(--header-h) + var(--s-4)); }
+
+.demo{ display:flex; flex-direction:column; min-width:0; border-right:1px solid var(--line); }
+.demo [hidden]{ display:none; }
+.demo-bar{ display:flex; align-items:center; justify-content:space-between; gap:var(--s-3); min-height:3.5rem; padding:var(--s-2) var(--s-4); border-bottom:1px solid var(--line); }
+.demo-actions{ display:flex; gap:var(--s-2); }
+.btn-sm{ display:inline-flex; align-items:center; padding:.5rem .75rem; font-size:var(--t-xs); min-height:2.5rem; background:none; font-family:inherit; cursor:pointer; line-height:1.2; }
+.demo-stage{ position:relative; flex:1 0 auto; height:clamp(30rem, 74vh, 40rem); min-height:30rem; background:var(--blueprint); background-image:linear-gradient(rgba(219,230,238,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(219,230,238,.07) 1px, transparent 1px); background-size:2rem 2rem; overflow:hidden; }
+.demo-stage iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; background:var(--ink-950); z-index:2; }
+.demo-poster{ position:absolute; inset:0; margin:0; color:var(--blueprint-text); }
+.demo-poster svg{ position:absolute; inset:var(--s-5) var(--s-5) var(--s-8); width:calc(100% - 3rem); height:calc(100% - 5.5rem); }
+.demo-poster svg *{ vector-effect:non-scaling-stroke; }
+.demo-poster .ln{ fill:none; stroke:currentColor; stroke-width:1.25; opacity:.72; }
+.demo-poster .ln-b{ fill:none; stroke:currentColor; stroke-width:2; }
+.demo-poster .dash{ fill:none; stroke:currentColor; stroke-width:1; stroke-dasharray:5 5; opacity:.72; }
+.demo-poster .dim{ fill:currentColor; font-family:var(--mono); font-size:13px; }
+.demo-poster figcaption{ position:absolute; left:var(--s-4); right:var(--s-4); bottom:var(--s-3); font-size:var(--t-xs); line-height:1.4; }
+.demo-play{ position:absolute; left:50%; top:calc(50% - 1rem); transform:translate(-50%,-50%); z-index:1; white-space:nowrap; font-size:var(--t-base); padding:.875rem 1.75rem; }
+.demo-msg{ position:absolute; left:var(--s-4); right:var(--s-4); top:var(--s-4); z-index:1; background:var(--ink-950); color:var(--bone-100); border:1px solid var(--ink-line-strong); padding:var(--s-2) var(--s-3); font-size:var(--t-sm); }
+.demo.is-playing .demo-play{ display:none; }
+
+.title-side{ display:flex; flex-direction:column; min-width:0; padding:var(--s-6) var(--s-5) var(--s-5); }
+.title-side .no{ font-family:var(--mono); font-size:var(--t-xs); color:var(--text-muted); }
+.title-side h3{ font-size:var(--t-xl); margin-top:var(--s-2); }
+.title-side .one{ font-family:var(--serif); font-style:italic; font-size:var(--t-md); color:var(--text-soft); margin-top:var(--s-2); line-height:1.4; }
+.note-label{ font-size:var(--t-xs); font-weight:600; color:var(--accent-2); margin-top:var(--s-5); }
+.title-side .design{ color:var(--text-soft); font-size:var(--t-sm); margin-top:var(--s-1); max-width:52ch; }
+
+.watch{ margin:auto 0 0; padding-top:var(--s-5); }
+.watch-head{ display:flex; justify-content:space-between; gap:var(--s-3); font-size:var(--t-xs); color:var(--text-muted); padding-bottom:var(--s-2); }
+.watch-head b{ color:var(--text); font-weight:600; }
+.watch-screen{ aspect-ratio:16 / 9; display:grid; place-content:center; justify-items:center; gap:var(--s-2); color:var(--bone-300); text-align:center; padding:var(--s-3); }
+.watch-screen video{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:var(--ink-950); }
+.watch-glyph{ width:2.5rem; height:2.5rem; color:var(--bone-500); }
+.watch-screen p{ font-size:var(--t-sm); }
+
+.note-card{ border:1px solid var(--line-strong); padding:var(--s-7) var(--s-6); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); gap:var(--s-7); }
+.note-card h3{ font-size:var(--t-xl); }
+.note-card .lead{ color:var(--text-soft); margin-top:var(--s-3); max-width:44ch; }
+.note-card .more{ margin-top:var(--s-4); font-size:var(--t-sm); display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-5); }
+.practice{ margin:0; padding:0; list-style:none; }
+.practice li{ display:grid; grid-template-columns:2.5rem minmax(0,1fr); gap:var(--s-2); padding-block:var(--s-4); border-top:1px solid var(--line); }
+.practice li:first-child{ border-top:none; padding-top:0; }
+.practice li:last-child{ padding-bottom:0; }
+.practice .pn{ font-family:var(--serif); font-style:italic; color:var(--accent-2); }
+.practice h4{ font-size:var(--t-md); font-weight:600; }
+.practice p{ font-size:var(--t-sm); color:var(--text-soft); margin-top:var(--s-1); max-width:58ch; }
+
+@media (max-width:62rem){
+  .title-card{ grid-template-columns:1fr; }
+  .demo{ border-right:none; }
+  .note-card{ grid-template-columns:1fr; gap:var(--s-6); }
+  .watch{ margin-top:var(--s-2); }
+}
+@media (max-width:48rem){
+  .band{ padding-block:var(--s-7); }
+  .note-card{ padding:var(--s-6) var(--s-5); }
+}
+@media (max-width:40rem){
+  .demo-stage{ height:calc(100vh - 11rem); height:calc(100svh - 11rem); min-height:26rem; max-height:40rem; }
+  .demo-bar{ padding-inline:var(--s-3); }
+  .title-side{ padding:var(--s-5) var(--s-4) var(--s-4); }
+}
 </style>
 </head>
 <body>
-<h1>Classic Games — Sourcing and Maintenance Notes</h1>
-<h2>Sourcing</h2>
-<p>Classic game software is sourced from legitimate channels only: original media, publisher re-releases, and public-domain or openly licensed releases. Provenance is recorded per title.</p>
-<h2>Maintenance</h2>
-<p>Cartridges and discs are cleaned, imaged where the law and the licence allow, and stored dry. Emulation notes here concern preservation of lawfully owned material.</p>
-<footer>Arcade notes. Part of the Dimon Global Group constellation.</footer>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="https://dimonglobalgroup.com/" aria-label="Dimon Global Group, home">
+      <span class="mono-mark">RAD</span>
+      <span class="brand-name">DIMON GLOBAL GROUP</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="https://dimonglobalgroup.com/#portfolio">Portfolio</a>
+      <a href="https://dimonglobalgroup.github.io/">Systems</a>
+      <a href="https://dimonglobalgroup.github.io/dgg-founder/">Founder</a>
+      <a href="https://dimonglobalgroup.com/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-top">
+      <p class="hero-eyebrow"><a href="https://dimonglobalgroup.com/">Dimon Global Group</a> / Arcade</p>
+      <h1>The business of <em>making</em> games.</h1>
+      <p class="hero-lede">The Arcade is the Group&rsquo;s game studio. Two built games are ready to play here in your browser. They are a taste of the work, not the catalog.</p>
+    </div>
+    <dl class="hero-strip" aria-label="Studio index">
+      <div><dt>01 Playable demo</dt><dd><a href="#title-2048">2048</a></dd></div>
+      <div><dt>02 Playable demo</dt><dd><a href="#title-falling-blocks">Falling Blocks</a></dd></div>
+      <div><dt>Gameplay footage</dt><dd>Coming soon</dd></div>
+      <div><dt>Outside game code</dt><dd>None, ever</dd></div>
+    </dl>
+  </div>
+</div>
+
+<main id="main">
+  <section id="titles" class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Titles</h2>
+        <p>What exists, playable where it can be. Gameplay video sits beside each demo.</p>
+      </div>
+      <div class="titles">
+
+        <article class="title-card" id="title-2048" aria-labelledby="title-2048-h">
+          <div class="demo" data-title="2048">
+            <div class="demo-bar">
+              <span class="status status-live">Playable demo</span>
+              <div class="demo-actions">
+                <a class="btn btn-sm demo-full" href="games/2048/index.html" hidden>Full page</a>
+                <button class="btn btn-sm demo-stop" type="button" hidden>Stop</button>
+              </div>
+            </div>
+            <div class="demo-stage">
+              <figure class="demo-poster">
+                <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                  <path class="ln-b" d="M60 60h280v280H60z" />
+                  <path class="ln" d="M130 60v280M200 60v280M270 60v280M60 130h280M60 200h280M60 270h280" />
+                  <path class="ln" d="M60 38h280M60 32v12M340 32v12M38 60v280M32 60h12M32 340h12" />
+                  <text class="dim" x="200" y="26" text-anchor="middle">4 columns</text>
+                  <text class="dim" x="24" y="200" text-anchor="middle" transform="rotate(-90 24 200)">4 rows</text>
+                </svg>
+                <figcaption>Fig. 1. The empty board. A schematic, not a screenshot.</figcaption>
+              </figure>
+              <a class="btn btn-solid demo-play" href="games/2048/index.html">Play 2048</a>
+              <p class="demo-msg" role="status" hidden>This demo isn&rsquo;t available in this build.</p>
+            </div>
+          </div>
+          <div class="title-side">
+            <p class="no">Title 01</p>
+            <h3 id="title-2048-h">2048</h3>
+            <p class="one">Slide the tiles, merge the matches, reach 2048.</p>
+            <p class="note-label">Design note</p>
+            <p class="design">The engine is frozen by hash. Presentation work happens around it, never inside it, so the rules stay exactly as they were locked.</p>
+            <figure class="watch">
+              <figcaption class="watch-head"><b>Gameplay</b><span>2048</span></figcaption>
+              <div class="frame"><div class="frame-inner watch-screen" data-clip-slot="2048">
+                <!-- Clip slot: replace the two lines below with a same-origin <video controls preload="none" src="..."></video> -->
+                <svg class="watch-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M16 12.5v15L28 20z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
+                <p>Gameplay footage coming soon</p>
+              </div></div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="title-card" id="title-falling-blocks" aria-labelledby="title-falling-blocks-h">
+          <div class="demo" data-title="Falling Blocks">
+            <div class="demo-bar">
+              <span class="status status-live">Playable demo</span>
+              <div class="demo-actions">
+                <a class="btn btn-sm demo-full" href="games/falling-blocks/index.html" hidden>Full page</a>
+                <button class="btn btn-sm demo-stop" type="button" hidden>Stop</button>
+              </div>
+            </div>
+            <div class="demo-stage">
+              <figure class="demo-poster">
+                <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                  <path class="ln-b" d="M120 24v352h160V24" />
+                  <path class="ln" d="M120 376l-12 12M150 376l-12 12M180 376l-12 12M210 376l-12 12M240 376l-12 12M270 376l-12 12M300 376l-12 12" />
+                  <path class="ln-b" d="M182 44h36v36h-36z" />
+                  <path class="dash" d="M200 84v270" />
+                  <path class="ln" d="M192 344l8 12 8-12" />
+                </svg>
+                <figcaption>Fig. 2. The empty play field. A schematic, not a screenshot.</figcaption>
+              </figure>
+              <a class="btn btn-solid demo-play" href="games/falling-blocks/index.html">Play Falling Blocks</a>
+              <p class="demo-msg" role="status" hidden>This demo isn&rsquo;t available in this build.</p>
+            </div>
+          </div>
+          <div class="title-side">
+            <p class="no">Title 02</p>
+            <h3 id="title-falling-blocks-h">Falling Blocks</h3>
+            <p class="one">Blocks fall. You place them.</p>
+            <p class="note-label">Design note</p>
+            <p class="design">Rebuilt on November 4, 2026. It launches beside 2048 as the studio&rsquo;s second demo.</p>
+            <figure class="watch">
+              <figcaption class="watch-head"><b>Gameplay</b><span>Falling Blocks</span></figcaption>
+              <div class="frame"><div class="frame-inner watch-screen" data-clip-slot="falling-blocks">
+                <!-- Clip slot: replace the two lines below with a same-origin <video controls preload="none" src="..."></video> -->
+                <svg class="watch-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M16 12.5v15L28 20z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
+                <p>Gameplay footage coming soon</p>
+              </div></div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="note-card on-paper" id="studio-note" aria-labelledby="studio-note-h">
+          <div>
+            <h3 id="studio-note-h">Studio note</h3>
+            <p class="lead">This grid shows what exists. Other work stays in the workshop until it is real enough to show, and no other titles are announced today.</p>
+            <p class="more"><a href="https://dimonglobalgroup.github.io/dgg-media/">The daily reel, on Media</a><a href="https://dimonglobalgroup.github.io/">The systems documentation</a></p>
+          </div>
+          <ol class="practice">
+            <li><span class="pn">I.</span><div><h4>The rules hold still</h4><p>A frozen engine lets the frame, type, and sizing improve without touching how the game plays.</p></div></li>
+            <li><span class="pn">II.</span><div><h4>Playable, not promised</h4><p>A demo here is a working build you can try. The studio doesn&rsquo;t show trailers for games that aren&rsquo;t there.</p></div></li>
+            <li><span class="pn">III.</span><div><h4>Real footage or none</h4><p>The video frames stay empty until there is real gameplay to put in them.</p></div></li>
+          </ol>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="https://dimonglobalgroup.com/" aria-label="Dimon Global Group, home"><span class="mono-mark">RAD</span></a>
+        <p class="foot-name">DIMON GLOBAL GROUP</p>
+        <p class="foot-tag">Truth, made real.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <div>
+          <h2>The Group</h2>
+          <ul>
+          <li><a href="https://dimonglobalgroup.com/">Dimon Global Group</a></li>
+          <li><a href="https://dimonglobalgroup.com/#sectors">Sectors</a></li>
+          <li><a href="https://dimonglobalgroup.com/#portfolio">Portfolio</a></li>
+          <li><a href="https://dimonglobalgroup.com/#about">About the Principal</a></li>
+          <li><a href="https://dimonglobalgroup.com/#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Constellation</h2>
+          <ul class="two-col">
+          <li><a href="https://dimonglobalgroup.github.io/">Systems</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-founder/">Founder</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-arcade/" aria-current="page">Arcade</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-media/">Media</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-cinema/">Cinema</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-newsletter/">Newsletter</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-storybook/">Storybook</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-predictions/">Predictions</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-gallery/">Gallery</a></li>
+          <li><a href="https://dimonglobalgroup.github.io/dgg-music/">Music</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Public channels</h2>
+          <ul>
+          <li><a href="https://www.instagram.com/thearchitectrad" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.threads.net/@thearchitectrad" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://www.youtube.com/@RobertDonaldson-rad" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://t.me/RAD_Dimon" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://github.com/DimonGlobalGroup" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="foot-legal">
+      <p>Dimon is the founder&rsquo;s chosen name. Dimon Global Group has no affiliation with any other firm or person of that name.</p>
+      <p>Demos on this page run from files on this site. Video frames stay empty until real gameplay footage exists. The Group publishes no personal email address, street address, or telephone number.</p>
+      <p>&copy; <span id="yr">2026</span> Dimon Global Group.</p>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var y=document.getElementById('yr'); if(y){ y.textContent=new Date().getFullYear(); }
+  var active=null;
+  document.querySelectorAll('.demo').forEach(function(d){
+    var stage=d.querySelector('.demo-stage'), play=d.querySelector('.demo-play'),
+        stop=d.querySelector('.demo-stop'), full=d.querySelector('.demo-full'),
+        msg=d.querySelector('.demo-msg'), frame=null, api={};
+    var src=play.getAttribute('href');
+    api.close=function(refocus){
+      if(frame){ frame.remove(); frame=null; }
+      d.classList.remove('is-playing');
+      stop.hidden=true; full.hidden=true;
+      if(active===api){ active=null; }
+      if(refocus){ play.focus(); }
+    };
+    function open(){
+      if(active){ active.close(false); }
+      msg.hidden=true;
+      frame=document.createElement('iframe');
+      frame.src=src;
+      frame.title=d.dataset.title+', playable demo';
+      frame.addEventListener('load',function(){ try{ frame.contentWindow.focus(); }catch(e){} });
+      stage.appendChild(frame);
+      d.classList.add('is-playing');
+      stop.hidden=false; full.hidden=false;
+      active=api;
+      d.scrollIntoView({block:'start'});
+    }
+    play.addEventListener('click',function(e){
+      e.preventDefault();
+      if(location.protocol==='file:' || !window.fetch){ open(); return; }
+      fetch(src,{method:'HEAD',cache:'no-store'})
+        .then(function(r){ if(r.ok){ open(); }else{ msg.hidden=false; } })
+        .catch(function(){ msg.hidden=false; });
+    });
+    stop.addEventListener('click',function(){ api.close(true); });
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#080b12">
+<meta name="color-scheme" content="dark">
+<title>2048 &mdash; Refined &middot; HOPE Entry</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="backlink" href="/">&lsaquo; HOPE Entry</a>
+  <div class="title">2048 <span>&mdash; Refined</span></div>
+  <div class="scores">
+    <div class="scorebox"><span class="lbl">Score</span><b id="score">0</b></div>
+    <div class="scorebox"><span class="lbl">Best</span><b id="best">0</b></div>
+  </div>
+  <div class="actions">
+    <button id="btn-mute" class="hbtn" type="button" aria-pressed="false" aria-label="Mute sound" title="Sound on - click to mute">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+        <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/>
+        <path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path class="x" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg><span class="mt">Sound</span>
+    </button>
+    <button id="btn-pause" class="hbtn" type="button" title="Pause &mdash; shows the manual">&#9208; Pause</button>
+    <button id="btn-new" class="hbtn" type="button">&#8635; New game</button>
+  </div>
+</header>
+
+<main>
+  <div id="board-wrap">
+    <div id="board">
+      <div id="cells"></div>
+      <div id="tiles"></div>
+
+      <!-- PAUSE = THE MANUAL. The control card is generated live by the
+           shell from the input adapter: it names the buttons of the
+           device actually in the player's hand. -->
+      <div id="ov-pause" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+        <h2 id="pause-title">Paused</h2>
+        <div id="control-card" class="control-card"></div>
+        <div class="ov-actions">
+          <button id="btn-resume" class="obtn primary" type="button">&#9654; Resume</button>
+          <button id="btn-restart" class="obtn" type="button">&#8635; Restart run</button>
+          <a class="obtn" href="/">&lsaquo; Back to shelf</a>
+        </div>
+      </div>
+
+      <!-- End modal: game.js fills #end-title / #end-sub and toggles
+           #btn-keepgoing; presentation.js reads that to pick win vs over. -->
+      <div id="ov-end" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="end-title">
+        <div class="emblem" aria-hidden="true">
+          <div class="em-win"><b>2048</b></div>
+          <div class="em-over"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <h2 id="end-title">No moves left</h2>
+        <p id="end-sub" class="sub"></p>
+        <div class="stats">
+          <div><span class="lbl">Score</span><b id="st-score">0</b></div>
+          <div><span class="lbl">Best</span><b id="st-best">0</b></div>
+          <div><span class="lbl">Top tile</span><b id="st-top">0</b></div>
+        </div>
+        <div class="rec">New best!</div>
+        <div class="ov-actions">
+          <button id="btn-keepgoing" class="obtn primary hidden" type="button">Keep going</button>
+          <button id="btn-again" class="obtn primary" type="button">&#8635; New game</button>
+          <a class="obtn" href="/">&lsaquo; Back to shelf</a>
+        </div>
+        <div class="fx" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+  <p class="hint">Slide the tiles &mdash; matching numbers merge and double. Reach <b>2048</b>.
+     Any controller, keyboard, or a swipe works. Pause (&#9208;) shows what every button does.</p>
+  <p class="foot">Our build, from scratch &middot; HOPE Entry &middot; plays fully offline</p>
+</main>
+
+<script src="../../input.js"></script>
+<script src="../../shell.js"></script>
+<script src="game.js"></script>
+<script src="presentation.js"></script>
+</body>
+</html>
