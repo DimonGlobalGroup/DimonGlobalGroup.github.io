@@ -338,6 +338,26 @@ img.img-missing{ opacity:0; }
   .ships .step::before,.ships .step + .step::before{ display:none; }
 }
 </style>
+<style>
+/* ==== ESTATE RESPONSIVE STANDARD v1 — 2026-11-10 ====
+   Phone-first touch layer for the whole public estate (Robert's order,
+   Nov 10 2026: every public page adapts to phone, tablet, and desktop).
+   Additive only: every rule sits inside the small-screen query below,
+   so desktop rendering is unchanged. No images touched; CSS sizing only.
+   Standard + regression gate: RESPONSIVE-STANDARD.md in this project.
+   Verify at 390 / 768 / 1280 before any deploy. */
+@media (max-width: 820px) {
+  .brand { min-height: 44px; display: inline-flex; align-items: center; }
+  .topbar .nav { flex-wrap: wrap; }
+  .topbar .nav a { min-height: 44px; display: inline-flex; align-items: center; padding-left: .55rem; padding-right: .55rem; }
+  .foot-nav a { min-height: 44px; display: flex; align-items: center; }
+  .constellation a { min-height: 44px; }
+  .toc a { min-height: 44px; display: flex; align-items: center; }
+  .tabs a, .jump a, .rail a { min-height: 44px; display: inline-flex; align-items: center; padding-left: .55rem; padding-right: .55rem; }
+  .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  img, video, canvas { max-width: 100%; height: auto; }
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
