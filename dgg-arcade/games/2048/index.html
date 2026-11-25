@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="theme-color" content="#080b12">
 <meta name="color-scheme" content="dark">
 <title>2048 &mdash; Refined &middot; HOPE Entry</title>
@@ -35,9 +36,7 @@
       <div id="cells"></div>
       <div id="tiles"></div>
 
-      <!-- PAUSE = THE MANUAL. The control card is generated live by the
-           shell from the input adapter: it names the buttons of the
-           device actually in the player's hand. -->
+      
       <div id="ov-pause" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pause-title">
         <h2 id="pause-title">Paused</h2>
         <div id="control-card" class="control-card"></div>
@@ -48,8 +47,7 @@
         </div>
       </div>
 
-      <!-- End modal: game.js fills #end-title / #end-sub and toggles
-           #btn-keepgoing; presentation.js reads that to pick win vs over. -->
+      
       <div id="ov-end" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="end-title">
         <div class="emblem" aria-hidden="true">
           <div class="em-win"><b>2048</b></div>

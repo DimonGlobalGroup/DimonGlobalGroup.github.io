@@ -14,6 +14,15 @@
  *    anywhere else — curtain law. Family play is family data on
  *    Robert's hardware.
  *
+ *    PUBLIC-HOST ADAPTATION (2026-11-24, free-tier lane): on a public
+ *    static host (e.g. GitHub Pages) there is no box and no
+ *    /api/telemetry endpoint, so the same events are kept in the
+ *    LOCAL VAULT — a JSONL store in the player's own browser
+ *    (localStorage, capped at 500 lines). Same schema, same curtain:
+ *    play data stays on the player's own machine and is never
+ *    transmitted anywhere. On box/LAN hosts the original POST
+ *    behavior is unchanged.
+ *
  *    Event schema (v1) — one JSON object per line:
  *      {v:1, ts:<ISO>, game:<id>, event:"session_start"|"session_end"|
  *       "run_end"|"milestone", session:<id>, ...}
@@ -23,9 +32,31 @@
  */
 (function (global) {
   const TELEMETRY_URL = "/api/telemetry";
+  const VAULT_KEY = "hope-telemetry-jsonl";
+  const VAULT_CAP = 500;
+  /* A box/LAN host can serve /api/telemetry; a public static host
+   * cannot. Local file, localhost, and private/tailnet addresses are
+   * treated as box hosts; everything else uses the Local Vault. */
+  const BOX_HOST = (() => {
+    const h = location.hostname || "";
+    return location.protocol === "file:" || h === "" || h === "localhost" ||
+      /^(127\.|10\.|192\.168\.|100\.|172\.(1[6-9]|2\d|3[01])\.)/.test(h) ||
+      h.endsWith(".local") || h.endsWith(".ts.net");
+  })();
+
+  function vault(line) {
+    try {
+      const raw = localStorage.getItem(VAULT_KEY);
+      const lines = raw ? raw.split("\n").filter(Boolean) : [];
+      lines.push(line);
+      while (lines.length > VAULT_CAP) lines.shift();
+      localStorage.setItem(VAULT_KEY, lines.join("\n"));
+    } catch (e) {}
+  }
 
   function send(obj) {
     const line = JSON.stringify(obj);
+    if (!BOX_HOST) { vault(line); return; }
     try {
       if (navigator.sendBeacon && navigator.sendBeacon(TELEMETRY_URL, line)) return;
     } catch (e) {}
